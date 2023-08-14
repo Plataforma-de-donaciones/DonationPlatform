@@ -1,2 +1,0 @@
-# DonationPlatform-Back
-repo backend
