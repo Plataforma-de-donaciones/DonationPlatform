@@ -15,8 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from donation_platform import settings
 from users.views import UsersListView, UsersCreateView, UsersDetailView
 from rest_framework.authtoken.views import obtain_auth_token
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,4 +26,4 @@ urlpatterns = [
     path('users/', UsersListView.as_view(), name='user-list'),
     path('users/create/', UsersCreateView.as_view(), name='user-create'),
     path('users/<int:pk>/', UsersDetailView.as_view(), name='user-detail'),
-]
+    ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
