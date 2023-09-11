@@ -68,3 +68,18 @@ class UserSearchView(generics.ListAPIView):
         logger.debug("Consulta sql generada:", str(queryset.query))
         serializer = self.serializer_class(queryset, many=True)
         return Response(serializer.data)
+
+class UserLoginView(generics.CreateAPIView):
+    def create(self, request, *args, **kwargs):
+        user_name = request.data.get('user_name')
+        user_password = request.data.get('user_password')
+
+        # Autentica al usuario
+        user = authenticate(request, user_name=user_name, user_password=user_password)
+
+        if user is not None:
+            # Inicia sesión para el usuario autenticado
+            login(request, user)
+            return Response({'message': 'Inicio de sesión exitoso'}, status=status.HTTP_200_OK)
+        else:
+            return Response({'message': 'Credenciales inválidas'}, status=status.HTTP_401_UNAUTHORIZED)
