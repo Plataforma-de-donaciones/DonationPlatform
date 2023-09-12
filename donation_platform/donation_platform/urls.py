@@ -15,10 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from users.views import UsersListView, UsersCreateView, UsersDetailView, UserSearchView, UserLoginView
+from donation_platform import settings
 from rest_framework.authtoken.views import obtain_auth_token
 from django.conf.urls.static import static
+from users.views import UsersListView, UsersCreateView, UsersDetailView, UserSearchView, UserLoginView
 from django.views.generic import TemplateView
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,3 +31,5 @@ urlpatterns = [
     path('users/search/', UserSearchView.as_view(), name='user-search'),
     path('login/', UserLoginView.as_view(), name='user-login'),
     ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+
