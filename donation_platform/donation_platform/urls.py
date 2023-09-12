@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from users.views import UsersListView, UsersCreateView, UsersDetailView, UserSearchView, UserLoginView
+from administrator.views import AdministratorListView, AdministratorDetailView, AdministratorSearchView
 from rest_framework.authtoken.views import obtain_auth_token
 from django.views.generic import TemplateView
 
@@ -27,5 +28,8 @@ urlpatterns = [
     path('users/<int:pk>/', UsersDetailView.as_view(), name='user-detail'),
     path('users/search/', UserSearchView.as_view(), name='user-search'),
     path('login/', UserLoginView.as_view(), name='user-login'),
+    path('administrators/', AdministratorListView.as_view(), name='administrator-list'),
+    path('administrators/<int:pk>/', AdministratorDetailView.as_view(), name='administrator-detail'),
+    path('administrators/search/', AdministratorSearchView.as_view(), name='administrator-search'),
 
 ]
