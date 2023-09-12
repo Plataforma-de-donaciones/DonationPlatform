@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 # Create your views here.
-from rest_framework import generics
+from rest_framework import generics, status
 from rest_framework.permissions import IsAuthenticated
 from .models import Users
 from .serializers import UsersSerializer
@@ -12,6 +12,7 @@ from rest_framework import status
 from django.db.models import Q
 import logging
 from django.contrib.auth.hashers import make_password
+from django.contrib.auth import authenticate, login
 
 class UsersListView(generics.ListAPIView):
     queryset = Users.objects.all()
@@ -69,17 +70,20 @@ class UserSearchView(generics.ListAPIView):
         serializer = self.serializer_class(queryset, many=True)
         return Response(serializer.data)
 
-class UserLoginView(generics.CreateAPIView):
-    def create(self, request, *args, **kwargs):
+class UserLoginView(APIView):
+    def post(self, request):
         user_name = request.data.get('user_name')
         user_password = request.data.get('user_password')
 
-        # Autentica al usuario
-        user = authenticate(request, user_name=user_name, user_password=user_password)
+        # Verifica las credenciales en tu base de datos
+        try:
+            user = Users.objects.get(user_name=user_name, user_password=user_password)
+        except Users.DoesNotExist:
+            user = None
 
         if user is not None:
-            # Inicia sesión para el usuario autenticado
-            login(request, user)
+            # La autenticación fue exitosa, realiza acciones adicionales aquí
             return Response({'message': 'Inicio de sesión exitoso'}, status=status.HTTP_200_OK)
         else:
+            # La autenticación falló, devuelve un mensaje de error
             return Response({'message': 'Credenciales inválidas'}, status=status.HTTP_401_UNAUTHORIZED)
