@@ -11,7 +11,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.db.models import Q
 import logging
-from django.contrib.auth.hashers import make_password
+from django.contrib.auth.hashers import make_password, check_password
 from django.contrib.auth import authenticate, login
 
 class UsersListView(generics.ListAPIView):
@@ -75,15 +75,18 @@ class UserLoginView(APIView):
         user_name = request.data.get('user_name')
         user_password = request.data.get('user_password')
 
-        # Verifica las credenciales en tu base de datos
+        # Busca al usuario en la base de datos
         try:
-            user = Users.objects.get(user_name=user_name, user_password=user_password)
+            user = Users.objects.get(user_name=user_name)
         except Users.DoesNotExist:
             user = None
 
-        if user is not None:
-            # La autenticación fue exitosa, realiza acciones adicionales aquí
+        if user is not None and check_password(user_password, user.user_password):
+            # La autenticación fue exitosa, inicia sesión
+            login(request, user)
+            # Realiza acciones adicionales aquí
             return Response({'message': 'Inicio de sesión exitoso'}, status=status.HTTP_200_OK)
         else:
             # La autenticación falló, devuelve un mensaje de error
             return Response({'message': 'Credenciales inválidas'}, status=status.HTTP_401_UNAUTHORIZED)
+
