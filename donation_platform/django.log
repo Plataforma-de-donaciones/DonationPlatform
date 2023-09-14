@@ -428,3 +428,11 @@ couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
 couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
 couldn't import psycopg 'python' implementation: libpq library not found
 Watching for file changes with StatReloader
+C:\Users\Cami\Desktop\Queenscoders\DonationPlatform-Back\donation_platform\donation_platform\models.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+couldn't import psycopg 'python' implementation: libpq library not found
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+couldn't import psycopg 'python' implementation: libpq library not found
+Watching for file changes with StatReloader
