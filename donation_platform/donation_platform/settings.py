@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'donation_platform',
     'users',
     'administrator',
+    'moderator',
 ]
 
 MIDDLEWARE = [

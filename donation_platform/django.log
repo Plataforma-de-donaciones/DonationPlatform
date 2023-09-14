@@ -980,3 +980,203 @@ Method Not Allowed: /administrators/search/
 Method Not Allowed: /administrators/search/
 Method Not Allowed: /administrators/search/
 Method Not Allowed: /administrators/search/
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Internal Server Error: /moderators/
+Traceback (most recent call last):
+  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/base.py", line 167, in _get_response
+    callback, callback_args, callback_kwargs = self.resolve_request(request)
+  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/base.py", line 290, in resolve_request
+    resolver_match = resolver.resolve(request.path_info)
+  File "/usr/local/lib64/python3.6/site-packages/django/urls/resolvers.py", line 560, in resolve
+    for pattern in self.url_patterns:
+  File "/usr/local/lib64/python3.6/site-packages/django/utils/functional.py", line 48, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/usr/local/lib64/python3.6/site-packages/django/urls/resolvers.py", line 602, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "/usr/local/lib64/python3.6/site-packages/django/utils/functional.py", line 48, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/usr/local/lib64/python3.6/site-packages/django/urls/resolvers.py", line 595, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "/usr/lib64/python3.6/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/root/DonationPlatform-Back/donation_platform/donation_platform/urls.py", line 20, in <module>
+    from moderator.views import ModeratorListView, ModeratorDetailView, ModeratorSearchView
+ImportError: cannot import name 'ModeratorSearchView'
+Internal Server Error: /moderators/
+Traceback (most recent call last):
+  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/base.py", line 167, in _get_response
+    callback, callback_args, callback_kwargs = self.resolve_request(request)
+  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/base.py", line 290, in resolve_request
+    resolver_match = resolver.resolve(request.path_info)
+  File "/usr/local/lib64/python3.6/site-packages/django/urls/resolvers.py", line 560, in resolve
+    for pattern in self.url_patterns:
+  File "/usr/local/lib64/python3.6/site-packages/django/utils/functional.py", line 48, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/usr/local/lib64/python3.6/site-packages/django/urls/resolvers.py", line 602, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "/usr/local/lib64/python3.6/site-packages/django/utils/functional.py", line 48, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/usr/local/lib64/python3.6/site-packages/django/urls/resolvers.py", line 595, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "/usr/lib64/python3.6/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/root/DonationPlatform-Back/donation_platform/donation_platform/urls.py", line 20, in <module>
+    from moderator.views import ModeratorListView, ModeratorDetailView, ModeratorSearchView
+ImportError: cannot import name 'ModeratorSearchView'
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Internal Server Error: /moderators/
+Traceback (most recent call last):
+  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib64/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib64/python3.6/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/generics.py", line 239, in get
+    return self.list(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/mixins.py", line 46, in list
+    return Response(serializer.data)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/serializers.py", line 687, in to_representation
+    self.child.to_representation(item) for item in iterable
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 280, in __iter__
+    self._fetch_all()
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 1324, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 51, in __iter__
+    results = compiler.execute_sql(chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/sql/compiler.py", line 1162, in execute_sql
+    sql, params = self.as_sql()
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/sql/compiler.py", line 513, in as_sql
+    extra_select, order_by, group_by = self.pre_sql_setup()
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/sql/compiler.py", line 55, in pre_sql_setup
+    self.setup_query()
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/sql/compiler.py", line 46, in setup_query
+    self.select, self.klass_info, self.annotation_col_map = self.get_select()
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/sql/compiler.py", line 227, in get_select
+    cols = self.get_default_columns()
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/sql/compiler.py", line 702, in get_default_columns
+    column = field.get_col(alias)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/fields/related.py", line 1019, in get_col
+    output_field = self.target_field
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/fields/related.py", line 897, in target_field
+    return self.foreign_related_fields[0]
+  File "/usr/local/lib64/python3.6/site-packages/django/utils/functional.py", line 48, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/fields/related.py", line 644, in foreign_related_fields
+    return tuple(rhs_field for lhs_field, rhs_field in self.related_fields if rhs_field)
+  File "/usr/local/lib64/python3.6/site-packages/django/utils/functional.py", line 48, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/fields/related.py", line 632, in related_fields
+    return self.resolve_related_fields()
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/fields/related.py", line 936, in resolve_related_fields
+    related_fields = super().resolve_related_fields()
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/fields/related.py", line 615, in resolve_related_fields
+    raise ValueError('Related model %r cannot be resolved' % self.remote_field.model)
+ValueError: Related model 'Users' cannot be resolved
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Bad Request: /moderators/
+Bad Request: /moderators/
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Bad Request: /moderators/
+Method Not Allowed: /moderators/search/
+Unauthorized: /users/search/
+Valor de username: admin
+Valor de email: 
+Valor de username: adm_fati
+Valor de email: 
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Internal Server Error: /moderators/search/
+Traceback (most recent call last):
+  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/base.py", line 167, in _get_response
+    callback, callback_args, callback_kwargs = self.resolve_request(request)
+  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/base.py", line 290, in resolve_request
+    resolver_match = resolver.resolve(request.path_info)
+  File "/usr/local/lib64/python3.6/site-packages/django/urls/resolvers.py", line 560, in resolve
+    for pattern in self.url_patterns:
+  File "/usr/local/lib64/python3.6/site-packages/django/utils/functional.py", line 48, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/usr/local/lib64/python3.6/site-packages/django/urls/resolvers.py", line 602, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "/usr/local/lib64/python3.6/site-packages/django/utils/functional.py", line 48, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/usr/local/lib64/python3.6/site-packages/django/urls/resolvers.py", line 595, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "/usr/lib64/python3.6/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/root/DonationPlatform-Back/donation_platform/donation_platform/urls.py", line 20, in <module>
+    from moderator.views import ModeratorListView, ModeratorDetailView, ModeratorSearchView
+  File "/root/DonationPlatform-Back/donation_platform/moderator/views.py", line 32
+    if search_param:
+    ^
+IndentationError: unexpected indent
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Method Not Allowed: /moderators/search/
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Method Not Allowed: /moderators/search/
+Method Not Allowed: /moderators/search/
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Method Not Allowed: /moderators/search/
+Method Not Allowed: /moderators/search/
+Method Not Allowed: /moderators/search/
+Method Not Allowed: /moderators/search/
