@@ -11,7 +11,7 @@ from django.utils import timezone
 class Administrator(models.Model):
     user = models.ForeignKey('Users', models.DO_NOTHING)
     start_date = models.DateTimeField()
-    organization = models.ForeignKey('Organization', models.DO_NOTHING, blank=True, null=True, related_name='administrator_organization')
+    organization = models.ForeignKey('Organization', models.DO_NOTHING, blank=True, null=True, related_name='donation_platform_administrator_organization')
     administrator_state = models.IntegerField()
     erased_at = models.DateTimeField(blank=True, null=True)
     erase_reason = models.TextField(blank=True, null=True)
