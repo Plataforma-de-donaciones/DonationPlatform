@@ -115,7 +115,7 @@ LOGGING = {
         'file': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
-            'filename': '/root/DonationPlatform-Back/donation_platform/django.log',
+            'filename': os.path.join(BASE_DIR, 'django.log/'),
         },
     },
     'root': {
