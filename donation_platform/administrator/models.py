@@ -4,7 +4,7 @@ from django.utils import timezone
 
 # Create your models here.
 class Administrator(models.Model):
-    user = models.ForeignKey(Users, models.DO_NOTHING, related_name='administrator-user')
+    user = models.ForeignKey(Users, models.DO_NOTHING, related_name='administrator_user')
     start_date = models.DateTimeField()
     organization = models.ForeignKey(Organization, models.DO_NOTHING, blank=True, null=True, related_name='administrator_organization')
     administrator_state = models.IntegerField()
