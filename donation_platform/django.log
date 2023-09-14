@@ -338,845 +338,93 @@ Using selector: EpollSelector
 Using selector: EpollSelector
 Using selector: EpollSelector
 Using selector: EpollSelector
-Internal Server Error: /login/
-Traceback (most recent call last):
-  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 84, in _execute
-    return self.cursor.execute(sql, params)
-psycopg2.errors.UndefinedTable: relation "authtoken_token" does not exist
-LINE 1: ...user"."is_active", "auth_user"."date_joined" FROM "authtoken...
-                                                             ^
-
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
-    response = get_response(request)
-  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/base.py", line 181, in _get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-  File "/usr/local/lib64/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
-    return view_func(*args, **kwargs)
-  File "/usr/local/lib64/python3.6/site-packages/django/views/generic/base.py", line 70, in view
-    return self.dispatch(request, *args, **kwargs)
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 509, in dispatch
-    response = self.handle_exception(exc)
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 469, in handle_exception
-    self.raise_uncaught_exception(exc)
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
-    raise exc
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 497, in dispatch
-    self.initial(request, *args, **kwargs)
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 414, in initial
-    self.perform_authentication(request)
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 324, in perform_authentication
-    request.user
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/request.py", line 227, in user
-    self._authenticate()
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/request.py", line 380, in _authenticate
-    user_auth_tuple = authenticator.authenticate(self)
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/authentication.py", line 196, in authenticate
-    return self.authenticate_credentials(token)
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/authentication.py", line 201, in authenticate_credentials
-    token = model.objects.select_related('user').get(key=key)
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 431, in get
-    num = len(clone)
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 262, in __len__
-    self._fetch_all()
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 1324, in _fetch_all
-    self._result_cache = list(self._iterable_class(self))
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 51, in __iter__
-    results = compiler.execute_sql(chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size)
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/sql/compiler.py", line 1175, in execute_sql
-    cursor.execute(sql, params)
-  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 98, in execute
-    return super().execute(sql, params)
-  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 66, in execute
-    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
-  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 75, in _execute_with_wrappers
-    return executor(sql, params, many, context)
-  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 84, in _execute
-    return self.cursor.execute(sql, params)
-  File "/usr/local/lib64/python3.6/site-packages/django/db/utils.py", line 90, in __exit__
-    raise dj_exc_value.with_traceback(traceback) from exc_value
-  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 84, in _execute
-    return self.cursor.execute(sql, params)
-django.db.utils.ProgrammingError: relation "authtoken_token" does not exist
-LINE 1: ...user"."is_active", "auth_user"."date_joined" FROM "authtoken...
-                                                             ^
-
-Using selector: EpollSelector
-Using selector: EpollSelector
-Using selector: EpollSelector
-Internal Server Error: /login/
-Traceback (most recent call last):
-  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 84, in _execute
-    return self.cursor.execute(sql, params)
-psycopg2.errors.UndefinedTable: relation "authtoken_token" does not exist
-LINE 1: ...user"."is_active", "auth_user"."date_joined" FROM "authtoken...
-                                                             ^
-
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
-    response = get_response(request)
-  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/base.py", line 181, in _get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-  File "/usr/local/lib64/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
-    return view_func(*args, **kwargs)
-  File "/usr/local/lib64/python3.6/site-packages/django/views/generic/base.py", line 70, in view
-    return self.dispatch(request, *args, **kwargs)
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 509, in dispatch
-    response = self.handle_exception(exc)
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 469, in handle_exception
-    self.raise_uncaught_exception(exc)
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
-    raise exc
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 497, in dispatch
-    self.initial(request, *args, **kwargs)
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 414, in initial
-    self.perform_authentication(request)
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 324, in perform_authentication
-    request.user
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/request.py", line 227, in user
-    self._authenticate()
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/request.py", line 380, in _authenticate
-    user_auth_tuple = authenticator.authenticate(self)
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/authentication.py", line 196, in authenticate
-    return self.authenticate_credentials(token)
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/authentication.py", line 201, in authenticate_credentials
-    token = model.objects.select_related('user').get(key=key)
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 431, in get
-    num = len(clone)
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 262, in __len__
-    self._fetch_all()
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 1324, in _fetch_all
-    self._result_cache = list(self._iterable_class(self))
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 51, in __iter__
-    results = compiler.execute_sql(chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size)
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/sql/compiler.py", line 1175, in execute_sql
-    cursor.execute(sql, params)
-  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 98, in execute
-    return super().execute(sql, params)
-  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 66, in execute
-    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
-  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 75, in _execute_with_wrappers
-    return executor(sql, params, many, context)
-  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 84, in _execute
-    return self.cursor.execute(sql, params)
-  File "/usr/local/lib64/python3.6/site-packages/django/db/utils.py", line 90, in __exit__
-    raise dj_exc_value.with_traceback(traceback) from exc_value
-  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 84, in _execute
-    return self.cursor.execute(sql, params)
-django.db.utils.ProgrammingError: relation "authtoken_token" does not exist
-LINE 1: ...user"."is_active", "auth_user"."date_joined" FROM "authtoken...
-                                                             ^
-
-Using selector: EpollSelector
-Using selector: EpollSelector
-Using selector: EpollSelector
-Using selector: EpollSelector
-Unauthorized: /login/
-Bad Request: /api-token-auth/
-Bad Request: /api-token-auth/
-Unauthorized: /users/
-Bad Request: /api-token-auth/
-Unsupported Media Type: /api-token-auth/
-Bad Request: /api-token-auth/
-Using selector: EpollSelector
-Unauthorized: /login/
-Unauthorized: /login/
-Method Not Allowed: /users/create/
-Unauthorized: /users/
-Unauthorized: /login/
-Unauthorized: /login/
-Unauthorized: /login/
-Unauthorized: /login/
-Unauthorized: /login/
-Unauthorized: /login/
-Using selector: EpollSelector
-Using selector: EpollSelector
-Using selector: EpollSelector
-Internal Server Error: /users/create/
-Traceback (most recent call last):
-  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 84, in _execute
-    return self.cursor.execute(sql, params)
-psycopg2.errors.UndefinedTable: relation "authtoken_token" does not exist
-LINE 1: ...user"."is_active", "auth_user"."date_joined" FROM "authtoken...
-                                                             ^
-
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
-    response = get_response(request)
-  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/base.py", line 181, in _get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-  File "/usr/local/lib64/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
-    return view_func(*args, **kwargs)
-  File "/usr/local/lib64/python3.6/site-packages/django/views/generic/base.py", line 70, in view
-    return self.dispatch(request, *args, **kwargs)
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 509, in dispatch
-    response = self.handle_exception(exc)
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 469, in handle_exception
-    self.raise_uncaught_exception(exc)
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
-    raise exc
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 497, in dispatch
-    self.initial(request, *args, **kwargs)
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 414, in initial
-    self.perform_authentication(request)
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 324, in perform_authentication
-    request.user
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/request.py", line 227, in user
-    self._authenticate()
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/request.py", line 380, in _authenticate
-    user_auth_tuple = authenticator.authenticate(self)
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/authentication.py", line 196, in authenticate
-    return self.authenticate_credentials(token)
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/authentication.py", line 201, in authenticate_credentials
-    token = model.objects.select_related('user').get(key=key)
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 431, in get
-    num = len(clone)
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 262, in __len__
-    self._fetch_all()
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 1324, in _fetch_all
-    self._result_cache = list(self._iterable_class(self))
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 51, in __iter__
-    results = compiler.execute_sql(chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size)
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/sql/compiler.py", line 1175, in execute_sql
-    cursor.execute(sql, params)
-  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 98, in execute
-    return super().execute(sql, params)
-  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 66, in execute
-    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
-  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 75, in _execute_with_wrappers
-    return executor(sql, params, many, context)
-  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 84, in _execute
-    return self.cursor.execute(sql, params)
-  File "/usr/local/lib64/python3.6/site-packages/django/db/utils.py", line 90, in __exit__
-    raise dj_exc_value.with_traceback(traceback) from exc_value
-  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 84, in _execute
-    return self.cursor.execute(sql, params)
-django.db.utils.ProgrammingError: relation "authtoken_token" does not exist
-LINE 1: ...user"."is_active", "auth_user"."date_joined" FROM "authtoken...
-                                                             ^
-
-Bad Request: /api-token-auth/
-Using selector: EpollSelector
-Using selector: EpollSelector
-Using selector: EpollSelector
-Unauthorized: /login/
-Unauthorized: /login/
-Using selector: EpollSelector
-Using selector: EpollSelector
-Using selector: EpollSelector
-Unauthorized: /login/
-Method Not Allowed: /login/
-Unauthorized: /login/
-Unauthorized: /login/
-Unauthorized: /login/
-Using selector: EpollSelector
-Using selector: EpollSelector
-Using selector: EpollSelector
-Unauthorized: /login/
-Unauthorized: /login/
-Unauthorized: /login/
-Unauthorized: /login/
-Using selector: EpollSelector
-Using selector: EpollSelector
-Using selector: EpollSelector
-Unauthorized: /login/
-Unauthorized: /login/
-Using selector: EpollSelector
-Using selector: EpollSelector
-Using selector: EpollSelector
-Internal Server Error: /login/
-Traceback (most recent call last):
-  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
-    response = get_response(request)
-  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/base.py", line 181, in _get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-  File "/usr/local/lib64/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
-    return view_func(*args, **kwargs)
-  File "/usr/local/lib64/python3.6/site-packages/django/views/generic/base.py", line 70, in view
-    return self.dispatch(request, *args, **kwargs)
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 509, in dispatch
-    response = self.handle_exception(exc)
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 469, in handle_exception
-    self.raise_uncaught_exception(exc)
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
-    raise exc
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 506, in dispatch
-    response = handler(request, *args, **kwargs)
-  File "/root/DonationPlatform-Back/donation_platform/users/views.py", line 86, in post
-    login(request, user)
-  File "/usr/local/lib64/python3.6/site-packages/django/contrib/auth/__init__.py", line 135, in login
-    user_logged_in.send(sender=user.__class__, request=request, user=user)
-  File "/usr/local/lib64/python3.6/site-packages/django/dispatch/dispatcher.py", line 182, in send
-    for receiver in self._live_receivers(sender)
-  File "/usr/local/lib64/python3.6/site-packages/django/dispatch/dispatcher.py", line 182, in <listcomp>
-    for receiver in self._live_receivers(sender)
-  File "/usr/local/lib64/python3.6/site-packages/django/contrib/auth/models.py", line 22, in update_last_login
-    user.save(update_fields=['last_login'])
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/base.py", line 725, in save
-    % ', '.join(non_model_fields)
-ValueError: The following fields do not exist in this model, are m2m fields, or are non-concrete fields: last_login
-Using selector: EpollSelector
-Using selector: EpollSelector
-Using selector: EpollSelector
-Using selector: EpollSelector
-Using selector: EpollSelector
-Internal Server Error: /login/
-Traceback (most recent call last):
-  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 84, in _execute
-    return self.cursor.execute(sql, params)
-psycopg2.errors.UndefinedColumn: column users.last_login does not exist
-LINE 1: ...e", "users"."erased_at", "users"."erased_reason", "users"."l...
-                                                             ^
-
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
-    response = get_response(request)
-  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/base.py", line 181, in _get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-  File "/usr/local/lib64/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
-    return view_func(*args, **kwargs)
-  File "/usr/local/lib64/python3.6/site-packages/django/views/generic/base.py", line 70, in view
-    return self.dispatch(request, *args, **kwargs)
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 509, in dispatch
-    response = self.handle_exception(exc)
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 469, in handle_exception
-    self.raise_uncaught_exception(exc)
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
-    raise exc
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 506, in dispatch
-    response = handler(request, *args, **kwargs)
-  File "/root/DonationPlatform-Back/donation_platform/users/views.py", line 80, in post
-    user = Users.objects.get(user_name=user_name)
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/manager.py", line 85, in manager_method
-    return getattr(self.get_queryset(), name)(*args, **kwargs)
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 431, in get
-    num = len(clone)
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 262, in __len__
-    self._fetch_all()
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 1324, in _fetch_all
-    self._result_cache = list(self._iterable_class(self))
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 51, in __iter__
-    results = compiler.execute_sql(chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size)
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/sql/compiler.py", line 1175, in execute_sql
-    cursor.execute(sql, params)
-  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 98, in execute
-    return super().execute(sql, params)
-  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 66, in execute
-    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
-  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 75, in _execute_with_wrappers
-    return executor(sql, params, many, context)
-  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 84, in _execute
-    return self.cursor.execute(sql, params)
-  File "/usr/local/lib64/python3.6/site-packages/django/db/utils.py", line 90, in __exit__
-    raise dj_exc_value.with_traceback(traceback) from exc_value
-  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 84, in _execute
-    return self.cursor.execute(sql, params)
-django.db.utils.ProgrammingError: column users.last_login does not exist
-LINE 1: ...e", "users"."erased_at", "users"."erased_reason", "users"."l...
-                                                             ^
-
-Using selector: EpollSelector
-Using selector: EpollSelector
-Using selector: EpollSelector
-Using selector: EpollSelector
-Using selector: EpollSelector
-Using selector: EpollSelector
-Using selector: EpollSelector
-Using selector: EpollSelector
-Using selector: EpollSelector
-Using selector: EpollSelector
-Using selector: EpollSelector
-Using selector: EpollSelector
-Using selector: EpollSelector
-Using selector: EpollSelector
-Using selector: EpollSelector
-Using selector: EpollSelector
-Using selector: EpollSelector
-Using selector: EpollSelector
-Using selector: EpollSelector
-Not Found: /administrators/
-Using selector: EpollSelector
-Using selector: EpollSelector
-Using selector: EpollSelector
-Internal Server Error: /administrators/
-Traceback (most recent call last):
-  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
-    response = get_response(request)
-  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/base.py", line 167, in _get_response
-    callback, callback_args, callback_kwargs = self.resolve_request(request)
-  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/base.py", line 290, in resolve_request
-    resolver_match = resolver.resolve(request.path_info)
-  File "/usr/local/lib64/python3.6/site-packages/django/urls/resolvers.py", line 560, in resolve
-    for pattern in self.url_patterns:
-  File "/usr/local/lib64/python3.6/site-packages/django/utils/functional.py", line 48, in __get__
-    res = instance.__dict__[self.name] = self.func(instance)
-  File "/usr/local/lib64/python3.6/site-packages/django/urls/resolvers.py", line 602, in url_patterns
-    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
-  File "/usr/local/lib64/python3.6/site-packages/django/utils/functional.py", line 48, in __get__
-    res = instance.__dict__[self.name] = self.func(instance)
-  File "/usr/local/lib64/python3.6/site-packages/django/urls/resolvers.py", line 595, in urlconf_module
-    return import_module(self.urlconf_name)
-  File "/usr/lib64/python3.6/importlib/__init__.py", line 126, in import_module
-    return _bootstrap._gcd_import(name[level:], package, level)
-  File "<frozen importlib._bootstrap>", line 994, in _gcd_import
-  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
-  File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
-  File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
-  File "<frozen importlib._bootstrap_external>", line 678, in exec_module
-  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
-  File "/root/DonationPlatform-Back/donation_platform/donation_platform/urls.py", line 19, in <module>
-    from administrator.views import AdministratorListView, AdministratorDetailView, AdministratorSearchView
-  File "/root/DonationPlatform-Back/donation_platform/administrator/views.py", line 4, in <module>
-    from .models import Administrator
-  File "/root/DonationPlatform-Back/donation_platform/administrator/models.py", line 6, in <module>
-    class Administrator(models.Model):
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/base.py", line 116, in __new__
-    "INSTALLED_APPS." % (module, name)
-RuntimeError: Model class administrator.models.Administrator doesn't declare an explicit app_label and isn't in an application in INSTALLED_APPS.
-Using selector: EpollSelector
-Using selector: EpollSelector
-Using selector: EpollSelector
-Internal Server Error: /administrators/
-Traceback (most recent call last):
-  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
-    response = get_response(request)
-  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/base.py", line 167, in _get_response
-    callback, callback_args, callback_kwargs = self.resolve_request(request)
-  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/base.py", line 290, in resolve_request
-    resolver_match = resolver.resolve(request.path_info)
-  File "/usr/local/lib64/python3.6/site-packages/django/urls/resolvers.py", line 560, in resolve
-    for pattern in self.url_patterns:
-  File "/usr/local/lib64/python3.6/site-packages/django/utils/functional.py", line 48, in __get__
-    res = instance.__dict__[self.name] = self.func(instance)
-  File "/usr/local/lib64/python3.6/site-packages/django/urls/resolvers.py", line 602, in url_patterns
-    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
-  File "/usr/local/lib64/python3.6/site-packages/django/utils/functional.py", line 48, in __get__
-    res = instance.__dict__[self.name] = self.func(instance)
-  File "/usr/local/lib64/python3.6/site-packages/django/urls/resolvers.py", line 595, in urlconf_module
-    return import_module(self.urlconf_name)
-  File "/usr/lib64/python3.6/importlib/__init__.py", line 126, in import_module
-    return _bootstrap._gcd_import(name[level:], package, level)
-  File "<frozen importlib._bootstrap>", line 994, in _gcd_import
-  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
-  File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
-  File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
-  File "<frozen importlib._bootstrap_external>", line 678, in exec_module
-  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
-  File "/root/DonationPlatform-Back/donation_platform/donation_platform/urls.py", line 31, in <module>
-    path('administrators/', views.AdministratorListView.as_view(), name='administrator-list'),
-NameError: name 'views' is not defined
-Using selector: EpollSelector
-Using selector: EpollSelector
-Using selector: EpollSelector
-Internal Server Error: /administrators/
-Traceback (most recent call last):
-  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
-    response = get_response(request)
-  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/base.py", line 181, in _get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-  File "/usr/local/lib64/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
-    return view_func(*args, **kwargs)
-  File "/usr/local/lib64/python3.6/site-packages/django/views/generic/base.py", line 70, in view
-    return self.dispatch(request, *args, **kwargs)
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 509, in dispatch
-    response = self.handle_exception(exc)
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 469, in handle_exception
-    self.raise_uncaught_exception(exc)
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
-    raise exc
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 506, in dispatch
-    response = handler(request, *args, **kwargs)
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/generics.py", line 239, in get
-    return self.list(request, *args, **kwargs)
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/mixins.py", line 46, in list
-    return Response(serializer.data)
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/serializers.py", line 768, in data
-    ret = super().data
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/serializers.py", line 253, in data
-    self._data = self.to_representation(self.instance)
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/serializers.py", line 687, in to_representation
-    self.child.to_representation(item) for item in iterable
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 280, in __iter__
-    self._fetch_all()
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 1324, in _fetch_all
-    self._result_cache = list(self._iterable_class(self))
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 51, in __iter__
-    results = compiler.execute_sql(chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size)
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/sql/compiler.py", line 1162, in execute_sql
-    sql, params = self.as_sql()
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/sql/compiler.py", line 513, in as_sql
-    extra_select, order_by, group_by = self.pre_sql_setup()
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/sql/compiler.py", line 55, in pre_sql_setup
-    self.setup_query()
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/sql/compiler.py", line 46, in setup_query
-    self.select, self.klass_info, self.annotation_col_map = self.get_select()
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/sql/compiler.py", line 227, in get_select
-    cols = self.get_default_columns()
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/sql/compiler.py", line 702, in get_default_columns
-    column = field.get_col(alias)
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/fields/related.py", line 1019, in get_col
-    output_field = self.target_field
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/fields/related.py", line 897, in target_field
-    return self.foreign_related_fields[0]
-  File "/usr/local/lib64/python3.6/site-packages/django/utils/functional.py", line 48, in __get__
-    res = instance.__dict__[self.name] = self.func(instance)
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/fields/related.py", line 644, in foreign_related_fields
-    return tuple(rhs_field for lhs_field, rhs_field in self.related_fields if rhs_field)
-  File "/usr/local/lib64/python3.6/site-packages/django/utils/functional.py", line 48, in __get__
-    res = instance.__dict__[self.name] = self.func(instance)
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/fields/related.py", line 632, in related_fields
-    return self.resolve_related_fields()
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/fields/related.py", line 936, in resolve_related_fields
-    related_fields = super().resolve_related_fields()
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/fields/related.py", line 615, in resolve_related_fields
-    raise ValueError('Related model %r cannot be resolved' % self.remote_field.model)
-ValueError: Related model 'Users' cannot be resolved
-Using selector: EpollSelector
-Using selector: EpollSelector
-Using selector: EpollSelector
-Internal Server Error: /administrators/
-Traceback (most recent call last):
-  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
-    response = get_response(request)
-  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/base.py", line 181, in _get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-  File "/usr/local/lib64/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
-    return view_func(*args, **kwargs)
-  File "/usr/local/lib64/python3.6/site-packages/django/views/generic/base.py", line 70, in view
-    return self.dispatch(request, *args, **kwargs)
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 509, in dispatch
-    response = self.handle_exception(exc)
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 469, in handle_exception
-    self.raise_uncaught_exception(exc)
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
-    raise exc
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 506, in dispatch
-    response = handler(request, *args, **kwargs)
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/generics.py", line 239, in get
-    return self.list(request, *args, **kwargs)
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/mixins.py", line 46, in list
-    return Response(serializer.data)
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/serializers.py", line 768, in data
-    ret = super().data
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/serializers.py", line 253, in data
-    self._data = self.to_representation(self.instance)
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/serializers.py", line 687, in to_representation
-    self.child.to_representation(item) for item in iterable
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 280, in __iter__
-    self._fetch_all()
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 1324, in _fetch_all
-    self._result_cache = list(self._iterable_class(self))
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 51, in __iter__
-    results = compiler.execute_sql(chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size)
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/sql/compiler.py", line 1162, in execute_sql
-    sql, params = self.as_sql()
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/sql/compiler.py", line 513, in as_sql
-    extra_select, order_by, group_by = self.pre_sql_setup()
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/sql/compiler.py", line 55, in pre_sql_setup
-    self.setup_query()
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/sql/compiler.py", line 46, in setup_query
-    self.select, self.klass_info, self.annotation_col_map = self.get_select()
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/sql/compiler.py", line 227, in get_select
-    cols = self.get_default_columns()
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/sql/compiler.py", line 702, in get_default_columns
-    column = field.get_col(alias)
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/fields/related.py", line 1019, in get_col
-    output_field = self.target_field
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/fields/related.py", line 897, in target_field
-    return self.foreign_related_fields[0]
-  File "/usr/local/lib64/python3.6/site-packages/django/utils/functional.py", line 48, in __get__
-    res = instance.__dict__[self.name] = self.func(instance)
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/fields/related.py", line 644, in foreign_related_fields
-    return tuple(rhs_field for lhs_field, rhs_field in self.related_fields if rhs_field)
-  File "/usr/local/lib64/python3.6/site-packages/django/utils/functional.py", line 48, in __get__
-    res = instance.__dict__[self.name] = self.func(instance)
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/fields/related.py", line 632, in related_fields
-    return self.resolve_related_fields()
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/fields/related.py", line 936, in resolve_related_fields
-    related_fields = super().resolve_related_fields()
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/fields/related.py", line 615, in resolve_related_fields
-    raise ValueError('Related model %r cannot be resolved' % self.remote_field.model)
-ValueError: Related model 'Organization' cannot be resolved
-Using selector: EpollSelector
-Using selector: EpollSelector
-Using selector: EpollSelector
-Bad Request: /administrators/
-Using selector: EpollSelector
-Using selector: EpollSelector
-Using selector: EpollSelector
-Internal Server Error: /administrators/2/
-Traceback (most recent call last):
-  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
-    response = get_response(request)
-  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/base.py", line 181, in _get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-  File "/usr/local/lib64/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
-    return view_func(*args, **kwargs)
-  File "/usr/local/lib64/python3.6/site-packages/django/views/generic/base.py", line 70, in view
-    return self.dispatch(request, *args, **kwargs)
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 509, in dispatch
-    response = self.handle_exception(exc)
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 469, in handle_exception
-    self.raise_uncaught_exception(exc)
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
-    raise exc
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 506, in dispatch
-    response = handler(request, *args, **kwargs)
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/generics.py", line 291, in delete
-    return self.destroy(request, *args, **kwargs)
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/mixins.py", line 91, in destroy
-    self.perform_destroy(instance)
-  File "/root/DonationPlatform-Back/donation_platform/administrator/views.py", line 20, in perform_destroy
-    instance.erased_at = timezone.now()  # Marcar la fecha de eliminación
-NameError: name 'timezone' is not defined
-Internal Server Error: /administrators/2/
-Traceback (most recent call last):
-  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
-    response = get_response(request)
-  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/base.py", line 181, in _get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-  File "/usr/local/lib64/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
-    return view_func(*args, **kwargs)
-  File "/usr/local/lib64/python3.6/site-packages/django/views/generic/base.py", line 70, in view
-    return self.dispatch(request, *args, **kwargs)
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 509, in dispatch
-    response = self.handle_exception(exc)
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 469, in handle_exception
-    self.raise_uncaught_exception(exc)
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
-    raise exc
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 506, in dispatch
-    response = handler(request, *args, **kwargs)
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/generics.py", line 291, in delete
-    return self.destroy(request, *args, **kwargs)
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/mixins.py", line 91, in destroy
-    self.perform_destroy(instance)
-  File "/root/DonationPlatform-Back/donation_platform/administrator/views.py", line 20, in perform_destroy
-    instance.erased_at = timezone.now()  # Marcar la fecha de eliminación
-NameError: name 'timezone' is not defined
-Using selector: EpollSelector
-Using selector: EpollSelector
-Using selector: EpollSelector
-Using selector: EpollSelector
-Using selector: EpollSelector
-Using selector: EpollSelector
-Method Not Allowed: /administrators/search/
-Using selector: EpollSelector
-Using selector: EpollSelector
-Using selector: EpollSelector
-Method Not Allowed: /administrators/search/
-Method Not Allowed: /administrators/search/
-Method Not Allowed: /administrators/search/
-Method Not Allowed: /administrators/search/
-Using selector: EpollSelector
-Using selector: EpollSelector
-Using selector: EpollSelector
-Using selector: EpollSelector
-Using selector: EpollSelector
-Using selector: EpollSelector
-Using selector: EpollSelector
-Using selector: EpollSelector
-Using selector: EpollSelector
-Using selector: EpollSelector
-Internal Server Error: /moderators/
-Traceback (most recent call last):
-  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
-    response = get_response(request)
-  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/base.py", line 167, in _get_response
-    callback, callback_args, callback_kwargs = self.resolve_request(request)
-  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/base.py", line 290, in resolve_request
-    resolver_match = resolver.resolve(request.path_info)
-  File "/usr/local/lib64/python3.6/site-packages/django/urls/resolvers.py", line 560, in resolve
-    for pattern in self.url_patterns:
-  File "/usr/local/lib64/python3.6/site-packages/django/utils/functional.py", line 48, in __get__
-    res = instance.__dict__[self.name] = self.func(instance)
-  File "/usr/local/lib64/python3.6/site-packages/django/urls/resolvers.py", line 602, in url_patterns
-    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
-  File "/usr/local/lib64/python3.6/site-packages/django/utils/functional.py", line 48, in __get__
-    res = instance.__dict__[self.name] = self.func(instance)
-  File "/usr/local/lib64/python3.6/site-packages/django/urls/resolvers.py", line 595, in urlconf_module
-    return import_module(self.urlconf_name)
-  File "/usr/lib64/python3.6/importlib/__init__.py", line 126, in import_module
-    return _bootstrap._gcd_import(name[level:], package, level)
-  File "<frozen importlib._bootstrap>", line 994, in _gcd_import
-  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
-  File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
-  File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
-  File "<frozen importlib._bootstrap_external>", line 678, in exec_module
-  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
-  File "/root/DonationPlatform-Back/donation_platform/donation_platform/urls.py", line 20, in <module>
-    from moderator.views import ModeratorListView, ModeratorDetailView, ModeratorSearchView
-ImportError: cannot import name 'ModeratorSearchView'
-Internal Server Error: /moderators/
-Traceback (most recent call last):
-  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
-    response = get_response(request)
-  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/base.py", line 167, in _get_response
-    callback, callback_args, callback_kwargs = self.resolve_request(request)
-  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/base.py", line 290, in resolve_request
-    resolver_match = resolver.resolve(request.path_info)
-  File "/usr/local/lib64/python3.6/site-packages/django/urls/resolvers.py", line 560, in resolve
-    for pattern in self.url_patterns:
-  File "/usr/local/lib64/python3.6/site-packages/django/utils/functional.py", line 48, in __get__
-    res = instance.__dict__[self.name] = self.func(instance)
-  File "/usr/local/lib64/python3.6/site-packages/django/urls/resolvers.py", line 602, in url_patterns
-    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
-  File "/usr/local/lib64/python3.6/site-packages/django/utils/functional.py", line 48, in __get__
-    res = instance.__dict__[self.name] = self.func(instance)
-  File "/usr/local/lib64/python3.6/site-packages/django/urls/resolvers.py", line 595, in urlconf_module
-    return import_module(self.urlconf_name)
-  File "/usr/lib64/python3.6/importlib/__init__.py", line 126, in import_module
-    return _bootstrap._gcd_import(name[level:], package, level)
-  File "<frozen importlib._bootstrap>", line 994, in _gcd_import
-  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
-  File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
-  File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
-  File "<frozen importlib._bootstrap_external>", line 678, in exec_module
-  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
-  File "/root/DonationPlatform-Back/donation_platform/donation_platform/urls.py", line 20, in <module>
-    from moderator.views import ModeratorListView, ModeratorDetailView, ModeratorSearchView
-ImportError: cannot import name 'ModeratorSearchView'
-Using selector: EpollSelector
-Using selector: EpollSelector
-Using selector: EpollSelector
-Internal Server Error: /moderators/
-Traceback (most recent call last):
-  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
-    response = get_response(request)
-  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/base.py", line 181, in _get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-  File "/usr/local/lib64/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
-    return view_func(*args, **kwargs)
-  File "/usr/local/lib64/python3.6/site-packages/django/views/generic/base.py", line 70, in view
-    return self.dispatch(request, *args, **kwargs)
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 509, in dispatch
-    response = self.handle_exception(exc)
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 469, in handle_exception
-    self.raise_uncaught_exception(exc)
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
-    raise exc
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 506, in dispatch
-    response = handler(request, *args, **kwargs)
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/generics.py", line 239, in get
-    return self.list(request, *args, **kwargs)
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/mixins.py", line 46, in list
-    return Response(serializer.data)
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/serializers.py", line 768, in data
-    ret = super().data
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/serializers.py", line 253, in data
-    self._data = self.to_representation(self.instance)
-  File "/usr/local/lib/python3.6/site-packages/rest_framework/serializers.py", line 687, in to_representation
-    self.child.to_representation(item) for item in iterable
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 280, in __iter__
-    self._fetch_all()
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 1324, in _fetch_all
-    self._result_cache = list(self._iterable_class(self))
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 51, in __iter__
-    results = compiler.execute_sql(chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size)
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/sql/compiler.py", line 1162, in execute_sql
-    sql, params = self.as_sql()
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/sql/compiler.py", line 513, in as_sql
-    extra_select, order_by, group_by = self.pre_sql_setup()
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/sql/compiler.py", line 55, in pre_sql_setup
-    self.setup_query()
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/sql/compiler.py", line 46, in setup_query
-    self.select, self.klass_info, self.annotation_col_map = self.get_select()
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/sql/compiler.py", line 227, in get_select
-    cols = self.get_default_columns()
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/sql/compiler.py", line 702, in get_default_columns
-    column = field.get_col(alias)
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/fields/related.py", line 1019, in get_col
-    output_field = self.target_field
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/fields/related.py", line 897, in target_field
-    return self.foreign_related_fields[0]
-  File "/usr/local/lib64/python3.6/site-packages/django/utils/functional.py", line 48, in __get__
-    res = instance.__dict__[self.name] = self.func(instance)
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/fields/related.py", line 644, in foreign_related_fields
-    return tuple(rhs_field for lhs_field, rhs_field in self.related_fields if rhs_field)
-  File "/usr/local/lib64/python3.6/site-packages/django/utils/functional.py", line 48, in __get__
-    res = instance.__dict__[self.name] = self.func(instance)
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/fields/related.py", line 632, in related_fields
-    return self.resolve_related_fields()
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/fields/related.py", line 936, in resolve_related_fields
-    related_fields = super().resolve_related_fields()
-  File "/usr/local/lib64/python3.6/site-packages/django/db/models/fields/related.py", line 615, in resolve_related_fields
-    raise ValueError('Related model %r cannot be resolved' % self.remote_field.model)
-ValueError: Related model 'Users' cannot be resolved
-Using selector: EpollSelector
-Using selector: EpollSelector
-Using selector: EpollSelector
-Bad Request: /moderators/
-Bad Request: /moderators/
-Using selector: EpollSelector
-Using selector: EpollSelector
-Using selector: EpollSelector
-Bad Request: /moderators/
-Method Not Allowed: /moderators/search/
-Unauthorized: /users/search/
-Valor de username: admin
-Valor de email: 
-Valor de username: adm_fati
-Valor de email: 
-Using selector: EpollSelector
-Using selector: EpollSelector
-Using selector: EpollSelector
-Internal Server Error: /moderators/search/
-Traceback (most recent call last):
-  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
-    response = get_response(request)
-  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/base.py", line 167, in _get_response
-    callback, callback_args, callback_kwargs = self.resolve_request(request)
-  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/base.py", line 290, in resolve_request
-    resolver_match = resolver.resolve(request.path_info)
-  File "/usr/local/lib64/python3.6/site-packages/django/urls/resolvers.py", line 560, in resolve
-    for pattern in self.url_patterns:
-  File "/usr/local/lib64/python3.6/site-packages/django/utils/functional.py", line 48, in __get__
-    res = instance.__dict__[self.name] = self.func(instance)
-  File "/usr/local/lib64/python3.6/site-packages/django/urls/resolvers.py", line 602, in url_patterns
-    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
-  File "/usr/local/lib64/python3.6/site-packages/django/utils/functional.py", line 48, in __get__
-    res = instance.__dict__[self.name] = self.func(instance)
-  File "/usr/local/lib64/python3.6/site-packages/django/urls/resolvers.py", line 595, in urlconf_module
-    return import_module(self.urlconf_name)
-  File "/usr/lib64/python3.6/importlib/__init__.py", line 126, in import_module
-    return _bootstrap._gcd_import(name[level:], package, level)
-  File "<frozen importlib._bootstrap>", line 994, in _gcd_import
-  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
-  File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
-  File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
-  File "<frozen importlib._bootstrap_external>", line 678, in exec_module
-  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
-  File "/root/DonationPlatform-Back/donation_platform/donation_platform/urls.py", line 20, in <module>
-    from moderator.views import ModeratorListView, ModeratorDetailView, ModeratorSearchView
-  File "/root/DonationPlatform-Back/donation_platform/moderator/views.py", line 32
-    if search_param:
-    ^
-IndentationError: unexpected indent
-Using selector: EpollSelector
-Using selector: EpollSelector
-Using selector: EpollSelector
-Method Not Allowed: /moderators/search/
-Using selector: EpollSelector
-Using selector: EpollSelector
-Using selector: EpollSelector
-Method Not Allowed: /moderators/search/
-Method Not Allowed: /moderators/search/
-Using selector: EpollSelector
-Using selector: EpollSelector
-Using selector: EpollSelector
-Method Not Allowed: /moderators/search/
-Method Not Allowed: /moderators/search/
-Method Not Allowed: /moderators/search/
-Method Not Allowed: /moderators/search/
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+couldn't import psycopg 'python' implementation: libpq library not found
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+couldn't import psycopg 'python' implementation: libpq library not found
+Watching for file changes with StatReloader
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+couldn't import psycopg 'python' implementation: libpq library not found
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+couldn't import psycopg 'python' implementation: libpq library not found
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+couldn't import psycopg 'python' implementation: libpq library not found
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+couldn't import psycopg 'python' implementation: libpq library not found
+Watching for file changes with StatReloader
+Not Found: /
+Not Found: /favicon.ico
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+couldn't import psycopg 'python' implementation: libpq library not found
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+couldn't import psycopg 'python' implementation: libpq library not found
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+couldn't import psycopg 'python' implementation: libpq library not found
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+couldn't import psycopg 'python' implementation: libpq library not found
+Watching for file changes with StatReloader
+C:\Users\Cami\Desktop\Queenscoders\DonationPlatform-Back\donation_platform\donation_platform\urls.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+couldn't import psycopg 'python' implementation: libpq library not found
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+couldn't import psycopg 'python' implementation: libpq library not found
+Watching for file changes with StatReloader
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+couldn't import psycopg 'python' implementation: libpq library not found
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+couldn't import psycopg 'python' implementation: libpq library not found
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+couldn't import psycopg 'python' implementation: libpq library not found
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+couldn't import psycopg 'python' implementation: libpq library not found
+Watching for file changes with StatReloader
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+couldn't import psycopg 'python' implementation: libpq library not found
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+couldn't import psycopg 'python' implementation: libpq library not found
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+couldn't import psycopg 'python' implementation: libpq library not found
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+couldn't import psycopg 'python' implementation: libpq library not found
+Watching for file changes with StatReloader
+C:\Users\Cami\Desktop\Queenscoders\DonationPlatform-Back\donation_platform\donation_platform\settings.py changed, reloading.
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+couldn't import psycopg 'python' implementation: libpq library not found
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+couldn't import psycopg 'python' implementation: libpq library not found
+Watching for file changes with StatReloader
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+couldn't import psycopg 'python' implementation: libpq library not found
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+couldn't import psycopg 'python' implementation: libpq library not found
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+couldn't import psycopg 'python' implementation: libpq library not found
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'binary' implementation: No module named 'psycopg_binary'
+couldn't import psycopg 'python' implementation: libpq library not found
+Watching for file changes with StatReloader
