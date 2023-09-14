@@ -6,7 +6,7 @@
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
-
+from django.utils import timezone
 
 class Administrator(models.Model):
     user = models.ForeignKey('Users', models.DO_NOTHING)
@@ -307,6 +307,7 @@ class Users(models.Model):
     user_state = models.IntegerField()
     erased_at = models.DateTimeField(blank=True, null=True)
     erased_reason = models.TextField(blank=True, null=True)
+    last_login = models.DateTimeField(default=timezone.now)
 
     class Meta:
         managed = False
