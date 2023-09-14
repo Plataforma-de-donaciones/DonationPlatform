@@ -19,6 +19,9 @@ from donation_platform import settings
 from rest_framework.authtoken.views import obtain_auth_token
 from django.conf.urls.static import static
 from users.views import UsersListView, UsersCreateView, UsersDetailView, UserSearchView, UserLoginView
+from administrator.views import AdministratorListView, AdministratorDetailView, AdministratorSearchView
+from moderator.views import ModeratorListView, ModeratorDetailView, ModeratorSearchView
+from rest_framework.authtoken.views import obtain_auth_token
 from django.views.generic import TemplateView
 
 
@@ -30,6 +33,13 @@ urlpatterns = [
     path('users/<int:pk>/', UsersDetailView.as_view(), name='user-detail'),
     path('users/search/', UserSearchView.as_view(), name='user-search'),
     path('login/', UserLoginView.as_view(), name='user-login'),
+    path('administrators/', AdministratorListView.as_view(), name='administrator-list'),
+    path('administrators/<int:pk>/', AdministratorDetailView.as_view(), name='administrator-detail'),
+    path('administrators/search/', AdministratorSearchView.as_view(), name='administrator-search'),
+    path('moderators/', ModeratorListView.as_view(), name='moderator-list'),
+    path('moderators/<int:pk>/', ModeratorDetailView.as_view(), name='moderator-detail'),
+    path('moderators/search/', ModeratorSearchView.as_view(), name='moderator-search'),
+
     ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 

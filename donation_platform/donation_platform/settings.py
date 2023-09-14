@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'donation_platform',
     'users',
+    'administrator',
+    'moderator',
 ]
 
 MIDDLEWARE = [
@@ -113,7 +115,8 @@ LOGGING = {
         'file': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
-            'filename': os.path.join(BASE_DIR, 'django.log'),
+
+            'filename': os.path.join(BASE_DIR, 'django.log/'),
         },
     },
     'root': {
