@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'users',
     'administrator',
     'moderator',
+    'organization',
 ]
 
 MIDDLEWARE = [

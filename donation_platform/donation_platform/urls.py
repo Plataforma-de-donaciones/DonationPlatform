@@ -21,6 +21,7 @@ from django.conf.urls.static import static
 from users.views import UsersListView, UsersCreateView, UsersDetailView, UserSearchView, UserLoginView
 from administrator.views import AdministratorListView, AdministratorDetailView, AdministratorSearchView
 from moderator.views import ModeratorListView, ModeratorDetailView, ModeratorSearchView
+from organization.views import OrganizationListView, OrganizationDetailView, OrganizationSearchView
 from rest_framework.authtoken.views import obtain_auth_token
 from django.views.generic import TemplateView
 
@@ -39,6 +40,9 @@ urlpatterns = [
     path('moderators/', ModeratorListView.as_view(), name='moderator-list'),
     path('moderators/<int:pk>/', ModeratorDetailView.as_view(), name='moderator-detail'),
     path('moderators/search/', ModeratorSearchView.as_view(), name='moderator-search'),
+    path('organizations/', OrganizationListView.as_view(), name='organization-list'),
+    path('organizations/<int:pk>/', OrganizationDetailView.as_view(), name='organization-detail'),
+    path('organizations/search/', OrganizationSearchView.as_view(), name='organization-search'),
 
     ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
