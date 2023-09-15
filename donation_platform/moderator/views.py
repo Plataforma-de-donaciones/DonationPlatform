@@ -4,7 +4,6 @@ from django.db.models import Q
 from .models import Moderator
 from .serializers import ModeratorSerializer
 from django.utils import timezone
-#from rest_framework.decorators import api_view
 
 
 class ModeratorListView(generics.ListCreateAPIView):
