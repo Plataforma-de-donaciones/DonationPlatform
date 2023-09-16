@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'moderator',
     'organization',
     'articles_states',
+    'articles_types',
 ]
 
 MIDDLEWARE = [
