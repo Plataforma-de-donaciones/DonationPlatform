@@ -24,6 +24,7 @@ from moderator.views import ModeratorListView, ModeratorDetailView, ModeratorSea
 from organization.views import OrganizationListView, OrganizationDetailView, OrganizationSearchView
 from articles_states.views import ArticlesStatesListView, ArticlesStatesDetailView
 from articles_types.views import ArticlesTypeListView, ArticlesTypeDetailView
+from articles_zones.views import ArticlesZonesListView, ArticlesZonesDetailView
 from rest_framework.authtoken.views import obtain_auth_token
 from django.views.generic import TemplateView
 
@@ -49,6 +50,8 @@ urlpatterns = [
     path('articlesstates/<int:pk>/', ArticlesStatesDetailView.as_view(), name='articles-states-detail'),
     path('articlestypes/', ArticlesTypeListView.as_view(), name='articles-types-list'),
     path('articlestypes/<int:pk>/', ArticlesTypeDetailView.as_view(), name='articles-types-detail'),
+    path('articleszones/', ArticlesZonesListView.as_view(), name='articles-zones-list'),
+    path('articleszones/<int:pk>/', ArticlesZonesDetailView.as_view(), name='articles-zones-detail'),
 
     ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
