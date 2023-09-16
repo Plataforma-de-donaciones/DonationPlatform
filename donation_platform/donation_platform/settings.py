@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'administrator',
     'moderator',
     'organization',
+    'articles_states',
 ]
 
 MIDDLEWARE = [
