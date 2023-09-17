@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'articles_states',
     'articles_types',
     'articles_zones',
+    'donation',
 ]
 
 MIDDLEWARE = [

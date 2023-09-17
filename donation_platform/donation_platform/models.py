@@ -9,7 +9,7 @@ from django.db import models
 from django.utils import timezone
 
 class Administrator(models.Model):
-    user = models.ForeignKey('Users', models.DO_NOTHING)
+    user = models.OneToOneField('Users', on_delete=models.CASCADE, related_name="donation_platform_administrator_user")
     start_date = models.DateTimeField()
     organization = models.ForeignKey('Organization', models.DO_NOTHING, blank=True, null=True, related_name='donation_platform_administrator_organization')
     administrator_state = models.IntegerField()
@@ -201,7 +201,7 @@ class Message(models.Model):
 
 
 class Moderator(models.Model):
-    user = models.ForeignKey('Users', models.DO_NOTHING)
+    user = models.OneToOneField('Users', on_delete=models.CASCADE)
     start_date = models.DateTimeField()
     organization = models.ForeignKey('Organization', models.DO_NOTHING)
     moderator_state = models.IntegerField()
@@ -248,8 +248,8 @@ class Notifications(models.Model):
 
 
 class Organization(models.Model):
-    org_name = models.CharField(max_length=50)
-    org_email = models.CharField(max_length=50)
+    org_name = models.CharField(max_length=50, unique=True)
+    org_email = models.CharField(max_length=50, unique=True)
     org_description = models.TextField()
 
     class Meta:
@@ -301,7 +301,7 @@ class Sponsor(models.Model):
 
 class Users(models.Model):
     user_name = models.CharField(max_length=50)
-    user_email = models.CharField(max_length=50)
+    user_email = models.CharField(max_length=50, unique=True)
     user_password = models.TextField()
     organization = models.ForeignKey(Organization, models.DO_NOTHING, blank=True, null=True)
     user_state = models.IntegerField()

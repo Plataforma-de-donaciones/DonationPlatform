@@ -25,6 +25,7 @@ from organization.views import OrganizationListView, OrganizationDetailView, Org
 from articles_states.views import ArticlesStatesListView, ArticlesStatesDetailView
 from articles_types.views import ArticlesTypeListView, ArticlesTypeDetailView
 from articles_zones.views import ArticlesZonesListView, ArticlesZonesDetailView
+from donation.views import DonationListView, DonationDetailView, DonationSearchViewbyUser, DonationSearchViewbyName, DonationSearchViewbyType
 from rest_framework.authtoken.views import obtain_auth_token
 from django.views.generic import TemplateView
 
@@ -52,6 +53,12 @@ urlpatterns = [
     path('articlestypes/<int:pk>/', ArticlesTypeDetailView.as_view(), name='articles-types-detail'),
     path('articleszones/', ArticlesZonesListView.as_view(), name='articles-zones-list'),
     path('articleszones/<int:pk>/', ArticlesZonesDetailView.as_view(), name='articles-zones-detail'),
+    path('donations/', DonationListView.as_view(), name='donations-list'),
+    path('donations/<int:pk>/', DonationDetailView.as_view(), name='donations-detail'),
+    path('donations/searchbyuser/', DonationSearchViewbyUser.as_view(), name='donations-search-by-user'),
+    path('donations/searchbyname/', DonationSearchViewbyName.as_view(), name='donations-search-by-name'),
+    path('donations/searchbyType/', DonationSearchViewbyType.as_view(), name='donations-search-by-type'),
+
 
     ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

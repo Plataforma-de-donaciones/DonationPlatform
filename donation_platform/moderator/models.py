@@ -4,7 +4,7 @@ from django.utils import timezone
 
 
 class Moderator(models.Model):
-    user = models.ForeignKey(Users, models.DO_NOTHING, related_name='moderator_user')
+    user = models.OneToOneField(Users, on_delete=models.CASCADE, related_name='moderator_user')
     start_date = models.DateTimeField()
     organization = models.ForeignKey(Organization, models.DO_NOTHING, blank=True, null=True, related_name='moderator_organization')
     moderator_state = models.IntegerField()

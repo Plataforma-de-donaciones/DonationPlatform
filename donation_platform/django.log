@@ -1379,3 +1379,381 @@ Using selector: EpollSelector
 Using selector: EpollSelector
 Using selector: EpollSelector
 Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Bad Request: /donations/
+Bad Request: /donations/
+Bad Request: /donations/
+Bad Request: /donations/
+Not Found: /donations/search/
+Internal Server Error: /donations/searchbyname/
+Traceback (most recent call last):
+  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib64/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib64/python3.6/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/generics.py", line 199, in get
+    return self.list(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/mixins.py", line 38, in list
+    queryset = self.filter_queryset(self.get_queryset())
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/generics.py", line 66, in get_queryset
+    % self.__class__.__name__
+AssertionError: 'DonationSearchViewbyName' should either include a `queryset` attribute, or override the `get_queryset()` method.
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Bad Request: /administrators/
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Internal Server Error: /users/14/
+Traceback (most recent call last):
+  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib64/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib64/python3.6/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/generics.py", line 291, in delete
+    return self.destroy(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/mixins.py", line 91, in destroy
+    self.perform_destroy(instance)
+  File "/root/DonationPlatform-Back/donation_platform/users/views.py", line 53, in perform_destroy
+    instance.save()
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/base.py", line 740, in save
+    force_update=force_update, update_fields=update_fields)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/base.py", line 765, in save_base
+    update_fields=update_fields,
+  File "/usr/local/lib64/python3.6/site-packages/django/dispatch/dispatcher.py", line 182, in send
+    for receiver in self._live_receivers(sender)
+  File "/usr/local/lib64/python3.6/site-packages/django/dispatch/dispatcher.py", line 182, in <listcomp>
+    for receiver in self._live_receivers(sender)
+  File "/root/DonationPlatform-Back/donation_platform/users/models.py", line 25, in update_administrator_state
+    Administrator.objects.filter(user=instance).update(administrator_state=0)
+NameError: name 'Administrator' is not defined
+Internal Server Error: /users/14/
+Traceback (most recent call last):
+  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib64/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib64/python3.6/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/generics.py", line 291, in delete
+    return self.destroy(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/mixins.py", line 91, in destroy
+    self.perform_destroy(instance)
+  File "/root/DonationPlatform-Back/donation_platform/users/views.py", line 53, in perform_destroy
+    instance.save()
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/base.py", line 740, in save
+    force_update=force_update, update_fields=update_fields)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/base.py", line 765, in save_base
+    update_fields=update_fields,
+  File "/usr/local/lib64/python3.6/site-packages/django/dispatch/dispatcher.py", line 182, in send
+    for receiver in self._live_receivers(sender)
+  File "/usr/local/lib64/python3.6/site-packages/django/dispatch/dispatcher.py", line 182, in <listcomp>
+    for receiver in self._live_receivers(sender)
+  File "/root/DonationPlatform-Back/donation_platform/users/models.py", line 25, in update_administrator_state
+    Administrator.objects.filter(user=instance).update(administrator_state=0)
+NameError: name 'Administrator' is not defined
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Internal Server Error: /administrators/
+Traceback (most recent call last):
+  File "/root/DonationPlatform-Back/donation_platform/administrator/views.py", line 20, in create
+    user = Users.objects.get(id=user_id)
+NameError: name 'Users' is not defined
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib64/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib64/python3.6/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/generics.py", line 242, in post
+    return self.create(request, *args, **kwargs)
+  File "/root/DonationPlatform-Back/donation_platform/administrator/views.py", line 21, in create
+    except Users.DoesNotExist:
+NameError: name 'Users' is not defined
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Internal Server Error: /administrators/
+Traceback (most recent call last):
+  File "/root/DonationPlatform-Back/donation_platform/administrator/views.py", line 21, in create
+    user = Users.objects.get(id=user_id)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 437, in get
+    self.model._meta.object_name
+users.models.Users.DoesNotExist: Users matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib64/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib64/python3.6/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/generics.py", line 242, in post
+    return self.create(request, *args, **kwargs)
+  File "/root/DonationPlatform-Back/donation_platform/administrator/views.py", line 23, in create
+    return Response({'message': 'El usuario no existe'}, status=status.HTTP_400_BAD_REQUEST)
+NameError: name 'Response' is not defined
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Internal Server Error: /administrators/
+Traceback (most recent call last):
+  File "/root/DonationPlatform-Back/donation_platform/administrator/views.py", line 22, in create
+    user = Users.objects.get(id=user_id)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 437, in get
+    self.model._meta.object_name
+users.models.Users.DoesNotExist: Users matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib64/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib64/python3.6/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/generics.py", line 242, in post
+    return self.create(request, *args, **kwargs)
+  File "/root/DonationPlatform-Back/donation_platform/administrator/views.py", line 24, in create
+    return Response({'message': 'El usuario no existe'}, status=status.HTTP_400_BAD_REQUEST)
+NameError: name 'status' is not defined
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Bad Request: /administrators/
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Internal Server Error: /moderators/
+Traceback (most recent call last):
+  File "/root/DonationPlatform-Back/donation_platform/moderator/views.py", line 21, in create
+    user = Users.objects.get(id=user_id)
+NameError: name 'Users' is not defined
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib64/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib64/python3.6/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/generics.py", line 242, in post
+    return self.create(request, *args, **kwargs)
+  File "/root/DonationPlatform-Back/donation_platform/moderator/views.py", line 22, in create
+    except Users.DoesNotExist:
+NameError: name 'Users' is not defined
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Bad Request: /moderators/
+Bad Request: /moderators/
+Bad Request: /moderators/
+Bad Request: /administrators/
+Bad Request: /administrators/
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Bad Request: /administrators/
+Bad Request: /moderators/
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Bad Request: /moderators/
+Bad Request: /moderators/
+Using selector: EpollSelector
+Bad Request: /moderators/
+Bad Request: /administrators/
+Bad Request: /administrators/
+Bad Request: /administrators/
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Bad Request: /administrators/
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Bad Request: /moderators/
+Bad Request: /moderators/
+Bad Request: /users/create/
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Bad Request: /organizations/
+Bad Request: /organizations/
+Bad Request: /organizations/
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Internal Server Error: /administrators/search/
+Traceback (most recent call last):
+  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/base.py", line 167, in _get_response
+    callback, callback_args, callback_kwargs = self.resolve_request(request)
+  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/base.py", line 290, in resolve_request
+    resolver_match = resolver.resolve(request.path_info)
+  File "/usr/local/lib64/python3.6/site-packages/django/urls/resolvers.py", line 560, in resolve
+    for pattern in self.url_patterns:
+  File "/usr/local/lib64/python3.6/site-packages/django/utils/functional.py", line 48, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/usr/local/lib64/python3.6/site-packages/django/urls/resolvers.py", line 602, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "/usr/local/lib64/python3.6/site-packages/django/utils/functional.py", line 48, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/usr/local/lib64/python3.6/site-packages/django/urls/resolvers.py", line 595, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "/usr/lib64/python3.6/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/root/DonationPlatform-Back/donation_platform/donation_platform/urls.py", line 22, in <module>
+    from administrator.views import AdministratorListView, AdministratorDetailView, AdministratorSearchView
+  File "/root/DonationPlatform-Back/donation_platform/administrator/views.py", line 64, in <module>
+    class AdministratorSearchView(APIView):
+NameError: name 'APIView' is not defined
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Method Not Allowed: /moderators/search/
+Valor de username: 
+Valor de email: taina.garabelli@estudiantes.utec.edu.uy
