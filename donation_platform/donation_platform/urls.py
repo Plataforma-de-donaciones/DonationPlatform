@@ -57,7 +57,7 @@ urlpatterns = [
     path('donations/<int:pk>/', DonationDetailView.as_view(), name='donations-detail'),
     path('donations/searchbyuser/', DonationSearchViewbyUser.as_view(), name='donations-search-by-user'),
     path('donations/searchbyname/', DonationSearchViewbyName.as_view(), name='donations-search-by-name'),
-    path('donations/searchbyType/', DonationSearchViewbyType.as_view(), name='donations-search-by-type'),
+    path('donations/searchbytype/', DonationSearchViewbyType.as_view(), name='donations-search-by-type'),
 
 
     ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

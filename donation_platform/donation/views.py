@@ -8,6 +8,7 @@ from rest_framework.response import Response
 from rest_framework import status
 import logging
 from django.contrib.auth import authenticate, login
+from rest_framework.views import APIView
 
 class DonationListView(generics.ListCreateAPIView):
     queryset = Donation.objects.all()
@@ -25,22 +26,22 @@ class DonationDetailView(generics.RetrieveUpdateDestroyAPIView):
        #instance.erased_at = timezone.now()  # Marcar la fecha de eliminación
        #instance.save()
 
-class DonationSearchViewbyUser(generics.ListAPIView):
-    serializer_class = DonationSerializer
+class DonationSearchViewbyUser(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
-    def get_queryset(self):
-        queryset = Donation.objects.all()
-        
-        if self.request.method == 'POST':
-            search_param = self.request.data.get('search', None)
+    def post(self, request):
+        search_param = request.data.get('search', '')
 
-            if search_param:
-                queryset = queryset.filter(
-                    Q(user__user_name__icontains=search_param)
-                )
+        if search_param:
+            donations = Donation.objects.filter(
+                Q(user__user_name__exact=search_param) |
+                Q(user__user_email__exact=search_param)
+            )
 
-        return queryset
+            serializer = DonationSerializer(donations, many=True)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+
+        return Response({'message': 'Ingrese un parámetro de búsqueda válido.'}, status=status.HTTP_400_BAD_REQUEST)
 
 class DonationSearchViewbyName(generics.ListAPIView):
     serializer_class = DonationSerializer
@@ -51,26 +52,42 @@ class DonationSearchViewbyName(generics.ListAPIView):
         logger.debug("Valor de username: %s", don_name)
 
         queryset = Donation.objects.filter(
-            Q(user_name__exact=don_name)
+            Q(don_name__icontains=don_name)
         )
         logger.debug("Consulta sql generada:", str(queryset.query))
         serializer = self.serializer_class(queryset, many=True)
         return Response(serializer.data)
 
-class DonationSearchViewbyType(generics.ListAPIView):
-    serializer_class = DonationSerializer
+#class DonationSearchViewbyType(generics.ListAPIView):
+#    serializer_class = DonationSerializer
+#    permission_classes = [permissions.IsAuthenticated]
+
+#    def get_queryset(self):
+#        queryset = Donation.objects.all()
+
+#        if self.request.method == 'POST':
+#            search_param = self.request.data.get('search', None)
+
+#            if search_param:
+#                queryset = queryset.filter(
+#                    Q(type__type_name__icontains=search_param)
+#                )
+#
+#        return queryset
+
+class DonationSearchViewbyType(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
-    def get_queryset(self):
-        queryset = Donation.objects.all()
+    def post(self, request):
+        search_param = request.data.get('search', '')
 
-        if self.request.method == 'POST':
-            search_param = self.request.data.get('search', None)
+        if search_param:
+            donations = Donation.objects.filter(
+                Q(type__type_name__exact=search_param)
+            )
 
-            if search_param:
-                queryset = queryset.filter(
-                    Q(type__type_name__icontains=search_param)
-                )
+            serializer = DonationSerializer(donations, many=True)
+            return Response(serializer.data, status=status.HTTP_200_OK)
 
-        return queryset
+        return Response({'message': 'Ingrese un parámetro de búsqueda válido.'}, status=status.HTTP_400_BAD_REQUEST)
 
