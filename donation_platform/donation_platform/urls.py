@@ -26,6 +26,7 @@ from articles_states.views import ArticlesStatesListView, ArticlesStatesDetailVi
 from articles_types.views import ArticlesTypeListView, ArticlesTypeDetailView
 from articles_zones.views import ArticlesZonesListView, ArticlesZonesDetailView
 from donation.views import DonationListView, DonationDetailView, DonationSearchViewbyUser, DonationSearchViewbyName, DonationSearchViewbyType
+from event.views import EventListView, EventDetailView, EventSearchViewbyUser, EventSearchViewbyName, EventSearchViewbyType
 from rest_framework.authtoken.views import obtain_auth_token
 from django.views.generic import TemplateView
 
@@ -58,6 +59,11 @@ urlpatterns = [
     path('donations/searchbyuser/', DonationSearchViewbyUser.as_view(), name='donations-search-by-user'),
     path('donations/searchbyname/', DonationSearchViewbyName.as_view(), name='donations-search-by-name'),
     path('donations/searchbytype/', DonationSearchViewbyType.as_view(), name='donations-search-by-type'),
+    path('events/', EventListView.as_view(), name='event-list'),
+    path('events/<int:pk>/', EventDetailView.as_view(), name='event-detail'),
+    path('events/searchbyuser/', EventSearchViewbyUser.as_view(), name='events-search-by-user'),
+    path('events/searchbyname/', EventSearchViewbyName.as_view(), name='events-search-by-name'),
+    path('events/searchbytype/', EventSearchViewbyType.as_view(), name='events-search-by-type'),
 
 
     ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'articles_types',
     'articles_zones',
     'donation',
+    'event',
 ]
 
 MIDDLEWARE = [
