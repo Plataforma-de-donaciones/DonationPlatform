@@ -180,7 +180,7 @@ class MedicalEquipment(models.Model):
     geom_point = models.TextField(blank=True, null=True)
     has_requests = models.BooleanField()
     request_count = models.IntegerField()
-    don_confirmation_date = models.DateTimeField(blank=True, null=True)
+    eq_confirmation_date = models.DateTimeField(blank=True, null=True)
     eq_attachment = models.TextField(blank=True, null=True)
 
     class Meta:
