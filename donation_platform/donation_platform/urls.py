@@ -31,6 +31,7 @@ from medical_equipment.views import MedicalEquipmentListView, MedicalEquipmentDe
 from news.views import NewsListView, NewsDetailView, NewsSearchViewbyUser, NewsSearchViewbyName, NewsSearchViewbySubject
 from sponsor.views import SponsorListView, SponsorDetailView, SponsorSearchViewbyUser, SponsorSearchViewbyName, SponsorSearchViewbyType
 from volunteer.views import VolunteerListView, VolunteerDetailView, VolunteerSearchViewbyUser, VolunteerSearchViewbyName, VolunteerSearchViewbyType
+from notifications.views import NotificationsListView, NotificationsDetailView, NotificationsSearchViewbyUser
 from rest_framework.authtoken.views import obtain_auth_token
 from django.views.generic import TemplateView
 
@@ -88,6 +89,9 @@ urlpatterns = [
     path('volunteers/searchbyuser/', VolunteerSearchViewbyUser.as_view(), name='volunteer-search-by-user'),
     path('volunteers/searchbyname/', VolunteerSearchViewbyName.as_view(), name='volunteer-search-by-name'),
     path('volunteers/searchbytype/', VolunteerSearchViewbyType.as_view(), name='volunteer-search-by-type'),
+    path('notifications/', NotificationsListView.as_view(), name='notifications-list'),
+    path('notifications/<int:pk>/', NotificationsDetailView.as_view(), name='notifications-detail'),
+    path('notifications/search/', NotificationsSearchViewbyUser.as_view(), name='notifications-search'),
 
 
     ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
