@@ -39,10 +39,6 @@ class MedicalEquipmentSearchViewbyUser(APIView):
             except ValueError:
                 # Si no es un número, busca por type_name
                 equipments = MedicalEquipment.objects.filter( Q(user__user_name=search_param) | Q(user__user_email__exact=search_param))
-            #equipments = MedicalEquipment.objects.filter(
-             #   Q(user__user_name__exact=search_param) |
-              #  Q(user__user_email__exact=search_param)
-            #)
 
             serializer = MedicalEquipmentSerializer(equipments, many=True)
             return Response(serializer.data, status=status.HTTP_200_OK)

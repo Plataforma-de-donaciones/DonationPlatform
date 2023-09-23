@@ -293,7 +293,7 @@ class Sponsor(models.Model):
     request_count = models.IntegerField()
     start_date = models.DateTimeField(blank=True, null=True)
     end_date = models.DateTimeField(blank=True, null=True)
-    organization = models.ForeignKey(Organization, models.DO_NOTHING)
+    organization = models.ForeignKey(Organization, models.DO_NOTHING, null=True)
 
     class Meta:
         managed = False

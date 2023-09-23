@@ -29,6 +29,7 @@ from donation.views import DonationListView, DonationDetailView, DonationSearchV
 from event.views import EventListView, EventDetailView, EventSearchViewbyUser, EventSearchViewbyName, EventSearchViewbyType
 from medical_equipment.views import MedicalEquipmentListView, MedicalEquipmentDetailView, MedicalEquipmentSearchViewbyUser, MedicalEquipmentSearchViewbyName, MedicalEquipmentSearchViewbyType
 from news.views import NewsListView, NewsDetailView, NewsSearchViewbyUser, NewsSearchViewbyName, NewsSearchViewbySubject
+from sponsor.views import SponsorListView, SponsorDetailView, SponsorSearchViewbyUser, SponsorSearchViewbyName, SponsorSearchViewbyType
 from rest_framework.authtoken.views import obtain_auth_token
 from django.views.generic import TemplateView
 
@@ -76,6 +77,11 @@ urlpatterns = [
     path('news/searchbyuser/', NewsSearchViewbyUser.as_view(), name='news-search-by-user'),
     path('news/searchbyname/', NewsSearchViewbyName.as_view(), name='news-search-by-name'),
     path('news/searchbysubject/', NewsSearchViewbySubject.as_view(), name='news-search-by-subject'),
+    path('sponsors/', SponsorListView.as_view(), name='sponsor-list'),
+    path('sponsors/<int:pk>/', SponsorDetailView.as_view(), name='sponsor-detail'),
+    path('sponsors/searchbyuser/', SponsorSearchViewbyUser.as_view(), name='sponsor-search-by-user'),
+    path('sponsors/searchbyname/', SponsorSearchViewbyName.as_view(), name='sponsor-search-by-name'),
+    path('sponsors/searchbytype/', SponsorSearchViewbyType.as_view(), name='sponsor-search-by-type'),
 
 
     ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

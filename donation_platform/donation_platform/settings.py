@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'event',
     'medical_equipment',
     'news',
+    'sponsor',
 ]
 
 MIDDLEWARE = [
