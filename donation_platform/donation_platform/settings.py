@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     'sponsor',
     'volunteer',
     'notifications',
+    'request',
 ]
 
 MIDDLEWARE = [

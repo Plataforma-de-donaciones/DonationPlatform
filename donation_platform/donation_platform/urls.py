@@ -32,6 +32,7 @@ from news.views import NewsListView, NewsDetailView, NewsSearchViewbyUser, NewsS
 from sponsor.views import SponsorListView, SponsorDetailView, SponsorSearchViewbyUser, SponsorSearchViewbyName, SponsorSearchViewbyType
 from volunteer.views import VolunteerListView, VolunteerDetailView, VolunteerSearchViewbyUser, VolunteerSearchViewbyName, VolunteerSearchViewbyType
 from notifications.views import NotificationsListView, NotificationsDetailView, NotificationsSearchViewbyUser
+from request.views import RequestsListView, RequestsDetailView, RequestsSearchViewbyUser
 from rest_framework.authtoken.views import obtain_auth_token
 from django.views.generic import TemplateView
 
@@ -92,6 +93,9 @@ urlpatterns = [
     path('notifications/', NotificationsListView.as_view(), name='notifications-list'),
     path('notifications/<int:pk>/', NotificationsDetailView.as_view(), name='notifications-detail'),
     path('notifications/search/', NotificationsSearchViewbyUser.as_view(), name='notifications-search'),
+    path('requests/', RequestsListView.as_view(), name='requests-list'),
+    path('requests/<int:pk>/', RequestsDetailView.as_view(), name='requests-detail'),
+    path('requests/search/', RequestsSearchViewbyUser.as_view(), name='requests-search'),
 
 
     ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
