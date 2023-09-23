@@ -30,6 +30,7 @@ from event.views import EventListView, EventDetailView, EventSearchViewbyUser, E
 from medical_equipment.views import MedicalEquipmentListView, MedicalEquipmentDetailView, MedicalEquipmentSearchViewbyUser, MedicalEquipmentSearchViewbyName, MedicalEquipmentSearchViewbyType
 from news.views import NewsListView, NewsDetailView, NewsSearchViewbyUser, NewsSearchViewbyName, NewsSearchViewbySubject
 from sponsor.views import SponsorListView, SponsorDetailView, SponsorSearchViewbyUser, SponsorSearchViewbyName, SponsorSearchViewbyType
+from volunteer.views import VolunteerListView, VolunteerDetailView, VolunteerSearchViewbyUser, VolunteerSearchViewbyName, VolunteerSearchViewbyType
 from rest_framework.authtoken.views import obtain_auth_token
 from django.views.generic import TemplateView
 
@@ -82,6 +83,11 @@ urlpatterns = [
     path('sponsors/searchbyuser/', SponsorSearchViewbyUser.as_view(), name='sponsor-search-by-user'),
     path('sponsors/searchbyname/', SponsorSearchViewbyName.as_view(), name='sponsor-search-by-name'),
     path('sponsors/searchbytype/', SponsorSearchViewbyType.as_view(), name='sponsor-search-by-type'),
+    path('volunteers/', VolunteerListView.as_view(), name='volunteer-list'),
+    path('volunteers/<int:pk>/', VolunteerDetailView.as_view(), name='volunteer-detail'),
+    path('volunteers/searchbyuser/', VolunteerSearchViewbyUser.as_view(), name='volunteer-search-by-user'),
+    path('volunteers/searchbyname/', VolunteerSearchViewbyName.as_view(), name='volunteer-search-by-name'),
+    path('volunteers/searchbytype/', VolunteerSearchViewbyType.as_view(), name='volunteer-search-by-type'),
 
 
     ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
