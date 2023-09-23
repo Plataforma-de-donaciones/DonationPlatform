@@ -63,7 +63,6 @@ class SponsorSearchViewbyType(APIView):
                 type_id = int(search_param)
                 sponsors = Sponsor.objects.filter(Q(type__type_id=type_id) | Q(type__type_name=search_param))
             except ValueError:
-                # Si no es un número, busca por type_name
                 sponsors = Sponsor.objects.filter(type__type_name=search_param)
 
             serializer = SponsorSerializer(sponsors, many=True)
