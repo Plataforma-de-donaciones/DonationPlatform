@@ -28,6 +28,7 @@ from articles_zones.views import ArticlesZonesListView, ArticlesZonesDetailView
 from donation.views import DonationListView, DonationDetailView, DonationSearchViewbyUser, DonationSearchViewbyName, DonationSearchViewbyType
 from event.views import EventListView, EventDetailView, EventSearchViewbyUser, EventSearchViewbyName, EventSearchViewbyType
 from medical_equipment.views import MedicalEquipmentListView, MedicalEquipmentDetailView, MedicalEquipmentSearchViewbyUser, MedicalEquipmentSearchViewbyName, MedicalEquipmentSearchViewbyType
+from news.views import NewsListView, NewsDetailView, NewsSearchViewbyUser, NewsSearchViewbyName, NewsSearchViewbySubject
 from rest_framework.authtoken.views import obtain_auth_token
 from django.views.generic import TemplateView
 
@@ -70,6 +71,11 @@ urlpatterns = [
     path('medicalequipments/searchbyuser/', MedicalEquipmentSearchViewbyUser.as_view(), name='medical-equipment-search-by-user'),
     path('medicalequipments/searchbyname/', MedicalEquipmentSearchViewbyName.as_view(), name='medical-equipment-search-by-name'),
     path('medicalequipments/searchbytype/', MedicalEquipmentSearchViewbyType.as_view(), name='medical-equipment-search-by-type'),
+    path('news/', NewsListView.as_view(), name='news-list'),
+    path('news/<int:pk>/', NewsDetailView.as_view(), name='news-detail'),
+    path('news/searchbyuser/', NewsSearchViewbyUser.as_view(), name='news-search-by-user'),
+    path('news/searchbyname/', NewsSearchViewbyName.as_view(), name='news-search-by-name'),
+    path('news/searchbysubject/', NewsSearchViewbySubject.as_view(), name='news-search-by-subject'),
 
 
     ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

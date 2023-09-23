@@ -221,6 +221,7 @@ class News(models.Model):
     is_highlighted = models.BooleanField()
     views_count = models.IntegerField(blank=True, null=True)
     user = models.ForeignKey('Users', models.DO_NOTHING)
+    new_created_at = models.DateTimeField()
 
     class Meta:
         managed = False
