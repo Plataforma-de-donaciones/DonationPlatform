@@ -2964,3 +2964,784 @@ Using selector: EpollSelector
 Using selector: EpollSelector
 Using selector: EpollSelector
 Using selector: EpollSelector
+Internal Server Error: /users/
+Traceback (most recent call last):
+  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+psycopg2.errors.UndefinedColumn: column users.password does not exist
+LINE 1: ...r_id", "authtoken_token"."created", "users"."id", "users"."p...
+                                                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib64/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib64/python3.6/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 497, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 414, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 324, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/request.py", line 227, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/request.py", line 380, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/authentication.py", line 196, in authenticate
+    return self.authenticate_credentials(token)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/authentication.py", line 201, in authenticate_credentials
+    token = model.objects.select_related('user').get(key=key)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 431, in get
+    num = len(clone)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 262, in __len__
+    self._fetch_all()
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 1324, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 51, in __iter__
+    results = compiler.execute_sql(chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/sql/compiler.py", line 1175, in execute_sql
+    cursor.execute(sql, params)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 98, in execute
+    return super().execute(sql, params)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 66, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 75, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+django.db.utils.ProgrammingError: column users.password does not exist
+LINE 1: ...r_id", "authtoken_token"."created", "users"."id", "users"."p...
+                                                             ^
+
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Bad Request: /api-token-auth/
+Bad Request: /api-token-auth/
+Internal Server Error: /api-token-auth/
+Traceback (most recent call last):
+  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+psycopg2.errors.UndefinedColumn: column users.password does not exist
+LINE 1: SELECT "users"."id", "users"."password", "users"."is_superus...
+                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib64/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib64/python3.6/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/authtoken/views.py", line 56, in post
+    serializer.is_valid(raise_exception=True)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/serializers.py", line 227, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/serializers.py", line 429, in run_validation
+    value = self.validate(value)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/authtoken/serializers.py", line 29, in validate
+    username=username, password=password)
+  File "/usr/local/lib64/python3.6/site-packages/django/views/decorators/debug.py", line 42, in sensitive_variables_wrapper
+    return func(*func_args, **func_kwargs)
+  File "/usr/local/lib64/python3.6/site-packages/django/contrib/auth/__init__.py", line 76, in authenticate
+    user = backend.authenticate(request, **credentials)
+  File "/usr/local/lib64/python3.6/site-packages/django/contrib/auth/backends.py", line 42, in authenticate
+    user = UserModel._default_manager.get_by_natural_key(username)
+  File "/usr/local/lib64/python3.6/site-packages/django/contrib/auth/base_user.py", line 45, in get_by_natural_key
+    return self.get(**{self.model.USERNAME_FIELD: username})
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 431, in get
+    num = len(clone)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 262, in __len__
+    self._fetch_all()
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 1324, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 51, in __iter__
+    results = compiler.execute_sql(chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/sql/compiler.py", line 1175, in execute_sql
+    cursor.execute(sql, params)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 98, in execute
+    return super().execute(sql, params)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 66, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 75, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+django.db.utils.ProgrammingError: column users.password does not exist
+LINE 1: SELECT "users"."id", "users"."password", "users"."is_superus...
+                             ^
+
+Internal Server Error: /users/
+Traceback (most recent call last):
+  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+psycopg2.errors.UndefinedColumn: column users.password does not exist
+LINE 1: ...r_id", "authtoken_token"."created", "users"."id", "users"."p...
+                                                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib64/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib64/python3.6/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 497, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 414, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 324, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/request.py", line 227, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/request.py", line 380, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/authentication.py", line 196, in authenticate
+    return self.authenticate_credentials(token)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/authentication.py", line 201, in authenticate_credentials
+    token = model.objects.select_related('user').get(key=key)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 431, in get
+    num = len(clone)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 262, in __len__
+    self._fetch_all()
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 1324, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 51, in __iter__
+    results = compiler.execute_sql(chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/sql/compiler.py", line 1175, in execute_sql
+    cursor.execute(sql, params)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 98, in execute
+    return super().execute(sql, params)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 66, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 75, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+django.db.utils.ProgrammingError: column users.password does not exist
+LINE 1: ...r_id", "authtoken_token"."created", "users"."id", "users"."p...
+                                                             ^
+
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Internal Server Error: /users/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/request.py", line 74, in wrap_attributeerrors
+    yield
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/request.py", line 227, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/request.py", line 380, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/authentication.py", line 196, in authenticate
+    return self.authenticate_credentials(token)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/authentication.py", line 205, in authenticate_credentials
+    if not token.user.is_active:
+AttributeError: 'Users' object has no attribute 'is_active'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib64/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib64/python3.6/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 497, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 414, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 324, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/request.py", line 227, in user
+    self._authenticate()
+  File "/usr/lib64/python3.6/contextlib.py", line 99, in __exit__
+    self.gen.throw(type, value, traceback)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/request.py", line 78, in wrap_attributeerrors
+    raise exc.with_traceback(info[2])
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/request.py", line 74, in wrap_attributeerrors
+    yield
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/request.py", line 227, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/request.py", line 380, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/authentication.py", line 196, in authenticate
+    return self.authenticate_credentials(token)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/authentication.py", line 205, in authenticate_credentials
+    if not token.user.is_active:
+rest_framework.request.WrappedAttributeError: 'Users' object has no attribute 'is_active'
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Internal Server Error: /api-token-auth/
+Traceback (most recent call last):
+  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+psycopg2.errors.UndefinedTable: relation "users_users" does not exist
+LINE 1: ...."erased_reason", "users_users"."last_login" FROM "users_use...
+                                                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib64/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib64/python3.6/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/authtoken/views.py", line 56, in post
+    serializer.is_valid(raise_exception=True)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/serializers.py", line 227, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/serializers.py", line 429, in run_validation
+    value = self.validate(value)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/authtoken/serializers.py", line 29, in validate
+    username=username, password=password)
+  File "/usr/local/lib64/python3.6/site-packages/django/views/decorators/debug.py", line 42, in sensitive_variables_wrapper
+    return func(*func_args, **func_kwargs)
+  File "/usr/local/lib64/python3.6/site-packages/django/contrib/auth/__init__.py", line 76, in authenticate
+    user = backend.authenticate(request, **credentials)
+  File "/usr/local/lib64/python3.6/site-packages/django/contrib/auth/backends.py", line 42, in authenticate
+    user = UserModel._default_manager.get_by_natural_key(username)
+  File "/usr/local/lib64/python3.6/site-packages/django/contrib/auth/base_user.py", line 45, in get_by_natural_key
+    return self.get(**{self.model.USERNAME_FIELD: username})
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 431, in get
+    num = len(clone)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 262, in __len__
+    self._fetch_all()
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 1324, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 51, in __iter__
+    results = compiler.execute_sql(chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/sql/compiler.py", line 1175, in execute_sql
+    cursor.execute(sql, params)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 98, in execute
+    return super().execute(sql, params)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 66, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 75, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+django.db.utils.ProgrammingError: relation "users_users" does not exist
+LINE 1: ...."erased_reason", "users_users"."last_login" FROM "users_use...
+                                                             ^
+
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Internal Server Error: /api-token-auth/
+Traceback (most recent call last):
+  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+psycopg2.errors.UndefinedTable: relation "users_users" does not exist
+LINE 1: ...."erased_reason", "users_users"."last_login" FROM "users_use...
+                                                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib64/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib64/python3.6/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/authtoken/views.py", line 56, in post
+    serializer.is_valid(raise_exception=True)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/serializers.py", line 227, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/serializers.py", line 429, in run_validation
+    value = self.validate(value)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/authtoken/serializers.py", line 29, in validate
+    username=username, password=password)
+  File "/usr/local/lib64/python3.6/site-packages/django/views/decorators/debug.py", line 42, in sensitive_variables_wrapper
+    return func(*func_args, **func_kwargs)
+  File "/usr/local/lib64/python3.6/site-packages/django/contrib/auth/__init__.py", line 76, in authenticate
+    user = backend.authenticate(request, **credentials)
+  File "/usr/local/lib64/python3.6/site-packages/django/contrib/auth/backends.py", line 42, in authenticate
+    user = UserModel._default_manager.get_by_natural_key(username)
+  File "/usr/local/lib64/python3.6/site-packages/django/contrib/auth/base_user.py", line 45, in get_by_natural_key
+    return self.get(**{self.model.USERNAME_FIELD: username})
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 431, in get
+    num = len(clone)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 262, in __len__
+    self._fetch_all()
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 1324, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 51, in __iter__
+    results = compiler.execute_sql(chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/sql/compiler.py", line 1175, in execute_sql
+    cursor.execute(sql, params)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 98, in execute
+    return super().execute(sql, params)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 66, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 75, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+django.db.utils.ProgrammingError: relation "users_users" does not exist
+LINE 1: ...."erased_reason", "users_users"."last_login" FROM "users_use...
+                                                             ^
+
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Internal Server Error: /api-token-auth/
+Traceback (most recent call last):
+  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+psycopg2.errors.UndefinedColumn: column users.password does not exist
+LINE 1: SELECT "users"."id", "users"."password", "users"."user_name"...
+                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib64/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib64/python3.6/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/authtoken/views.py", line 56, in post
+    serializer.is_valid(raise_exception=True)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/serializers.py", line 227, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/serializers.py", line 429, in run_validation
+    value = self.validate(value)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/authtoken/serializers.py", line 29, in validate
+    username=username, password=password)
+  File "/usr/local/lib64/python3.6/site-packages/django/views/decorators/debug.py", line 42, in sensitive_variables_wrapper
+    return func(*func_args, **func_kwargs)
+  File "/usr/local/lib64/python3.6/site-packages/django/contrib/auth/__init__.py", line 76, in authenticate
+    user = backend.authenticate(request, **credentials)
+  File "/usr/local/lib64/python3.6/site-packages/django/contrib/auth/backends.py", line 42, in authenticate
+    user = UserModel._default_manager.get_by_natural_key(username)
+  File "/usr/local/lib64/python3.6/site-packages/django/contrib/auth/base_user.py", line 45, in get_by_natural_key
+    return self.get(**{self.model.USERNAME_FIELD: username})
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 431, in get
+    num = len(clone)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 262, in __len__
+    self._fetch_all()
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 1324, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 51, in __iter__
+    results = compiler.execute_sql(chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/sql/compiler.py", line 1175, in execute_sql
+    cursor.execute(sql, params)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 98, in execute
+    return super().execute(sql, params)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 66, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 75, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+django.db.utils.ProgrammingError: column users.password does not exist
+LINE 1: SELECT "users"."id", "users"."password", "users"."user_name"...
+                             ^
+
+Using selector: EpollSelector
+Using selector: EpollSelector
+Internal Server Error: /api-token-auth/
+Traceback (most recent call last):
+  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+psycopg2.errors.UndefinedColumn: column users.password does not exist
+LINE 1: SELECT "users"."id", "users"."password", "users"."user_name"...
+                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib64/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib64/python3.6/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/authtoken/views.py", line 56, in post
+    serializer.is_valid(raise_exception=True)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/serializers.py", line 227, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/serializers.py", line 429, in run_validation
+    value = self.validate(value)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/authtoken/serializers.py", line 29, in validate
+    username=username, password=password)
+  File "/usr/local/lib64/python3.6/site-packages/django/views/decorators/debug.py", line 42, in sensitive_variables_wrapper
+    return func(*func_args, **func_kwargs)
+  File "/usr/local/lib64/python3.6/site-packages/django/contrib/auth/__init__.py", line 76, in authenticate
+    user = backend.authenticate(request, **credentials)
+  File "/usr/local/lib64/python3.6/site-packages/django/contrib/auth/backends.py", line 42, in authenticate
+    user = UserModel._default_manager.get_by_natural_key(username)
+  File "/usr/local/lib64/python3.6/site-packages/django/contrib/auth/base_user.py", line 45, in get_by_natural_key
+    return self.get(**{self.model.USERNAME_FIELD: username})
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 431, in get
+    num = len(clone)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 262, in __len__
+    self._fetch_all()
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 1324, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 51, in __iter__
+    results = compiler.execute_sql(chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/sql/compiler.py", line 1175, in execute_sql
+    cursor.execute(sql, params)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 98, in execute
+    return super().execute(sql, params)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 66, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 75, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+django.db.utils.ProgrammingError: column users.password does not exist
+LINE 1: SELECT "users"."id", "users"."password", "users"."user_name"...
+                             ^
+
+Internal Server Error: /users/
+Traceback (most recent call last):
+  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+psycopg2.errors.UndefinedColumn: column users.password does not exist
+LINE 1: ...r_id", "authtoken_token"."created", "users"."id", "users"."p...
+                                                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib64/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib64/python3.6/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 497, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 414, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 324, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/request.py", line 227, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/request.py", line 380, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/authentication.py", line 196, in authenticate
+    return self.authenticate_credentials(token)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/authentication.py", line 201, in authenticate_credentials
+    token = model.objects.select_related('user').get(key=key)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 431, in get
+    num = len(clone)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 262, in __len__
+    self._fetch_all()
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 1324, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 51, in __iter__
+    results = compiler.execute_sql(chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/sql/compiler.py", line 1175, in execute_sql
+    cursor.execute(sql, params)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 98, in execute
+    return super().execute(sql, params)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 66, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 75, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+django.db.utils.ProgrammingError: column users.password does not exist
+LINE 1: ...r_id", "authtoken_token"."created", "users"."id", "users"."p...
+                                                             ^
+
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Internal Server Error: /api-token-auth/
+Traceback (most recent call last):
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 581, in get_or_create
+    return self.get(**kwargs), False
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 437, in get
+    self.model._meta.object_name
+rest_framework.authtoken.models.Token.DoesNotExist: Token matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/base/base.py", line 242, in _commit
+    return self.connection.commit()
+psycopg2.errors.ForeignKeyViolation: insert or update on table "authtoken_token" violates foreign key constraint "authtoken_token_user_id_35299eff_fk_auth_user_id"
+DETAIL:  Key (user_id)=(22) is not present in table "auth_user".
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib64/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib64/python3.6/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/authtoken/views.py", line 58, in post
+    token, created = Token.objects.get_or_create(user=user)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 588, in get_or_create
+    return self.create(**params), True
+  File "/usr/local/lib64/python3.6/site-packages/django/db/transaction.py", line 246, in __exit__
+    connection.commit()
+  File "/usr/local/lib64/python3.6/site-packages/django/utils/asyncio.py", line 33, in inner
+    return func(*args, **kwargs)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/base/base.py", line 266, in commit
+    self._commit()
+  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/base/base.py", line 242, in _commit
+    return self.connection.commit()
+  File "/usr/local/lib64/python3.6/site-packages/django/db/utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/base/base.py", line 242, in _commit
+    return self.connection.commit()
+django.db.utils.IntegrityError: insert or update on table "authtoken_token" violates foreign key constraint "authtoken_token_user_id_35299eff_fk_auth_user_id"
+DETAIL:  Key (user_id)=(22) is not present in table "auth_user".
+
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Internal Server Error: /api-token-auth/
+Traceback (most recent call last):
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 581, in get_or_create
+    return self.get(**kwargs), False
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 437, in get
+    self.model._meta.object_name
+rest_framework.authtoken.models.Token.DoesNotExist: Token matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/base/base.py", line 242, in _commit
+    return self.connection.commit()
+psycopg2.errors.ForeignKeyViolation: insert or update on table "authtoken_token" violates foreign key constraint "authtoken_token_user_id_35299eff_fk_auth_user_id"
+DETAIL:  Key (user_id)=(22) is not present in table "auth_user".
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib64/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib64/python3.6/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/rest_framework/authtoken/views.py", line 58, in post
+    token, created = Token.objects.get_or_create(user=user)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/models/query.py", line 588, in get_or_create
+    return self.create(**params), True
+  File "/usr/local/lib64/python3.6/site-packages/django/db/transaction.py", line 246, in __exit__
+    connection.commit()
+  File "/usr/local/lib64/python3.6/site-packages/django/utils/asyncio.py", line 33, in inner
+    return func(*args, **kwargs)
+  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/base/base.py", line 266, in commit
+    self._commit()
+  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/base/base.py", line 242, in _commit
+    return self.connection.commit()
+  File "/usr/local/lib64/python3.6/site-packages/django/db/utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/usr/local/lib64/python3.6/site-packages/django/db/backends/base/base.py", line 242, in _commit
+    return self.connection.commit()
+django.db.utils.IntegrityError: insert or update on table "authtoken_token" violates foreign key constraint "authtoken_token_user_id_35299eff_fk_auth_user_id"
+DETAIL:  Key (user_id)=(22) is not present in table "auth_user".
+
