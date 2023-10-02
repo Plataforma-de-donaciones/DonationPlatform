@@ -13,6 +13,7 @@ from django.db.models import Q
 import logging
 from django.contrib.auth.hashers import make_password, check_password
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
 
 class UsersListView(generics.ListAPIView):
     queryset = Users.objects.all()
@@ -51,6 +52,18 @@ class UsersDetailView(generics.RetrieveUpdateDestroyAPIView):
        instance.user_state = 0
        instance.erased_at = timezone.now()  # Marcar la fecha de eliminación
        instance.save()
+    def perform_update(self, serializer):
+        # Obtiene la contraseña en texto plano del cuerpo JSON de la solicitud
+        plain_password = self.request.data.get('user_password', '')
+
+        # Encripta la contraseña utilizando make_password
+        hashed_password = make_password(plain_password)
+
+        # Actualiza la contraseña en el objeto del modelo antes de la actualización
+        serializer.validated_data['user_password'] = hashed_password
+
+        # Llama al método perform_update predeterminado para realizar la actualización
+        super().perform_update(serializer)
 
 class UserSearchView(generics.ListAPIView):
     serializer_class = UsersSerializer  # Asegúrate de tener un serializador de usuarios configurado
