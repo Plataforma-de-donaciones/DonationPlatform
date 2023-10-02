@@ -2817,3 +2817,63 @@ TypeError: 'ModelBase' object is not iterable
 Using selector: EpollSelector
 Using selector: EpollSelector
 Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Unauthorized: /login/
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Unauthorized: /login/
+Unauthorized: /login/
+Unauthorized: /login/
+Unauthorized: /login/
+Unauthorized: /login/
+Unauthorized: /login/
+Unauthorized: /login/
+Unauthorized: /login/
+Unauthorized: /login/
+Unauthorized: /login/
+Unauthorized: /login/
+Unauthorized: /login/
+Bad Request: /users/create/
+Unauthorized: /login/
+Unauthorized: /login/
+Unauthorized: /login/
+Unauthorized: /login/
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Bad Request: /users/create/
+Bad Request: /users/create/
+Bad Request: /users/create/
+Bad Request: /users/create/
+Bad Request: /users/create/
+Unauthorized: /login/
+Unauthorized: /login/
+Unauthorized: /login/
+Unauthorized: /login/
+Unauthorized: /login/
+Unauthorized: /login/
+Unauthorized: /login/
+Unauthorized: /login/
+Unauthorized: /login/
+Unauthorized: /login/
+Unauthorized: /login/
+Unauthorized: /login/
+Unauthorized: /login/
+Unauthorized: /login/
+Unauthorized: /login/
+Unauthorized: /login/
+Unauthorized: /login/
+Unauthorized: /login/
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector
+Not Found: /users/organizations/
+Using selector: EpollSelector
+Using selector: EpollSelector
+Using selector: EpollSelector

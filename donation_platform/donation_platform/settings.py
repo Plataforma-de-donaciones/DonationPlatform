@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
+    'corsheaders',
     'donation_platform',
     'users',
     'administrator',
@@ -71,15 +72,20 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     #'django.middleware.csrf.CsrfViewMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+#SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # Almacenar sesiones en la base de datos (también puedes usar 'django.contrib.sessions.backends.cache' o 'django.contrib.sessions.backends.file')
+#SESSION_COOKIE_NAME = 'donation_cookie'
+
 ROOT_URLCONF = 'donation_platform.urls'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
+        #'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication',
     ),
 }
@@ -101,6 +107,11 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'donation_platform.wsgi.application'
+CORS_ALLOW_ALL_ORIGINS = False
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",  # Reemplaza con la URL de tu aplicación React
+]
 
 
 # Database
