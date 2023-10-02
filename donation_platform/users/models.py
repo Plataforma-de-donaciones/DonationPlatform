@@ -3,17 +3,43 @@ from donation_platform.models import Organization
 from django.utils import timezone
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 
 
-class Users(models.Model):
+class UsersManager(BaseUserManager):
+    def create_user(self, user_email, user_password, **extra_fields):
+        user = self.model(user_email=user_email, **extra_fields)
+        user.set_password(user_password)
+        user.save(using=self._db)
+        return user
+
+    def create_superuser(self, user_email, user_password, **extra_fields):
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', True)
+
+        if extra_fields.get('is_staff') is not True:
+            raise ValueError('Superuser must have is_staff=True.')
+        if extra_fields.get('is_superuser') is not True:
+            raise ValueError('Superuser must have is_superuser=True.')
+
+        return self.create_user(user_email, user_password, **extra_fields)
+
+class Users(AbstractBaseUser, PermissionsMixin):
     user_name = models.CharField(max_length=50)
     user_email = models.CharField(max_length=50, unique=True)
-    user_password = models.TextField()
     organization = models.ForeignKey(Organization, models.DO_NOTHING, blank=True, null=True, related_name='users_organization')
     user_state = models.IntegerField()
     erased_at = models.DateTimeField(blank=True, null=True)
     erased_reason = models.TextField(blank=True, null=True)
     last_login = models.DateTimeField(default=timezone.now)
+
+    is_active = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=False)
+
+    objects = UsersManager()
+
+    USERNAME_FIELD = 'user_email'
+    REQUIRED_FIELDS = ['user_name']  # Agrega los campos requeridos adicionales aquí
 
     class Meta:
         managed = False
