@@ -134,8 +134,8 @@ class UserLoginView(APIView):
 
             # Establecer la cookie de sesión con la información serializada
             response = JsonResponse({'message': 'Inicio de sesión exitoso'})
-            response.set_cookie(key='token', value=token.key, samesite='None', secure=True, max_age=3600, domain='.192.168.1.14')
-            response.set_cookie(key='user_data', value=user_data_json, samesite='None', secure=True, max_age=3600, domain='.192.168.1.14')
+            response.set_cookie(key='token', value=token.key, samesite='None', secure=True, max_age=3600)
+            response.set_cookie(key='user_data', value=user_data_json, samesite='None', secure=True, max_age=3600)
 
             # Realizar acciones adicionales aquí si es necesario
 
