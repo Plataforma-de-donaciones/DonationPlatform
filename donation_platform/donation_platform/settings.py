@@ -90,6 +90,17 @@ REST_FRAMEWORK = {
     ),
 }
 AUTH_USER_MODEL = 'users.Users'
+#SESSION_COOKIE_SECURE = False
+#CSRF_COOKIE_SECURE = False
+
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SAMESITE = None  # o 'Lax' o 'Strict'
+CSRF_COOKIE_SAMESITE = None  # o 'Lax' o 'Strict'
+SESSION_COOKIE_HTTPONLY = True
+CSRF_COOKIE_HTTPONLY = True
+
+
 
 TEMPLATES = [
     {
@@ -108,10 +119,12 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'donation_platform.wsgi.application'
-CORS_ALLOW_ALL_ORIGINS = False
+CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",  # Reemplaza con la URL de tu aplicación React
+    "https://localhost:3000",
+    "http://localhost:3000",
+  # Reemplaza con la URL de tu aplicación React
 ]
 
 

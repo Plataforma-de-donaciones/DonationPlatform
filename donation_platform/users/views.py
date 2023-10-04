@@ -14,6 +14,11 @@ import logging
 from django.contrib.auth.hashers import make_password, check_password
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
+from rest_framework.authtoken.models import Token
+import json
+from django.http import JsonResponse
+#from django.views.decorators.csrf import ensure_csrf_cookie
+#from django.views.decorators.csrf import csrf_exempt
 
 class UsersListView(generics.ListAPIView):
     queryset = Users.objects.all()
@@ -83,23 +88,59 @@ class UserSearchView(generics.ListAPIView):
         serializer = self.serializer_class(queryset, many=True)
         return Response(serializer.data)
 
+#class UserLoginView(APIView):
+#    def post(self, request):
+#        user_name = request.data.get('user_name')
+#        user_password = request.data.get('user_password')
+
+        # Busca al usuario en la base de datos
+#        try:
+#            user = Users.objects.get(user_name=user_name)
+#        except Users.DoesNotExist:
+#            user = None
+
+#        if user is not None and check_password(user_password, user.user_password):
+#            # La autenticación fue exitosa, inicia sesión
+#            login(request, user)
+#            # Realiza acciones adicionales aquí
+#            return Response({'message': 'Inicio de sesión exitoso'}, status=status.HTTP_200_OK)
+#        else:
+#            # La autenticación falló, devuelve un mensaje de error
+#            return Response({'message': 'Credenciales inválidas'}, status=status.HTTP_401_UNAUTHORIZED)
+
 class UserLoginView(APIView):
     def post(self, request):
         user_name = request.data.get('user_name')
         user_password = request.data.get('user_password')
 
-        # Busca al usuario en la base de datos
         try:
             user = Users.objects.get(user_name=user_name)
         except Users.DoesNotExist:
             user = None
 
         if user is not None and check_password(user_password, user.user_password):
-            # La autenticación fue exitosa, inicia sesión
+            # Autenticación exitosa, inicia sesión
             login(request, user)
-            # Realiza acciones adicionales aquí
-            return Response({'message': 'Inicio de sesión exitoso'}, status=status.HTTP_200_OK)
-        else:
-            # La autenticación falló, devuelve un mensaje de error
-            return Response({'message': 'Credenciales inválidas'}, status=status.HTTP_401_UNAUTHORIZED)
 
+            # Generar o obtener el token para el usuario
+            token, created = Token.objects.get_or_create(user=user)
+
+            # Serializar información adicional en formato JSON
+            user_data = {
+                'user_id': user.id,
+                'user_email': user.user_email,
+            }
+            user_data_json = json.dumps(user_data)
+
+            # Establecer la cookie de sesión con la información serializada
+            response = JsonResponse({'message': 'Inicio de sesión exitoso'})
+            response.set_cookie(key='token', value=token.key, samesite='None', secure=True, max_age=3600, domain='.192.168.1.14')
+            response.set_cookie(key='user_data', value=user_data_json, samesite='None', secure=True, max_age=3600, domain='.192.168.1.14')
+
+            # Realizar acciones adicionales aquí si es necesario
+
+            # Retorna la respuesta con las cookies de sesión
+            return response
+        else:
+            # Autenticación fallida, devuelve un mensaje de error
+            return Response({'message': 'Credenciales inválidas'}, status=status.HTTP_401_UNAUTHORIZED)
