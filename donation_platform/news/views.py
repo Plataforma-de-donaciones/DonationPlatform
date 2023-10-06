@@ -13,7 +13,7 @@ from rest_framework.views import APIView
 class NewsListView(generics.ListCreateAPIView):
     queryset = News.objects.all()
     serializer_class = NewsSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    #permission_classes = [permissions.IsAuthenticated]
 
 class NewsDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = News.objects.all()

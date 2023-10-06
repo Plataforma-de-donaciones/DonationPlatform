@@ -42,6 +42,7 @@ class Users(AbstractBaseUser):
     erased_at = models.DateTimeField(blank=True, null=True)
     erased_reason = models.TextField(blank=True, null=True)
     last_login = models.DateTimeField(default=timezone.now)
+    organization = models.ForeignKey(Organization, models.DO_NOTHING, blank=True, null=True, related_name='user_organization')
 
     objects = CustomUserManager()
 

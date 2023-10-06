@@ -130,17 +130,6 @@ class UserLoginView(APIView):
                 'user_id': user.id,
                 'user_email': user.user_email,
             }
-            user_data_json = json.dumps(user_data)
-
-            # Establecer la cookie de sesión con la información serializada
-            response = JsonResponse({'message': 'Inicio de sesión exitoso'})
-            response.set_cookie(key='token', value=token.key, samesite='None', secure=True, max_age=3600)
-            response.set_cookie(key='user_data', value=user_data_json, samesite='None', secure=True, max_age=3600)
-
-            # Realizar acciones adicionales aquí si es necesario
-
-            # Retorna la respuesta con las cookies de sesión
-            return response
+            return JsonResponse({'message': 'Inicio de sesión exitoso', 'token': token.key, 'user_data': user_data})
         else:
-            # Autenticación fallida, devuelve un mensaje de error
-            return Response({'message': 'Credenciales inválidas'}, status=status.HTTP_401_UNAUTHORIZED)
+            return JsonResponse({'message': 'Credenciales inválidas'}, status=status.HTTP_401_UNAUTHORIZED)
