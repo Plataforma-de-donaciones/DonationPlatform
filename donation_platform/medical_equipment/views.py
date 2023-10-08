@@ -80,3 +80,27 @@ class MedicalEquipmentSearchViewbyType(APIView):
 
         return Response({'message': 'Ingrese un parámetro de búsqueda válido.'}, status=status.HTTP_400_BAD_REQUEST)
 
+class MedicalEquipmentSearchViewbyTypeUser(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def post(self, request):
+        search_type_param = request.data.get('search_type', '')
+        search_user_param = request.data.get('search_user', '')
+
+        if search_type_param or search_user_param:
+            # Configura la consulta usando Q para manejar ambas condiciones
+            query = Q()
+
+            if search_type_param:
+                query &= (Q(type__type_name__exact=search_type_param) | Q(type__type_id=search_type_param))
+
+            if search_user_param:
+                query &= (Q(user__user_name__exact=search_user_param) | Q(user__user_email__exact=search_user_param))
+
+            # Ejecuta la consulta
+            equipments = MedicalEquipment.objects.filter(query)
+
+            serializer = MedicalEquipmentSerializer(equipments, many=True)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+
+        return Response({'message': 'Ingrese al menos un parámetro de búsqueda válido.'}, status=status.HTTP_400_BAD_REQUEST)

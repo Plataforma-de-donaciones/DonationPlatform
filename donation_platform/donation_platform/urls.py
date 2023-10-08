@@ -25,12 +25,12 @@ from organization.views import OrganizationListView, OrganizationDetailView, Org
 from articles_states.views import ArticlesStatesListView, ArticlesStatesDetailView
 from articles_types.views import ArticlesTypeListView, ArticlesTypeDetailView
 from articles_zones.views import ArticlesZonesListView, ArticlesZonesDetailView
-from donation.views import DonationListView, DonationDetailView, DonationSearchViewbyUser, DonationSearchViewbyName, DonationSearchViewbyType
+from donation.views import DonationListView, DonationDetailView, DonationSearchViewbyUser, DonationSearchViewbyName, DonationSearchViewbyType, DonationSearchViewbyTypeUser
 from event.views import EventListView, EventDetailView, EventSearchViewbyUser, EventSearchViewbyName, EventSearchViewbyType
-from medical_equipment.views import MedicalEquipmentListView, MedicalEquipmentDetailView, MedicalEquipmentSearchViewbyUser, MedicalEquipmentSearchViewbyName, MedicalEquipmentSearchViewbyType
+from medical_equipment.views import MedicalEquipmentListView, MedicalEquipmentDetailView, MedicalEquipmentSearchViewbyUser, MedicalEquipmentSearchViewbyName, MedicalEquipmentSearchViewbyType, MedicalEquipmentSearchViewbyTypeUser
 from news.views import NewsListView, NewsDetailView, NewsSearchViewbyUser, NewsSearchViewbyName, NewsSearchViewbySubject
-from sponsor.views import SponsorListView, SponsorDetailView, SponsorSearchViewbyUser, SponsorSearchViewbyName, SponsorSearchViewbyType
-from volunteer.views import VolunteerListView, VolunteerDetailView, VolunteerSearchViewbyUser, VolunteerSearchViewbyName, VolunteerSearchViewbyType
+from sponsor.views import SponsorListView, SponsorDetailView, SponsorSearchViewbyUser, SponsorSearchViewbyName, SponsorSearchViewbyType, SponsorSearchViewbyTypeUser
+from volunteer.views import VolunteerListView, VolunteerDetailView, VolunteerSearchViewbyUser, VolunteerSearchViewbyName, VolunteerSearchViewbyType, VolunteerSearchViewbyTypeUser
 from notifications.views import NotificationsListView, NotificationsDetailView, NotificationsSearchViewbyUser
 from request.views import RequestsListView, RequestsDetailView, RequestsSearchViewbyUser
 from rest_framework.authtoken.views import obtain_auth_token
@@ -65,6 +65,7 @@ urlpatterns = [
     path('donations/searchbyuser/', DonationSearchViewbyUser.as_view(), name='donations-search-by-user'),
     path('donations/searchbyname/', DonationSearchViewbyName.as_view(), name='donations-search-by-name'),
     path('donations/searchbytype/', DonationSearchViewbyType.as_view(), name='donations-search-by-type'),
+    path('donations/searchbytypeuser/', DonationSearchViewbyTypeUser.as_view(), name='donations-search-by-type-user'),
     path('events/', EventListView.as_view(), name='event-list'),
     path('events/<int:pk>/', EventDetailView.as_view(), name='event-detail'),
     path('events/searchbyuser/', EventSearchViewbyUser.as_view(), name='events-search-by-user'),
@@ -75,6 +76,7 @@ urlpatterns = [
     path('medicalequipments/searchbyuser/', MedicalEquipmentSearchViewbyUser.as_view(), name='medical-equipment-search-by-user'),
     path('medicalequipments/searchbyname/', MedicalEquipmentSearchViewbyName.as_view(), name='medical-equipment-search-by-name'),
     path('medicalequipments/searchbytype/', MedicalEquipmentSearchViewbyType.as_view(), name='medical-equipment-search-by-type'),
+    path('medicalequipments/searchbytypeuser/', MedicalEquipmentSearchViewbyTypeUser.as_view(), name='medical-equipment-search-by-type-user'),
     path('news/', NewsListView.as_view(), name='news-list'),
     path('news/<int:pk>/', NewsDetailView.as_view(), name='news-detail'),
     path('news/searchbyuser/', NewsSearchViewbyUser.as_view(), name='news-search-by-user'),
@@ -85,11 +87,13 @@ urlpatterns = [
     path('sponsors/searchbyuser/', SponsorSearchViewbyUser.as_view(), name='sponsor-search-by-user'),
     path('sponsors/searchbyname/', SponsorSearchViewbyName.as_view(), name='sponsor-search-by-name'),
     path('sponsors/searchbytype/', SponsorSearchViewbyType.as_view(), name='sponsor-search-by-type'),
+    path('sponsors/searchbytypeuser/', SponsorSearchViewbyTypeUser.as_view(), name='sponsor-search-by-type-user'),
     path('volunteers/', VolunteerListView.as_view(), name='volunteer-list'),
     path('volunteers/<int:pk>/', VolunteerDetailView.as_view(), name='volunteer-detail'),
     path('volunteers/searchbyuser/', VolunteerSearchViewbyUser.as_view(), name='volunteer-search-by-user'),
     path('volunteers/searchbyname/', VolunteerSearchViewbyName.as_view(), name='volunteer-search-by-name'),
     path('volunteers/searchbytype/', VolunteerSearchViewbyType.as_view(), name='volunteer-search-by-type'),
+    path('volunteers/searchbytypeuser/', VolunteerSearchViewbyTypeUser.as_view(), name='volunteer-search-by-type-user'),
     path('notifications/', NotificationsListView.as_view(), name='notifications-list'),
     path('notifications/<int:pk>/', NotificationsDetailView.as_view(), name='notifications-detail'),
     path('notifications/search/', NotificationsSearchViewbyUser.as_view(), name='notifications-search'),
