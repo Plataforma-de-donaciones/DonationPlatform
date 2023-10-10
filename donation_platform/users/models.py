@@ -18,7 +18,13 @@ class Users(models.Model):
     class Meta:
         managed = False
         db_table = 'users'
-
+        
+    def __str__(self):
+        return self.user_name
+    
+    @property
+    def is_authenticated(self):
+        return True
 class Administrator(models.Model):
     user = models.OneToOneField(Users, on_delete=models.CASCADE, related_name='user_administrator_user')
     start_date = models.DateTimeField()

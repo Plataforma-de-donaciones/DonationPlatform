@@ -12,7 +12,9 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+import sys
 import environ
+
 env = environ.Env(
     # set casting, default value
     DEBUG=(bool, False)
@@ -107,33 +109,59 @@ WSGI_APPLICATION = 'donation_platform.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-        'default': {
-                  'ENGINE': 'django.db.backends.postgresql_psycopg2',
-                   'NAME': env('POSTGRESQL_NAME'),
-                   'USER': env('POSTGRESQL_USER'),
-                   'PASSWORD': env('POSTGRESQL_PASS'),
-                   'HOST': env('POSTGRESQL_HOST'),
-                   'PORT': env('POSTGRESQL_PORT'),
-                   'OPTIONS': {
-                       'options': '-c search_path=data',  # Especificar el esquema
-              },
-         }
-  } 
+    "default": {
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": env("POSTGRESQL_NAME"),
+        "USER": env("POSTGRESQL_USER"),
+        "PASSWORD": env("POSTGRESQL_PASS"),
+        "HOST": env("POSTGRESQL_HOST"),
+        "PORT": env("POSTGRESQL_PORT"),
+        "OPTIONS": {
+            "options": "-c search_path=data",
+        },
+    }
+}
+
+if "test" in sys.argv:
+    print(env("POSTGRESQL_NAME_QA"))
+    DATABASES["default"] = {
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": env("POSTGRESQL_NAME_QA"),
+        "USER": env("POSTGRESQL_USER"),
+        "PASSWORD": env("POSTGRESQL_PASS"),
+        "HOST": env("POSTGRESQL_HOST"),
+        "PORT": env("POSTGRESQL_PORT"),
+        "OPTIONS": {
+            "options": "-c search_path=data",
+        },
+    }
+else:
+    print()
+    DATABASES["default"] = {
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": env("POSTGRESQL_NAME"),
+        "USER": env("POSTGRESQL_USER"),
+        "PASSWORD": env("POSTGRESQL_PASS"),
+        "HOST": env("POSTGRESQL_HOST"),
+        "PORT": env("POSTGRESQL_PORT"),
+        "OPTIONS": {
+            "options": "-c search_path=data",
+        },
+    }
 
 LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'file': {
-            'level': 'DEBUG',
-            'class': 'logging.FileHandler',
-
-            'filename': os.path.join(BASE_DIR, 'django.log/'),
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "file": {
+            "level": "DEBUG",
+            "class": "logging.FileHandler",
+            "filename": os.path.join(BASE_DIR, "django.log/"),
         },
     },
-    'root': {
-        'handlers': ['file'],
-        'level': 'DEBUG',
+    "root": {
+        "handlers": ["file"],
+        "level": "DEBUG",
     },
 }
 
@@ -143,16 +171,16 @@ LOGGING = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
 
@@ -160,9 +188,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = "UTC"
 
 USE_I18N = True
 
@@ -174,12 +202,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+STATIC_URL = "/static/"
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 
-#STATICFILES_DIRS = [
+# STATICFILES_DIRS = [
 #    os.path.join(BASE_DIR, "static"),
-#]
+# ]
 DEBUG = True
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

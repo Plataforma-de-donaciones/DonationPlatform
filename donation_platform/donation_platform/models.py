@@ -276,7 +276,9 @@ class Requests(models.Model):
     class Meta:
         managed = False
         db_table = 'requests'
-
+    @property
+    def is_authenticated(self):
+        return True
 
 class Sponsor(models.Model):
     sponsor_id = models.AutoField(primary_key=True)
@@ -309,7 +311,7 @@ class Users(models.Model):
     erased_at = models.DateTimeField(blank=True, null=True)
     erased_reason = models.TextField(blank=True, null=True)
     last_login = models.DateTimeField(default=timezone.now)
-
+    
     class Meta:
         managed = False
         db_table = 'users'
