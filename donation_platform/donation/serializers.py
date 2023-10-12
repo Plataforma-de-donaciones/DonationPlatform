@@ -6,3 +6,4 @@ class DonationSerializer(serializers.ModelSerializer):
         model = Donation
         fields = '__all__'
 
+    image = serializers.ImageField(max_length=None, use_url=True, required=False)
