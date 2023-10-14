@@ -9,7 +9,7 @@ class Donation(models.Model):
     don_description = models.TextField()
     type = models.ForeignKey(ArticlesType, models.DO_NOTHING, related_name='donation_type')
     state = models.ForeignKey(ArticlesStates, models.DO_NOTHING, related_name='donation_state')
-    don_attachment = models.ImageField(upload_to='donation_images/')
+    don_attachment = models.ImageField(upload_to='static/')
     don_created_at = models.DateTimeField()
     user = models.ForeignKey(Users, models.DO_NOTHING, related_name='donation_user')
     zone = models.ForeignKey(ArticlesZones, models.DO_NOTHING, related_name='donation_zone')
