@@ -1,5 +1,5 @@
 from django.db import models
-from donation_platform.models import ArticlesType, ArticlesStates, Users, ArticlesZones
+from donation_platform.models import ArticlesType, ArticlesStates, Users, ArticlesZones, Categories, CategoriesMeq
 from django.utils import timezone
 from PIL import Image
 

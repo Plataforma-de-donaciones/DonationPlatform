@@ -65,6 +65,8 @@ INSTALLED_APPS = [
     'volunteer',
     'notifications',
     'request',
+    'categories_meq',
+    'categories',
 ]
 
 MIDDLEWARE = [
