@@ -6,5 +6,5 @@ class CategoriesMeqSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CategoriesMeq
-        fields = ['cat_id', 'eq_id', 'cat_name']
+        fields = ['id', 'cat_id', 'eq_id', 'cat_name']
 

@@ -32,7 +32,7 @@ from news.views import NewsListView, NewsDetailView, NewsSearchViewbyUser, NewsS
 from sponsor.views import SponsorListView, SponsorDetailView, SponsorSearchViewbyUser, SponsorSearchViewbyName, SponsorSearchViewbyType, SponsorSearchViewbyTypeUser
 from volunteer.views import VolunteerListView, VolunteerDetailView, VolunteerSearchViewbyUser, VolunteerSearchViewbyName, VolunteerSearchViewbyType, VolunteerSearchViewbyTypeUser
 from notifications.views import NotificationsListView, NotificationsDetailView, NotificationsSearchViewbyUser
-from categories_meq.views import CategoriesMeqListView
+from categories_meq.views import CategoriesMeqListView, CategoriesMeqSearchViewByCatId
 from categories.views import CategoriesListView
 from request.views import RequestsListView, RequestsDetailView, RequestsSearchViewbyUser
 from rest_framework.authtoken.views import obtain_auth_token
@@ -104,6 +104,7 @@ urlpatterns = [
     path('requests/search/', RequestsSearchViewbyUser.as_view(), name='requests-search'),
     path('categoriesmeq/', CategoriesMeqListView.as_view(), name='categories-meq-list'),
     path('categories/', CategoriesListView.as_view(), name='categories-list'),
+    path('categoriesmeq/search/<int:cat_id>/', CategoriesMeqSearchViewByCatId.as_view(), name='categoriesmeq-search-by-cat-id'),
 
     ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
