@@ -10,4 +10,3 @@ class CategoriesMeq(models.Model):
     class Meta:
         managed = False
         db_table = 'categories_meq'
-
