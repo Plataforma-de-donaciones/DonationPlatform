@@ -32,6 +32,8 @@ from news.views import NewsListView, NewsDetailView, NewsSearchViewbyUser, NewsS
 from sponsor.views import SponsorListView, SponsorDetailView, SponsorSearchViewbyUser, SponsorSearchViewbyName, SponsorSearchViewbyType, SponsorSearchViewbyTypeUser
 from volunteer.views import VolunteerListView, VolunteerDetailView, VolunteerSearchViewbyUser, VolunteerSearchViewbyName, VolunteerSearchViewbyType, VolunteerSearchViewbyTypeUser
 from notifications.views import NotificationsListView, NotificationsDetailView, NotificationsSearchViewbyUser
+from categories_meq.views import CategoriesMeqListView
+from categories.views import CategoriesListView
 from request.views import RequestsListView, RequestsDetailView, RequestsSearchViewbyUser
 from rest_framework.authtoken.views import obtain_auth_token
 from django.views.generic import TemplateView
@@ -100,7 +102,8 @@ urlpatterns = [
     path('requests/', RequestsListView.as_view(), name='requests-list'),
     path('requests/<int:pk>/', RequestsDetailView.as_view(), name='requests-detail'),
     path('requests/search/', RequestsSearchViewbyUser.as_view(), name='requests-search'),
-
+    path('categoriesmeq/', CategoriesMeqListView.as_view(), name='categories-meq-list'),
+    path('categories/', CategoriesListView.as_view(), name='categories-list'),
 
     ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
