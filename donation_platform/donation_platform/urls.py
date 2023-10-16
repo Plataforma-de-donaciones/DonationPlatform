@@ -27,7 +27,7 @@ from articles_types.views import ArticlesTypeListView, ArticlesTypeDetailView
 from articles_zones.views import ArticlesZonesListView, ArticlesZonesDetailView
 from donation.views import DonationListView, DonationDetailView, DonationSearchViewbyUser, DonationSearchViewbyName, DonationSearchViewbyType, DonationSearchViewbyTypeUser
 from event.views import EventListView, EventDetailView, EventSearchViewbyUser, EventSearchViewbyName, EventSearchViewbyType
-from medical_equipment.views import MedicalEquipmentListView, MedicalEquipmentDetailView, MedicalEquipmentSearchViewbyUser, MedicalEquipmentSearchViewbyName, MedicalEquipmentSearchViewbyType, MedicalEquipmentSearchViewbyTypeUser
+from medical_equipment.views import MedicalEquipmentListView, MedicalEquipmentDetailView, MedicalEquipmentSearchViewbyUser, MedicalEquipmentSearchViewbyName, MedicalEquipmentSearchViewbyType, MedicalEquipmentSearchViewbyTypeUser, MedicalEquipmentSearchViewbyId
 from news.views import NewsListView, NewsDetailView, NewsSearchViewbyUser, NewsSearchViewbyName, NewsSearchViewbySubject
 from sponsor.views import SponsorListView, SponsorDetailView, SponsorSearchViewbyUser, SponsorSearchViewbyName, SponsorSearchViewbyType, SponsorSearchViewbyTypeUser
 from volunteer.views import VolunteerListView, VolunteerDetailView, VolunteerSearchViewbyUser, VolunteerSearchViewbyName, VolunteerSearchViewbyType, VolunteerSearchViewbyTypeUser
@@ -79,6 +79,7 @@ urlpatterns = [
     path('medicalequipments/searchbyname/', MedicalEquipmentSearchViewbyName.as_view(), name='medical-equipment-search-by-name'),
     path('medicalequipments/searchbytype/', MedicalEquipmentSearchViewbyType.as_view(), name='medical-equipment-search-by-type'),
     path('medicalequipments/searchbytypeuser/', MedicalEquipmentSearchViewbyTypeUser.as_view(), name='medical-equipment-search-by-type-user'),
+    path('medicalequipments/searchbyid/', MedicalEquipmentSearchViewbyId.as_view(), name='medical-equipment-search-by-id'),
     path('news/', NewsListView.as_view(), name='news-list'),
     path('news/<int:pk>/', NewsDetailView.as_view(), name='news-detail'),
     path('news/searchbyuser/', NewsSearchViewbyUser.as_view(), name='news-search-by-user'),
