@@ -4,7 +4,7 @@ from donation_platform.models import Categories, MedicalEquipment
 
 
 class CategoriesMeq(models.Model):
-    cat = models.ForeignKey(Categories, models.DO_NOTHING)
+    cat = models.ForeignKey(Categories, models.DO_NOTHING, related_name='cat_cat')
     eq = models.ForeignKey(MedicalEquipment, models.DO_NOTHING, related_name='cat_eq')
 
     class Meta:
