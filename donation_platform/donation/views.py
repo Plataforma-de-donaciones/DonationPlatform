@@ -80,6 +80,22 @@ class DonationSearchViewbyName(generics.ListAPIView):
 #
  #       return queryset
 
+#class DonationSearchViewbyType(APIView):
+ #   permission_classes = [permissions.IsAuthenticated]
+#
+ #   def post(self, request):
+  #      search_param = request.data.get('search', '')
+
+   #     if search_param:
+    #        donations = Donation.objects.filter(
+     #           Q(type__type_name__exact=search_param)
+      #      )
+#
+ #           serializer = DonationSerializer(donations, many=True)
+  #          return Response(serializer.data, status=status.HTTP_200_OK)
+
+   #     return Response({'message': 'Ingrese un parámetro de búsqueda válido.'}, status=status.HTTP_400_BAD_REQUEST)
+
 class DonationSearchViewbyType(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
@@ -87,14 +103,21 @@ class DonationSearchViewbyType(APIView):
         search_param = request.data.get('search', '')
 
         if search_param:
-            donations = Donation.objects.filter(
-                Q(type__type_name__exact=search_param)
-            )
+            # Intenta buscar por type_id como número
+            try:
+                type_id = int(search_param)
+                donations = Donation.objects.filter(Q(type__type_id=type_id) | Q(type__type_name=search_param))
+            except ValueError:
+                # Si no es un número, busca por type_name
+                donations = Donation.objects.filter(type__type_name=search_param)
 
-            serializer = DonationSerializer(donations, many=True)
+            serializer = DonationSerializer(equipments, many=True)
             return Response(serializer.data, status=status.HTTP_200_OK)
 
         return Response({'message': 'Ingrese un parámetro de búsqueda válido.'}, status=status.HTTP_400_BAD_REQUEST)
+
+
+
 
 class DonationSearchViewbyTypeUser(APIView):
     permission_classes = [permissions.IsAuthenticated]

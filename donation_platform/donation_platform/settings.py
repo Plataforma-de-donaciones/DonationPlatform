@@ -67,6 +67,7 @@ INSTALLED_APPS = [
     'request',
     'categories_meq',
     'categories',
+    'categories_don',
 ]
 
 MIDDLEWARE = [
