@@ -25,7 +25,7 @@ from organization.views import OrganizationListView, OrganizationDetailView, Org
 from articles_states.views import ArticlesStatesListView, ArticlesStatesDetailView
 from articles_types.views import ArticlesTypeListView, ArticlesTypeDetailView
 from articles_zones.views import ArticlesZonesListView, ArticlesZonesDetailView
-from donation.views import DonationListView, DonationDetailView, DonationSearchViewbyUser, DonationSearchViewbyName, DonationSearchViewbyType, DonationSearchViewbyTypeUser
+from donation.views import DonationListView, DonationDetailView, DonationSearchViewbyUser, DonationSearchViewbyName, DonationSearchViewbyType, DonationSearchViewbyTypeUser, DonationSearchViewbyId
 from event.views import EventListView, EventDetailView, EventSearchViewbyUser, EventSearchViewbyName, EventSearchViewbyType
 from medical_equipment.views import MedicalEquipmentListView, MedicalEquipmentDetailView, MedicalEquipmentSearchViewbyUser, MedicalEquipmentSearchViewbyName, MedicalEquipmentSearchViewbyType, MedicalEquipmentSearchViewbyTypeUser, MedicalEquipmentSearchViewbyId
 from news.views import NewsListView, NewsDetailView, NewsSearchViewbyUser, NewsSearchViewbyName, NewsSearchViewbySubject
@@ -69,6 +69,7 @@ urlpatterns = [
     path('donations/searchbyname/', DonationSearchViewbyName.as_view(), name='donations-search-by-name'),
     path('donations/searchbytype/', DonationSearchViewbyType.as_view(), name='donations-search-by-type'),
     path('donations/searchbytypeuser/', DonationSearchViewbyTypeUser.as_view(), name='donations-search-by-type-user'),
+    path('donations/searchbyid/', DonationSearchViewbyId.as_view(), name='donation-search-by-id'),
     path('events/', EventListView.as_view(), name='event-list'),
     path('events/<int:pk>/', EventDetailView.as_view(), name='event-detail'),
     path('events/searchbyuser/', EventSearchViewbyUser.as_view(), name='events-search-by-user'),

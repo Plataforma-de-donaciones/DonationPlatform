@@ -143,3 +143,20 @@ class DonationSearchViewbyTypeUser(APIView):
             return Response(serializer.data, status=status.HTTP_200_OK)
 
         return Response({'message': 'Ingrese al menos un parámetro de búsqueda válido.'}, status=status.HTTP_400_BAD_REQUEST)
+
+class DonationSearchViewbyId(generics.ListAPIView):
+    serializer_class = DonationSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def post(self, request):
+        don_id = self.request.data.get('don_id', '')
+        #logger = logging.getLogger(__name__)
+        #logger.debug("Valor de username: %s", eq_name)
+
+        queryset = Donation.objects.filter(
+            Q(don_id__exact=don_id)
+        )
+        #logger.debug("Consulta sql generada:", str(queryset.query))
+        serializer = self.serializer_class(queryset, many=True)
+        return Response(serializer.data)
+
