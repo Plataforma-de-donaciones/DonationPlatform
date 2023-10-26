@@ -13,7 +13,7 @@ from rest_framework.views import APIView
 class VolunteerListView(generics.ListCreateAPIView):
     queryset = Volunteer.objects.all()
     serializer_class = VolunteerSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    #permission_classes = [permissions.IsAuthenticated]
 
 class VolunteerDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Volunteer.objects.all()
@@ -95,4 +95,20 @@ class VolunteerSearchViewbyTypeUser(APIView):
             return Response(serializer.data, status=status.HTTP_200_OK)
 
         return Response({'message': 'Ingrese al menos un parámetro de búsqueda válido.'}, status=status.HTTP_400_BAD_REQUEST)
+
+class VolunteerSearchViewbyId(generics.ListAPIView):
+    serializer_class = VolunteerSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def post(self, request):
+        vol_id = self.request.data.get('vol_id', '')
+        #logger = logging.getLogger(__name__)
+        #logger.debug("Valor de username: %s", eq_name)
+
+        queryset = Volunteer.objects.filter(
+            Q(vol_id__exact=vol_id)
+        )
+        #logger.debug("Consulta sql generada:", str(queryset.query))
+        serializer = self.serializer_class(queryset, many=True)
+        return Response(serializer.data)
 

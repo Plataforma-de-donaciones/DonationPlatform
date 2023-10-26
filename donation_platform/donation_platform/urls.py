@@ -30,7 +30,7 @@ from event.views import EventListView, EventDetailView, EventSearchViewbyUser, E
 from medical_equipment.views import MedicalEquipmentListView, MedicalEquipmentDetailView, MedicalEquipmentSearchViewbyUser, MedicalEquipmentSearchViewbyName, MedicalEquipmentSearchViewbyType, MedicalEquipmentSearchViewbyTypeUser, MedicalEquipmentSearchViewbyId
 from news.views import NewsListView, NewsDetailView, NewsSearchViewbyUser, NewsSearchViewbyName, NewsSearchViewbySubject
 from sponsor.views import SponsorListView, SponsorDetailView, SponsorSearchViewbyUser, SponsorSearchViewbyName, SponsorSearchViewbyType, SponsorSearchViewbyTypeUser
-from volunteer.views import VolunteerListView, VolunteerDetailView, VolunteerSearchViewbyUser, VolunteerSearchViewbyName, VolunteerSearchViewbyType, VolunteerSearchViewbyTypeUser
+from volunteer.views import VolunteerListView, VolunteerDetailView, VolunteerSearchViewbyUser, VolunteerSearchViewbyName, VolunteerSearchViewbyType, VolunteerSearchViewbyTypeUser, VolunteerSearchViewbyId
 from notifications.views import NotificationsListView, NotificationsDetailView, NotificationsSearchViewbyUser
 from categories_meq.views import CategoriesMeqListView, CategoriesMeqSearchViewByCatId
 from categories_don.views import CategoriesDonListView, CategoriesDonSearchViewByCatId
@@ -99,6 +99,7 @@ urlpatterns = [
     path('volunteers/searchbyname/', VolunteerSearchViewbyName.as_view(), name='volunteer-search-by-name'),
     path('volunteers/searchbytype/', VolunteerSearchViewbyType.as_view(), name='volunteer-search-by-type'),
     path('volunteers/searchbytypeuser/', VolunteerSearchViewbyTypeUser.as_view(), name='volunteer-search-by-type-user'),
+    path('volunteers/searchbyid/', VolunteerSearchViewbyId.as_view(), name='volunteer-search-by-id'),
     path('notifications/', NotificationsListView.as_view(), name='notifications-list'),
     path('notifications/<int:pk>/', NotificationsDetailView.as_view(), name='notifications-detail'),
     path('notifications/search/', NotificationsSearchViewbyUser.as_view(), name='notifications-search'),

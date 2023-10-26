@@ -321,7 +321,7 @@ class Volunteer(models.Model):
     vol_description = models.TextField()
     type = models.ForeignKey(ArticlesType, models.DO_NOTHING)
     state = models.ForeignKey(ArticlesStates, models.DO_NOTHING)
-    vol_attachment = models.TextField(blank=True, null=True)
+    vol_tasks = models.TextField(blank=True, null=True)
     vol_created_at = models.DateTimeField()
     user = models.ForeignKey(Users, models.DO_NOTHING)
     zone = models.ForeignKey(ArticlesZones, models.DO_NOTHING)

@@ -8,7 +8,7 @@ class Volunteer(models.Model):
     vol_description = models.TextField()
     type = models.ForeignKey(ArticlesType, models.DO_NOTHING, related_name='volunteer_type')
     state = models.ForeignKey(ArticlesStates, models.DO_NOTHING, related_name='volunteer_state')
-    vol_attachment = models.TextField(blank=True, null=True)
+    vol_tasks = models.TextField(blank=True, null=True)
     vol_created_at = models.DateTimeField()
     user = models.ForeignKey(Users, models.DO_NOTHING, related_name='volunteer_user')
     zone = models.ForeignKey(ArticlesZones, models.DO_NOTHING, related_name='volunteer_zone')

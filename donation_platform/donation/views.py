@@ -14,7 +14,7 @@ from rest_framework.parsers import MultiPartParser, FormParser
 class DonationListView(generics.ListCreateAPIView):
     queryset = Donation.objects.all()
     serializer_class = DonationSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    #permission_classes = [permissions.IsAuthenticated]
     parser_classes = (MultiPartParser, FormParser)
 
     def perform_create(self, serializer):
