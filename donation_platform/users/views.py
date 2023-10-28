@@ -13,6 +13,12 @@ from django.db.models import Q
 import logging
 from django.contrib.auth.hashers import make_password, check_password
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
+from rest_framework.authtoken.models import Token
+import json
+from django.http import JsonResponse
+#from django.views.decorators.csrf import ensure_csrf_cookie
+#from django.views.decorators.csrf import csrf_exempt
 
 class UsersListView(generics.ListAPIView):
     queryset = Users.objects.all()
@@ -51,6 +57,18 @@ class UsersDetailView(generics.RetrieveUpdateDestroyAPIView):
        instance.user_state = 0
        instance.erased_at = timezone.now()  # Marcar la fecha de eliminación
        instance.save()
+    def perform_update(self, serializer):
+        # Obtiene la contraseña en texto plano del cuerpo JSON de la solicitud
+        plain_password = self.request.data.get('user_password', '')
+
+        # Encripta la contraseña utilizando make_password
+        hashed_password = make_password(plain_password)
+
+        # Actualiza la contraseña en el objeto del modelo antes de la actualización
+        serializer.validated_data['user_password'] = hashed_password
+
+        # Llama al método perform_update predeterminado para realizar la actualización
+        super().perform_update(serializer)
 
 class UserSearchView(generics.ListAPIView):
     serializer_class = UsersSerializer  # Asegúrate de tener un serializador de usuarios configurado
@@ -70,23 +88,48 @@ class UserSearchView(generics.ListAPIView):
         serializer = self.serializer_class(queryset, many=True)
         return Response(serializer.data)
 
+#class UserLoginView(APIView):
+#    def post(self, request):
+#        user_name = request.data.get('user_name')
+#        user_password = request.data.get('user_password')
+
+        # Busca al usuario en la base de datos
+#        try:
+#            user = Users.objects.get(user_name=user_name)
+#        except Users.DoesNotExist:
+#            user = None
+
+#        if user is not None and check_password(user_password, user.user_password):
+#            # La autenticación fue exitosa, inicia sesión
+#            login(request, user)
+#            # Realiza acciones adicionales aquí
+#            return Response({'message': 'Inicio de sesión exitoso'}, status=status.HTTP_200_OK)
+#        else:
+#            # La autenticación falló, devuelve un mensaje de error
+#            return Response({'message': 'Credenciales inválidas'}, status=status.HTTP_401_UNAUTHORIZED)
+
 class UserLoginView(APIView):
     def post(self, request):
         user_name = request.data.get('user_name')
         user_password = request.data.get('user_password')
 
-        # Busca al usuario en la base de datos
         try:
             user = Users.objects.get(user_name=user_name)
         except Users.DoesNotExist:
             user = None
 
         if user is not None and check_password(user_password, user.user_password):
-            # La autenticación fue exitosa, inicia sesión
+            # Autenticación exitosa, inicia sesión
             login(request, user)
-            # Realiza acciones adicionales aquí
-            return Response({'message': 'Inicio de sesión exitoso'}, status=status.HTTP_200_OK)
-        else:
-            # La autenticación falló, devuelve un mensaje de error
-            return Response({'message': 'Credenciales inválidas'}, status=status.HTTP_401_UNAUTHORIZED)
 
+            # Generar o obtener el token para el usuario
+            token, created = Token.objects.get_or_create(user=user)
+
+            # Serializar información adicional en formato JSON
+            user_data = {
+                'user_id': user.id,
+                'user_email': user.user_email,
+            }
+            return JsonResponse({'message': 'Inicio de sesión exitoso', 'token': token.key, 'user_data': user_data})
+        else:
+            return JsonResponse({'message': 'Credenciales inválidas'}, status=status.HTTP_401_UNAUTHORIZED)

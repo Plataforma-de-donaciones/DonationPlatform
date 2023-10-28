@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
+    'corsheaders',
     'donation_platform',
     'users',
     'administrator',
@@ -56,6 +57,17 @@ INSTALLED_APPS = [
     'articles_states',
     'articles_types',
     'articles_zones',
+    'donation',
+    'event',
+    'medical_equipment',
+    'news',
+    'sponsor',
+    'volunteer',
+    'notifications',
+    'request',
+    'categories_meq',
+    'categories',
+    'categories_don',
 ]
 
 MIDDLEWARE = [
@@ -63,18 +75,35 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     #'django.middleware.csrf.CsrfViewMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+#SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # Almacenar sesiones en la base de datos (también puedes usar 'django.contrib.sessions.backends.cache' o 'django.contrib.sessions.backends.file')
+#SESSION_COOKIE_NAME = 'donation_cookie'
+
 ROOT_URLCONF = 'donation_platform.urls'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
+        #'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication',
     ),
 }
+AUTH_USER_MODEL = 'users.Users'
+#SESSION_COOKIE_SECURE = False
+#CSRF_COOKIE_SECURE = False
+
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SAMESITE = None  # o 'Lax' o 'Strict'
+CSRF_COOKIE_SAMESITE = None  # o 'Lax' o 'Strict'
+SESSION_COOKIE_HTTPONLY = True
+CSRF_COOKIE_HTTPONLY = True
+
+
 
 TEMPLATES = [
     {
@@ -93,6 +122,13 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'donation_platform.wsgi.application'
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOWED_ORIGINS = [
+    "https://localhost:3000",
+    "http://localhost:3000",
+  # Reemplaza con la URL de tu aplicación React
+]
 
 
 # Database
@@ -152,7 +188,8 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+#LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-uy'
 
 TIME_ZONE = 'UTC'
 

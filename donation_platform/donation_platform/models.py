@@ -9,7 +9,7 @@ from django.db import models
 from django.utils import timezone
 
 class Administrator(models.Model):
-    user = models.ForeignKey('Users', models.DO_NOTHING)
+    user = models.OneToOneField('Users', on_delete=models.CASCADE, related_name="donation_platform_administrator_user")
     start_date = models.DateTimeField()
     organization = models.ForeignKey('Organization', models.DO_NOTHING, blank=True, null=True, related_name='donation_platform_administrator_organization')
     administrator_state = models.IntegerField()
@@ -180,7 +180,7 @@ class MedicalEquipment(models.Model):
     geom_point = models.TextField(blank=True, null=True)
     has_requests = models.BooleanField()
     request_count = models.IntegerField()
-    don_confirmation_date = models.DateTimeField(blank=True, null=True)
+    eq_confirmation_date = models.DateTimeField(blank=True, null=True)
     eq_attachment = models.TextField(blank=True, null=True)
 
     class Meta:
@@ -201,7 +201,7 @@ class Message(models.Model):
 
 
 class Moderator(models.Model):
-    user = models.ForeignKey('Users', models.DO_NOTHING)
+    user = models.OneToOneField('Users', on_delete=models.CASCADE)
     start_date = models.DateTimeField()
     organization = models.ForeignKey('Organization', models.DO_NOTHING)
     moderator_state = models.IntegerField()
@@ -221,6 +221,7 @@ class News(models.Model):
     is_highlighted = models.BooleanField()
     views_count = models.IntegerField(blank=True, null=True)
     user = models.ForeignKey('Users', models.DO_NOTHING)
+    new_created_at = models.DateTimeField()
 
     class Meta:
         managed = False
@@ -231,16 +232,16 @@ class Notifications(models.Model):
     noti_id = models.AutoField(primary_key=True)
     noti_title = models.CharField(max_length=50)
     noti_content = models.TextField()
-    noti_date = models.TimeField(blank=True, null=True)
+    noti_date = models.DateTimeField(blank=True, null=True)
     was_read = models.BooleanField()
-    eq = models.ForeignKey(MedicalEquipment, models.DO_NOTHING)
-    don = models.ForeignKey(Donation, models.DO_NOTHING)
-    vol = models.ForeignKey('Volunteer', models.DO_NOTHING)
-    sponsor = models.ForeignKey('Sponsor', models.DO_NOTHING)
-    event = models.ForeignKey(Event, models.DO_NOTHING)
+    eq = models.ForeignKey(MedicalEquipment, models.DO_NOTHING, null=True)
+    don = models.ForeignKey(Donation, models.DO_NOTHING, null=True)
+    vol = models.ForeignKey('Volunteer', models.DO_NOTHING, null=True)
+    sponsor = models.ForeignKey('Sponsor', models.DO_NOTHING, null=True)
+    event = models.ForeignKey(Event, models.DO_NOTHING, null=True)
     user = models.ForeignKey('Users', models.DO_NOTHING)
-    conv = models.ForeignKey(Conversation, models.DO_NOTHING)
-    request = models.ForeignKey('Requests', models.DO_NOTHING)
+    conv = models.ForeignKey(Conversation, models.DO_NOTHING, null=True)
+    request = models.ForeignKey('Requests', models.DO_NOTHING, null=True)
 
     class Meta:
         managed = False
@@ -248,8 +249,8 @@ class Notifications(models.Model):
 
 
 class Organization(models.Model):
-    org_name = models.CharField(max_length=50)
-    org_email = models.CharField(max_length=50)
+    org_name = models.CharField(max_length=50, unique=True)
+    org_email = models.CharField(max_length=50, unique=True)
     org_description = models.TextField()
 
     class Meta:
@@ -263,9 +264,9 @@ class Requests(models.Model):
     req_description = models.TextField()
     accept_terms = models.BooleanField()
     user = models.ForeignKey('Users', models.DO_NOTHING)
-    eq = models.ForeignKey(MedicalEquipment, models.DO_NOTHING)
-    don = models.ForeignKey(Donation, models.DO_NOTHING)
-    vol = models.ForeignKey('Volunteer', models.DO_NOTHING)
+    eq = models.ForeignKey(MedicalEquipment, models.DO_NOTHING, null=True)
+    don = models.ForeignKey(Donation, models.DO_NOTHING, null=True)
+    vol = models.ForeignKey('Volunteer', models.DO_NOTHING, null=True)
     req_sent_date = models.DateTimeField()
     has_confirmation = models.BooleanField()
     confirmed_at = models.DateTimeField(blank=True, null=True)
@@ -292,7 +293,7 @@ class Sponsor(models.Model):
     request_count = models.IntegerField()
     start_date = models.DateTimeField(blank=True, null=True)
     end_date = models.DateTimeField(blank=True, null=True)
-    organization = models.ForeignKey(Organization, models.DO_NOTHING)
+    organization = models.ForeignKey(Organization, models.DO_NOTHING, null=True)
 
     class Meta:
         managed = False
@@ -301,7 +302,7 @@ class Sponsor(models.Model):
 
 class Users(models.Model):
     user_name = models.CharField(max_length=50)
-    user_email = models.CharField(max_length=50)
+    user_email = models.CharField(max_length=50, unique=True)
     user_password = models.TextField()
     organization = models.ForeignKey(Organization, models.DO_NOTHING, blank=True, null=True)
     user_state = models.IntegerField()
@@ -320,7 +321,7 @@ class Volunteer(models.Model):
     vol_description = models.TextField()
     type = models.ForeignKey(ArticlesType, models.DO_NOTHING)
     state = models.ForeignKey(ArticlesStates, models.DO_NOTHING)
-    vol_attachment = models.TextField(blank=True, null=True)
+    vol_tasks = models.TextField(blank=True, null=True)
     vol_created_at = models.DateTimeField()
     user = models.ForeignKey(Users, models.DO_NOTHING)
     zone = models.ForeignKey(ArticlesZones, models.DO_NOTHING)
