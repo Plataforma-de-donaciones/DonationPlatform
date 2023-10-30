@@ -35,7 +35,7 @@ from notifications.views import NotificationsListView, NotificationsDetailView, 
 from categories_meq.views import CategoriesMeqListView, CategoriesMeqSearchViewByCatId
 from categories_don.views import CategoriesDonListView, CategoriesDonSearchViewByCatId
 from categories.views import CategoriesListView
-from request.views import RequestsListView, RequestsDetailView, RequestsSearchViewbyUser
+from request.views import RequestsListView, RequestsDetailView, RequestsSearchViewbyUser, RequestsSearchViewbyEq, RequestsSearchViewbyDon, RequestsSearchViewbyVol
 from rest_framework.authtoken.views import obtain_auth_token
 from django.views.generic import TemplateView
 
@@ -106,6 +106,9 @@ urlpatterns = [
     path('requests/', RequestsListView.as_view(), name='requests-list'),
     path('requests/<int:pk>/', RequestsDetailView.as_view(), name='requests-detail'),
     path('requests/search/', RequestsSearchViewbyUser.as_view(), name='requests-search'),
+    path('requests/searchbyeq/', RequestsSearchViewbyEq.as_view(), name='requests-search-eq'),
+    path('requests/searchbydon/', RequestsSearchViewbyDon.as_view(), name='requests-search-don'),
+    path('requests/searchbyvol/', RequestsSearchViewbyVol.as_view(), name='requests-search-vol'),
     path('categoriesmeq/', CategoriesMeqListView.as_view(), name='categories-meq-list'),
     path('categories/', CategoriesListView.as_view(), name='categories-list'),
     path('categoriesmeq/search/<int:cat_id>/', CategoriesMeqSearchViewByCatId.as_view(), name='categoriesmeq-search-by-cat-id'),
