@@ -122,7 +122,8 @@ class CategoriesNew(models.Model):
 
 class Conversation(models.Model):
     conv_id = models.AutoField(primary_key=True)
-    user = models.ForeignKey('Users', models.DO_NOTHING)
+    user_1 = models.ForeignKey('Users', models.DO_NOTHING, related_name='conversation1')
+    user_2 = models.ForeignKey('Users', models.DO_NOTHING, related_name='conversation2')
 
     class Meta:
         managed = False

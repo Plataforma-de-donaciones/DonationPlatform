@@ -68,6 +68,7 @@ INSTALLED_APPS = [
     'categories_meq',
     'categories',
     'categories_don',
+    'conversation',
 ]
 
 MIDDLEWARE = [

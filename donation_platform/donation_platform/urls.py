@@ -36,6 +36,7 @@ from categories_meq.views import CategoriesMeqListView, CategoriesMeqSearchViewB
 from categories_don.views import CategoriesDonListView, CategoriesDonSearchViewByCatId
 from categories.views import CategoriesListView
 from request.views import RequestsListView, RequestsDetailView, RequestsSearchViewbyUser, RequestsSearchViewbyEq, RequestsSearchViewbyDon, RequestsSearchViewbyVol
+from conversation.views import ConversationListView, ConversationDetailView, ConversationSearchViewbyUser, ConversationSearchViewbyId
 from rest_framework.authtoken.views import obtain_auth_token
 from django.views.generic import TemplateView
 
@@ -114,6 +115,11 @@ urlpatterns = [
     path('categoriesmeq/search/<int:cat_id>/', CategoriesMeqSearchViewByCatId.as_view(), name='categoriesmeq-search-by-cat-id'),
     path('categoriesdon/', CategoriesDonListView.as_view(), name='categories-don-list'),
     path('categoriesdon/search/<int:cat_id>/', CategoriesDonSearchViewByCatId.as_view(), name='categoriesdon-search-by-cat-id'),
+    path('conversations/', ConversationListView.as_view(), name='conversation-list'),
+    path('conversations/<int:pk>/', ConversationDetailView.as_view(), name='conversation-detail'),
+    path('conversations/searchbyuser/', ConversationSearchViewbyUser.as_view(), name='conversation-search-by-user'),
+    path('conversations/searchbyid/', ConversationSearchViewbyId.as_view(), name='conversation-search-by-id'),
+
 
     ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
