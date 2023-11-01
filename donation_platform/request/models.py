@@ -1,5 +1,5 @@
 from django.db import models
-from donation_platform.models import MedicalEquipment, Donation, Volunteer, Conversation, Users, Event, Requests, ArticlesZones, ArticlesStates, ArticlesType
+from donation_platform.models import MedicalEquipment, Donation, Volunteer, Conversation, Users, Event, Requests, ArticlesZones, ArticlesStates, ArticlesType, Conversation
 from django.utils import timezone
 
 class Requests(models.Model):
@@ -16,6 +16,7 @@ class Requests(models.Model):
     confirmed_at = models.DateTimeField(blank=True, null=True)
     state = models.ForeignKey(ArticlesStates, models.DO_NOTHING, related_name='req_state')
     type = models.ForeignKey(ArticlesType, models.DO_NOTHING, related_name='req_type')
+    conv = models.ForeignKey(Conversation, models.DO_NOTHING, related_name='req_conv', null=True)
 
     class Meta:
         managed = False

@@ -122,8 +122,8 @@ class CategoriesNew(models.Model):
 
 class Conversation(models.Model):
     conv_id = models.AutoField(primary_key=True)
-    user_1 = models.ForeignKey('Users', models.DO_NOTHING, related_name='conversation1')
-    user_2 = models.ForeignKey('Users', models.DO_NOTHING, related_name='conversation2')
+    user_1 = models.ForeignKey('Users', models.DO_NOTHING, related_name='user1_conversations')
+    user_2 = models.ForeignKey('Users', models.DO_NOTHING, related_name='user2_conversations')
 
     class Meta:
         managed = False
@@ -191,8 +191,8 @@ class MedicalEquipment(models.Model):
 
 class Message(models.Model):
     mess_id = models.AutoField(primary_key=True)
-    user = models.ForeignKey('Users', models.DO_NOTHING)
-    conv = models.ForeignKey(Conversation, models.DO_NOTHING)
+    user = models.ForeignKey('Users', models.DO_NOTHING, related_name='user_message')
+    conv = models.ForeignKey(Conversation, models.DO_NOTHING, related_name='conv_message')
     content = models.TextField()
     sent_date = models.TimeField(blank=True, null=True)
 
@@ -273,6 +273,7 @@ class Requests(models.Model):
     confirmed_at = models.DateTimeField(blank=True, null=True)
     state = models.ForeignKey(ArticlesStates, models.DO_NOTHING)
     type = models.ForeignKey(ArticlesType, models.DO_NOTHING)
+    conv = models.ForeignKey(Conversation, models.DO_NOTHING)
 
     class Meta:
         managed = False

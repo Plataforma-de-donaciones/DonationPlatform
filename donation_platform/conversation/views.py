@@ -14,6 +14,7 @@ from rest_framework.views import APIView
 class ConversationListView(generics.ListCreateAPIView):
     queryset = Conversation.objects.all()
     serializer_class = ConversationSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
 class ConversationDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Conversation.objects.all()
