@@ -69,7 +69,7 @@ INSTALLED_APPS = [
     'categories',
     'categories_don',
     'conversation',
-    'message',
+    'chat',
 ]
 
 MIDDLEWARE = [

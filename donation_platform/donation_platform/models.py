@@ -119,11 +119,21 @@ class CategoriesNew(models.Model):
         managed = False
         db_table = 'categories_new'
 
+class Chat(models.Model):
+    chat_id = models.AutoField(primary_key=True)
+    user = models.ForeignKey('Users', models.DO_NOTHING, related_name='donation_platform_user_chat')
+    conv = models.ForeignKey('Conversation', models.DO_NOTHING, related_name='donation_platform_conv_chat')
+    content = models.TextField()
+    sent_date = models.TimeField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'chat'
 
 class Conversation(models.Model):
     conv_id = models.AutoField(primary_key=True)
-    user_1 = models.ForeignKey('Users', models.DO_NOTHING, related_name='user1_conversations')
-    user_2 = models.ForeignKey('Users', models.DO_NOTHING, related_name='user2_conversations')
+    user_1 = models.ForeignKey('Users', models.DO_NOTHING, related_name='donation_platform_user1_conversation')
+    user_2 = models.ForeignKey('Users', models.DO_NOTHING, related_name='donation_platform_user2_conversation')
 
     class Meta:
         managed = False
