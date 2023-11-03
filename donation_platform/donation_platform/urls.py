@@ -37,7 +37,7 @@ from categories_don.views import CategoriesDonListView, CategoriesDonSearchViewB
 from categories.views import CategoriesListView
 from request.views import RequestsListView, RequestsDetailView, RequestsSearchViewbyUser, RequestsSearchViewbyEq, RequestsSearchViewbyDon, RequestsSearchViewbyVol
 from conversation.views import ConversationListView, ConversationDetailView, ConversationSearchViewbyUser, ConversationSearchViewbyId
-from chat.views import ChatListView, ChatDetailView, ChatSearchViewbyUser, ChatSearchViewbyId
+from chat.views import ChatListView, ChatDetailView, ChatSearchViewbyUser, ChatSearchViewbyId, ChatSearchViewbyConversation
 from rest_framework.authtoken.views import obtain_auth_token
 from django.views.generic import TemplateView
 
@@ -124,6 +124,7 @@ urlpatterns = [
     path('chats/<int:pk>/', ChatDetailView.as_view(), name='chat-detail'),
     path('chats/searchbyuser/', ChatSearchViewbyUser.as_view(), name='chat-search-by-user'),
     path('chats/searchbyid/', ChatSearchViewbyId.as_view(), name='chat-search-by-id'),
+    path('chats/searchbyconv/', ChatSearchViewbyConversation.as_view(), name='chat-search-by-conv'),
 
 
     ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

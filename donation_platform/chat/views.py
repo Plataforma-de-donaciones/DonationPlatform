@@ -54,3 +54,21 @@ class ChatSearchViewbyId(generics.ListAPIView):
         serializer = self.serializer_class(queryset, many=True)
         return Response(serializer.data)
 
+class ChatSearchViewbyConversation(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def post(self, request):
+        search_param = request.data.get('search', '')
+
+        if search_param:
+            try:
+                id = int(search_param)
+                chats = Chat.objects.filter(Q(conv__conv_id=id))
+            except ValueError:
+                # Si no es un número, busca por otros campos en la relación conv
+                chats = Chat.objects.filter(Q(conv__conv_id=id) | Q(conv__user_1__user_name=search_param) | Q(conv__user_1__user_email__exact=search_param) | Q(conv__user_2__user_name=search_param) | Q(conv__user_2__user_email__exact=search_param))
+
+            serializer = ChatSerializer(chats, many=True)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+
+        return Response({'Chat': 'Ingrese un parámetro de búsqueda válido.'}, status=status.HTTP_400_BAD_REQUEST)
