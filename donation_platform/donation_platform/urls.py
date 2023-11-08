@@ -29,7 +29,7 @@ from donation.views import DonationListView, DonationDetailView, DonationSearchV
 from event.views import EventListView, EventDetailView, EventSearchViewbyUser, EventSearchViewbyName, EventSearchViewbyType
 from medical_equipment.views import MedicalEquipmentListView, MedicalEquipmentDetailView, MedicalEquipmentSearchViewbyUser, MedicalEquipmentSearchViewbyName, MedicalEquipmentSearchViewbyType, MedicalEquipmentSearchViewbyTypeUser, MedicalEquipmentSearchViewbyId
 from news.views import NewsListView, NewsDetailView, NewsSearchViewbyUser, NewsSearchViewbyName, NewsSearchViewbySubject
-from sponsor.views import SponsorListView, SponsorDetailView, SponsorSearchViewbyUser, SponsorSearchViewbyName, SponsorSearchViewbyType, SponsorSearchViewbyTypeUser
+from sponsor.views import SponsorListView, SponsorDetailView, SponsorSearchViewbyUser, SponsorSearchViewbyName, SponsorSearchViewbyType, SponsorSearchViewbyTypeUser, SponsorSearchViewbyId
 from volunteer.views import VolunteerListView, VolunteerDetailView, VolunteerSearchViewbyUser, VolunteerSearchViewbyName, VolunteerSearchViewbyType, VolunteerSearchViewbyTypeUser, VolunteerSearchViewbyId
 from notifications.views import NotificationsListView, NotificationsDetailView, NotificationsSearchViewbyUser
 from categories_meq.views import CategoriesMeqListView, CategoriesMeqSearchViewByCatId
@@ -95,6 +95,7 @@ urlpatterns = [
     path('sponsors/searchbyname/', SponsorSearchViewbyName.as_view(), name='sponsor-search-by-name'),
     path('sponsors/searchbytype/', SponsorSearchViewbyType.as_view(), name='sponsor-search-by-type'),
     path('sponsors/searchbytypeuser/', SponsorSearchViewbyTypeUser.as_view(), name='sponsor-search-by-type-user'),
+    path('sponsors/searchbyid/', SponsorSearchViewbyId.as_view(), name='sponsor-search-by-id'),
     path('volunteers/', VolunteerListView.as_view(), name='volunteer-list'),
     path('volunteers/<int:pk>/', VolunteerDetailView.as_view(), name='volunteer-detail'),
     path('volunteers/searchbyuser/', VolunteerSearchViewbyUser.as_view(), name='volunteer-search-by-user'),
