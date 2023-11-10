@@ -278,6 +278,7 @@ class Requests(models.Model):
     eq = models.ForeignKey(MedicalEquipment, models.DO_NOTHING, null=True)
     don = models.ForeignKey(Donation, models.DO_NOTHING, null=True)
     vol = models.ForeignKey('Volunteer', models.DO_NOTHING, null=True)
+    sponsor = models.ForeignKey('Sponsor', models.DO_NOTHING, null=True)
     req_sent_date = models.DateTimeField()
     has_confirmation = models.BooleanField()
     confirmed_at = models.DateTimeField(blank=True, null=True)
