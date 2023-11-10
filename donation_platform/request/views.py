@@ -85,3 +85,19 @@ class RequestsSearchViewbyVol(APIView):
 
         return Response({'message': 'Ingrese un parámetro de búsqueda válido.'}, status=status.HTTP_400_BAD_REQUEST)
 
+class RequestsSearchViewbySponsor(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def post(self, request):
+        search_param = request.data.get('search', '')
+
+        if search_param:
+            requests = Requests.objects.filter(
+                Q(sponsor__sponsor_id__exact=search_param)
+            )
+
+            serializer = RequestsSerializer(requests, many=True)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+
+        return Response({'message': 'Ingrese un parámetro de búsqueda válido.'}, status=status.HTTP_400_BAD_REQUEST)
+

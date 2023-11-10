@@ -35,7 +35,7 @@ from notifications.views import NotificationsListView, NotificationsDetailView, 
 from categories_meq.views import CategoriesMeqListView, CategoriesMeqSearchViewByCatId
 from categories_don.views import CategoriesDonListView, CategoriesDonSearchViewByCatId
 from categories.views import CategoriesListView
-from request.views import RequestsListView, RequestsDetailView, RequestsSearchViewbyUser, RequestsSearchViewbyEq, RequestsSearchViewbyDon, RequestsSearchViewbyVol
+from request.views import RequestsListView, RequestsDetailView, RequestsSearchViewbyUser, RequestsSearchViewbyEq, RequestsSearchViewbyDon, RequestsSearchViewbyVol, RequestsSearchViewbySponsor
 from conversation.views import ConversationListView, ConversationDetailView, ConversationSearchViewbyUser, ConversationSearchViewbyId
 from chat.views import ChatListView, ChatDetailView, ChatSearchViewbyUser, ChatSearchViewbyId, ChatSearchViewbyConversation
 from rest_framework.authtoken.views import obtain_auth_token
@@ -112,6 +112,7 @@ urlpatterns = [
     path('requests/searchbyeq/', RequestsSearchViewbyEq.as_view(), name='requests-search-eq'),
     path('requests/searchbydon/', RequestsSearchViewbyDon.as_view(), name='requests-search-don'),
     path('requests/searchbyvol/', RequestsSearchViewbyVol.as_view(), name='requests-search-vol'),
+    path('requests/searchbysponsor/', RequestsSearchViewbySponsor.as_view(), name='requests-search-sponsor'),
     path('categoriesmeq/', CategoriesMeqListView.as_view(), name='categories-meq-list'),
     path('categories/', CategoriesListView.as_view(), name='categories-list'),
     path('categoriesmeq/search/<int:cat_id>/', CategoriesMeqSearchViewByCatId.as_view(), name='categoriesmeq-search-by-cat-id'),
