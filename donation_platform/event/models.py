@@ -1,6 +1,7 @@
 from django.db import models
 from donation_platform.models import ArticlesType, ArticlesStates, Users, ArticlesZones, Organization
 from django.utils import timezone
+from PIL import Image
 
 class Event(models.Model):
     event_id = models.AutoField(primary_key=True)
@@ -15,8 +16,8 @@ class Event(models.Model):
     start_date = models.DateTimeField(blank=True, null=True)
     end_date = models.DateTimeField(blank=True, null=True)
     organization = models.ForeignKey(Organization, models.DO_NOTHING, blank=True, null=True, related_name="event_organization")
+    attachments = models.ImageField(upload_to='static/')
 
     class Meta:
         managed = False
         db_table = 'event'
-

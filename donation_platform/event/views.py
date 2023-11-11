@@ -9,11 +9,16 @@ from rest_framework import status
 import logging
 from django.contrib.auth import authenticate, login
 from rest_framework.views import APIView
+from rest_framework.parsers import MultiPartParser, FormParser
+
 
 class EventListView(generics.ListCreateAPIView):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
-    #permission_classes = [permissions.IsAuthenticated]
+    parser_classes = (MultiPartParser, FormParser)
+
+    def perform_create(self, serializer):
+        serializer.save()
 
 class EventDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Event.objects.all()

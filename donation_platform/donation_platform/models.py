@@ -58,8 +58,8 @@ class Attachments(models.Model):
 
 
 class AttachmentsEvent(models.Model):
-    atta = models.ForeignKey(Attachments, models.DO_NOTHING)
-    event = models.ForeignKey('Event', models.DO_NOTHING)
+    atta = models.ForeignKey(Attachments, models.DO_NOTHING, related_name='don_attachments_event_atta')
+    event = models.ForeignKey('Event', models.DO_NOTHING, related_name='don_attachments_event')
 
     class Meta:
         managed = False
@@ -173,6 +173,7 @@ class Event(models.Model):
     start_date = models.DateTimeField(blank=True, null=True)
     end_date = models.DateTimeField(blank=True, null=True)
     organization = models.ForeignKey('Organization', models.DO_NOTHING, blank=True, null=True)
+    attachments = models.ManyToManyField(Attachments, through='AttachmentsEvent', related_name='don_event_attachments')
 
     class Meta:
         managed = False
