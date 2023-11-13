@@ -16,7 +16,7 @@ class MedicalEquipment(models.Model):
     has_requests = models.BooleanField()
     request_count = models.IntegerField()
     eq_confirmation_date = models.DateTimeField(blank=True, null=True)
-    eq_attachment = models.ImageField(upload_to='static/')
+    eq_attachment = models.ImageField(upload_to='static/', blank=True, null=True)
 
     class Meta:
         managed = False

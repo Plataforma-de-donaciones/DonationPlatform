@@ -16,7 +16,7 @@ class Event(models.Model):
     start_date = models.DateTimeField(blank=True, null=True)
     end_date = models.DateTimeField(blank=True, null=True)
     organization = models.ForeignKey(Organization, models.DO_NOTHING, blank=True, null=True, related_name="event_organization")
-    attachments = models.ImageField(upload_to='static/')
+    attachments = models.ImageField(upload_to='static/', blank=True, null=True)
 
     class Meta:
         managed = False
