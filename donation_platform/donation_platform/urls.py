@@ -26,7 +26,7 @@ from articles_states.views import ArticlesStatesListView, ArticlesStatesDetailVi
 from articles_types.views import ArticlesTypeListView, ArticlesTypeDetailView
 from articles_zones.views import ArticlesZonesListView, ArticlesZonesDetailView
 from donation.views import DonationListView, DonationDetailView, DonationSearchViewbyUser, DonationSearchViewbyName, DonationSearchViewbyType, DonationSearchViewbyTypeUser, DonationSearchViewbyId
-from event.views import EventListView, EventDetailView, EventSearchViewbyUser, EventSearchViewbyName, EventSearchViewbyType
+from event.views import EventListView, EventDetailView, EventSearchViewbyUser, EventSearchViewbyName, EventSearchViewbyType, EventSearchViewbyTypeUser, EventSearchViewbyId
 from medical_equipment.views import MedicalEquipmentListView, MedicalEquipmentDetailView, MedicalEquipmentSearchViewbyUser, MedicalEquipmentSearchViewbyName, MedicalEquipmentSearchViewbyType, MedicalEquipmentSearchViewbyTypeUser, MedicalEquipmentSearchViewbyId
 from news.views import NewsListView, NewsDetailView, NewsSearchViewbyUser, NewsSearchViewbyName, NewsSearchViewbySubject
 from sponsor.views import SponsorListView, SponsorDetailView, SponsorSearchViewbyUser, SponsorSearchViewbyName, SponsorSearchViewbyType, SponsorSearchViewbyTypeUser, SponsorSearchViewbyId
@@ -77,6 +77,8 @@ urlpatterns = [
     path('events/searchbyuser/', EventSearchViewbyUser.as_view(), name='events-search-by-user'),
     path('events/searchbyname/', EventSearchViewbyName.as_view(), name='events-search-by-name'),
     path('events/searchbytype/', EventSearchViewbyType.as_view(), name='events-search-by-type'),
+    path('events/searchbytypeuser/', EventSearchViewbyTypeUser.as_view(), name='events-search-by-type-user'),
+    path('events/searchbyid/', EventSearchViewbyId.as_view(), name='events-search-by-id'),
     path('medicalequipments/', MedicalEquipmentListView.as_view(), name='medical-equipment-list'),
     path('medicalequipments/<int:pk>/', MedicalEquipmentDetailView.as_view(), name='medical-equipment-detail'),
     path('medicalequipments/searchbyuser/', MedicalEquipmentSearchViewbyUser.as_view(), name='medical-equipment-search-by-user'),
