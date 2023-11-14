@@ -19,6 +19,7 @@ import json
 from django.http import JsonResponse
 #from django.views.decorators.csrf import ensure_csrf_cookie
 #from django.views.decorators.csrf import csrf_exempt
+from .models import Administrator, Moderator
 
 class UsersListView(generics.ListAPIView):
     queryset = Users.objects.all()
@@ -133,3 +134,24 @@ class UserLoginView(APIView):
             return JsonResponse({'message': 'Inicio de sesión exitoso', 'token': token.key, 'user_data': user_data})
         else:
             return JsonResponse({'message': 'Credenciales inválidas'}, status=status.HTTP_401_UNAUTHORIZED)
+
+class UserRoleView(APIView):
+    serializer_class = UsersSerializer
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        user_id = self.request.data.get('id', '')
+
+        try:
+            administrator = Administrator.objects.get(user=user_id)
+            return JsonResponse({"user_role": "administrator"})
+        except Administrator.DoesNotExist:
+            pass
+
+        try:
+            moderator = Moderator.objects.get(user=user_id)
+            return JsonResponse({"user_role": "moderator"})
+        except Moderator.DoesNotExist:
+            pass
+
+        return JsonResponse({"user_role": "user"})

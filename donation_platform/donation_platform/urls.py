@@ -18,7 +18,7 @@ from django.urls import path
 from donation_platform import settings
 from rest_framework.authtoken.views import obtain_auth_token
 from django.conf.urls.static import static
-from users.views import UsersListView, UsersCreateView, UsersDetailView, UserSearchView, UserLoginView
+from users.views import UsersListView, UsersCreateView, UsersDetailView, UserSearchView, UserLoginView, UserRoleView
 from administrator.views import AdministratorListView, AdministratorDetailView, AdministratorSearchView
 from moderator.views import ModeratorListView, ModeratorDetailView, ModeratorSearchView
 from organization.views import OrganizationListView, OrganizationDetailView, OrganizationSearchView
@@ -49,6 +49,7 @@ urlpatterns = [
     path('users/create/', UsersCreateView.as_view(), name='user-create'),
     path('users/<int:pk>/', UsersDetailView.as_view(), name='user-detail'),
     path('users/search/', UserSearchView.as_view(), name='user-search'),
+    path('users/searchrole/', UserRoleView.as_view(), name='user-search-role'),
     path('login/', UserLoginView.as_view(), name='user-login'),
     path('administrators/', AdministratorListView.as_view(), name='administrator-list'),
     path('administrators/<int:pk>/', AdministratorDetailView.as_view(), name='administrator-detail'),
