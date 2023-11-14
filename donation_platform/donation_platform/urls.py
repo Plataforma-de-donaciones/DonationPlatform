@@ -28,7 +28,7 @@ from articles_zones.views import ArticlesZonesListView, ArticlesZonesDetailView
 from donation.views import DonationListView, DonationDetailView, DonationSearchViewbyUser, DonationSearchViewbyName, DonationSearchViewbyType, DonationSearchViewbyTypeUser, DonationSearchViewbyId
 from event.views import EventListView, EventDetailView, EventSearchViewbyUser, EventSearchViewbyName, EventSearchViewbyType, EventSearchViewbyTypeUser, EventSearchViewbyId
 from medical_equipment.views import MedicalEquipmentListView, MedicalEquipmentDetailView, MedicalEquipmentSearchViewbyUser, MedicalEquipmentSearchViewbyName, MedicalEquipmentSearchViewbyType, MedicalEquipmentSearchViewbyTypeUser, MedicalEquipmentSearchViewbyId
-from news.views import NewsListView, NewsDetailView, NewsSearchViewbyUser, NewsSearchViewbyName, NewsSearchViewbySubject
+from news.views import NewsListView, NewsDetailView, NewsSearchViewbyUser, NewsSearchViewbyName, NewsSearchViewbySubject, NewsSearchViewbyId
 from sponsor.views import SponsorListView, SponsorDetailView, SponsorSearchViewbyUser, SponsorSearchViewbyName, SponsorSearchViewbyType, SponsorSearchViewbyTypeUser, SponsorSearchViewbyId
 from volunteer.views import VolunteerListView, VolunteerDetailView, VolunteerSearchViewbyUser, VolunteerSearchViewbyName, VolunteerSearchViewbyType, VolunteerSearchViewbyTypeUser, VolunteerSearchViewbyId
 from notifications.views import NotificationsListView, NotificationsDetailView, NotificationsSearchViewbyUser
@@ -91,6 +91,7 @@ urlpatterns = [
     path('news/searchbyuser/', NewsSearchViewbyUser.as_view(), name='news-search-by-user'),
     path('news/searchbyname/', NewsSearchViewbyName.as_view(), name='news-search-by-name'),
     path('news/searchbysubject/', NewsSearchViewbySubject.as_view(), name='news-search-by-subject'),
+    path('news/searchbyid/', NewsSearchViewbyId.as_view(), name='news-search-by-id'),
     path('sponsors/', SponsorListView.as_view(), name='sponsor-list'),
     path('sponsors/<int:pk>/', SponsorDetailView.as_view(), name='sponsor-detail'),
     path('sponsors/searchbyuser/', SponsorSearchViewbyUser.as_view(), name='sponsor-search-by-user'),
