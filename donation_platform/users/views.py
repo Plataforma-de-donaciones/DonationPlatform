@@ -119,7 +119,9 @@ class UserLoginView(APIView):
         except Users.DoesNotExist:
             user = None
 
-        if user is not None and check_password(user_password, user.user_password):
+#        if user is not None and check_password(user_password, user.user_password):
+        if user is not None and check_password(user_password, user.user_password) and user.user_state == 1:
+
             # Autenticación exitosa, inicia sesión
             login(request, user)
 
