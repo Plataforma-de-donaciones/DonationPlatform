@@ -1,5 +1,8 @@
 from django.db import models
 from donation_platform.models import ArticlesType, ArticlesStates, Users, ArticlesZones, Categories, CategoriesMeq
+#from transformers import BertTokenizer, BertForSequenceClassification
+#from torch.nn.functional import softmax
+#import torch
 from django.utils import timezone
 from PIL import Image
 

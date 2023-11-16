@@ -155,3 +155,20 @@ class UserRoleView(APIView):
             pass
 
         return JsonResponse({"user_role": "user"})
+
+class UserSearchViewbyId(generics.ListAPIView):
+    serializer_class = UsersSerializer
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        id = self.request.data.get('id', '')
+        #logger = logging.getLogger(__name__)
+        #logger.debug("Valor de username: %s", eq_name)
+
+        queryset = Users.objects.filter(
+            Q(id__exact=id)
+        )
+        #logger.debug("Consulta sql generada:", str(queryset.query))
+        serializer = self.serializer_class(queryset, many=True)
+        return Response(serializer.data)
+
