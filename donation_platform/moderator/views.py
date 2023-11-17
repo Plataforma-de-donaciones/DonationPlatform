@@ -12,6 +12,31 @@ class ModeratorListView(generics.ListCreateAPIView):
     queryset = Moderator.objects.all()
     serializer_class = ModeratorSerializer
     permission_classes = [permissions.IsAuthenticated]
+    def list(self, request, *args, **kwargs):
+        response = super().list(request, *args, **kwargs)
+
+        # Obtener información adicional para cada moderador
+        data_with_user_info = []
+        for moderator_data in response.data:
+            user_id = moderator_data.get('user')
+            try:
+                user = Users.objects.get(id=user_id)
+                user_info = {
+                    'user_id': user.id,
+                    'user_name': user.user_name,
+                    'user_email': user.user_email,
+                    # Añadir otros campos que necesites
+                }
+                moderator_data['user_info'] = user_info
+            except Users.DoesNotExist:
+                # Manejar el caso en que el usuario no existe
+                moderator_data['user_info'] = None
+
+            data_with_user_info.append(moderator_data)
+
+        response.data = data_with_user_info
+        return response
+
     def create(self, request, *args, **kwargs):
         user_id = request.data.get('user')
         start_date = request.data.get('start_date')
