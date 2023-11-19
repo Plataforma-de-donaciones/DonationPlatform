@@ -29,7 +29,7 @@ class UsersListView(generics.ListAPIView):
 class UsersCreateView(generics.CreateAPIView):
     queryset = Users.objects.all()
     serializer_class = UsersSerializer
-    permission_classes = [IsAuthenticated]
+    #permission_classes = [IsAuthenticated]
 
     def create(self, request, *args, **kwargs):
         # Obtiene la contraseña en texto plano del cuerpo JSON de la solicitud
