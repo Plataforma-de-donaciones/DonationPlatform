@@ -76,6 +76,25 @@ class ConversationDetailView(generics.RetrieveUpdateDestroyAPIView):
            # return Response(serializer.data, status=status.HTTP_200_OK)
 
         #return Response({'message': 'Ingrese un parámetro de búsqueda válido.'}, status=status.HTTP_400_BAD_REQUEST)
+#class ConversationSearchViewbyUser(APIView):
+ #   permission_classes = [permissions.IsAuthenticated]
+
+  #  def post(self, request):
+   #     search_param = request.data.get('search', '')
+
+    #    if search_param:
+     #       try:
+      #          id = int(search_param)
+       #         conversation = Conversation.objects.filter(Q(user_1__id=id) | Q(user_2__id=id))
+        #    except ValueError:
+                # Si no es un número, busca por name o email
+         #       conversation = Conversation.objects.filter(Q(user_1__user_name=search_param) | Q(user_2__user_name=search_param) | Q(user_1__user_email__exact=search_param) | Q(user_2__user_email__exact=search_param))
+
+          #  serializer = ConversationSerializer(conversation, many=True)
+           # return Response(serializer.data, status=status.HTTP_200_OK)
+
+        #return Response({'message': 'Ingrese un parámetro de búsqueda válido.'}, status=status.HTTP_400_BAD_REQUEST)
+
 class ConversationSearchViewbyUser(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
@@ -85,13 +104,40 @@ class ConversationSearchViewbyUser(APIView):
         if search_param:
             try:
                 id = int(search_param)
-                conversation = Conversation.objects.filter(Q(user_1__id=id) | Q(user_2__id=id))
+                conversations = Conversation.objects.filter(Q(user_1__id=id) | Q(user_2__id=id))
             except ValueError:
-                # Si no es un número, busca por name o email
-                conversation = Conversation.objects.filter(Q(user_1__user_name=search_param) | Q(user_2__user_name=search_param) | Q(user_1__user_email__exact=search_param) | Q(user_2__user_email__exact=search_param))
+                conversations = Conversation.objects.filter(Q(user_1__user_name=search_param) | Q(user_2__user_name=search_param) | Q(user_1__user_email__exact=search_param) | Q(user_2__user_email__exact=search_param))
 
-            serializer = ConversationSerializer(conversation, many=True)
-            return Response(serializer.data, status=status.HTTP_200_OK)
+            data_with_user_info = []
+            for conversation_data in ConversationSerializer(conversations, many=True).data:
+                user_1_id = conversation_data.get('user_1')
+                user_2_id = conversation_data.get('user_2')
+
+                try:
+                    user_1 = Users.objects.get(id=user_1_id)
+                    user_2 = Users.objects.get(id=user_2_id)
+
+                    user_1_info = {
+                        'user_id': user_1.id,
+                        'user_name': user_1.user_name,
+                        'user_email': user_1.user_email,
+                    }
+
+                    user_2_info = {
+                        'user_id': user_2.id,
+                        'user_name': user_2.user_name,
+                        'user_email': user_2.user_email,
+                    }
+
+                    conversation_data['user_1_info'] = user_1_info
+                    conversation_data['user_2_info'] = user_2_info
+                except Users.DoesNotExist:
+                    conversation_data['user_1_info'] = None
+                    conversation_data['user_2_info'] = None
+
+                data_with_user_info.append(conversation_data)
+
+            return Response(data_with_user_info, status=status.HTTP_200_OK)
 
         return Response({'message': 'Ingrese un parámetro de búsqueda válido.'}, status=status.HTTP_400_BAD_REQUEST)
 
