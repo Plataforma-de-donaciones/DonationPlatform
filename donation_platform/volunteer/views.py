@@ -11,9 +11,13 @@ from django.contrib.auth import authenticate, login
 from rest_framework.views import APIView
 
 class VolunteerListView(generics.ListCreateAPIView):
-    queryset = Volunteer.objects.all()
+    #queryset = Volunteer.objects.all()
     serializer_class = VolunteerSerializer
     #permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        queryset = Volunteer.objects.filter(end_date__isnull=True)
+        return queryset
 
 class VolunteerDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Volunteer.objects.all()

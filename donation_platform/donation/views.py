@@ -12,10 +12,13 @@ from rest_framework.views import APIView
 from rest_framework.parsers import MultiPartParser, FormParser
 
 class DonationListView(generics.ListCreateAPIView):
-    queryset = Donation.objects.all()
+    #queryset = Donation.objects.all()
     serializer_class = DonationSerializer
-    #permission_classes = [permissions.IsAuthenticated]
     parser_classes = (MultiPartParser, FormParser)
+
+    def get_queryset(self):
+        queryset = Donation.objects.filter(don_confirmation_date__isnull=True)
+        return queryset
 
     def perform_create(self, serializer):
         serializer.save()

@@ -12,19 +12,13 @@ from rest_framework.views import APIView
 from rest_framework.parsers import MultiPartParser, FormParser
 
 class MedicalEquipmentListView(generics.ListCreateAPIView):
-    queryset = MedicalEquipment.objects.all()
+    #queryset = MedicalEquipment.objects.all()
     serializer_class = MedicalEquipmentSerializer
-    #permission_classes = [permissions.IsAuthenticated]
     parser_classes = (MultiPartParser, FormParser)
 
-    #def perform_create(self, serializer):
-        # Guarda el equipo médico en la base de datos
-     #   instance = serializer.save()
-
-        # Realiza la categorización y asociación con la categoría
-      #  predicted_category = instance.create_category_and_associate()
-
-       # return Response({'message': 'Equipo médico creado exitosamente.', 'predicted_category': predicted_category}, status=status.HTTP_201_CREATED)
+    def get_queryset(self):
+        queryset = MedicalEquipment.objects.filter(eq_confirmation_date__isnull=True)
+        return queryset
     def perform_create(self, serializer):
         serializer.save()
 

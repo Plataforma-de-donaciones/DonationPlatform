@@ -13,9 +13,13 @@ from rest_framework.parsers import MultiPartParser, FormParser
 
 
 class EventListView(generics.ListCreateAPIView):
-    queryset = Event.objects.all()
+    #queryset = Event.objects.all()
     serializer_class = EventSerializer
     parser_classes = (MultiPartParser, FormParser)
+
+    def get_queryset(self):
+        queryset = Event.objects.filter(end_date__gte=timezone.now())
+        return queryset
 
     def perform_create(self, serializer):
         serializer.save()

@@ -11,9 +11,12 @@ from django.contrib.auth import authenticate, login
 from rest_framework.views import APIView
 
 class SponsorListView(generics.ListCreateAPIView):
-    queryset = Sponsor.objects.all()
+    #queryset = Sponsor.objects.all()
     serializer_class = SponsorSerializer
     #permission_classes = [permissions.IsAuthenticated]
+    def get_queryset(self):
+        queryset = Sponsor.objects.filter(end_date__isnull=True)
+        return queryset
 
 class SponsorDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Sponsor.objects.all()
