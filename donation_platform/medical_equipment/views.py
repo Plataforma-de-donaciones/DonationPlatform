@@ -10,7 +10,7 @@ import logging
 from django.contrib.auth import authenticate, login
 from rest_framework.views import APIView
 from rest_framework.parsers import MultiPartParser, FormParser
-from detectors import analizar_texto, analizar_sentimiento
+#from detectors import analizar_texto, analizar_sentimiento
 
 
 class MedicalEquipmentListView(generics.ListCreateAPIView):
