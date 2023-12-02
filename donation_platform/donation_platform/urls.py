@@ -18,7 +18,7 @@ from django.urls import path
 from donation_platform import settings
 from rest_framework.authtoken.views import obtain_auth_token
 from django.conf.urls.static import static
-from users.views import UsersListView, UsersCreateView, UsersDetailView, UserSearchView, UserLoginView, UserRoleView, UserSearchViewbyId
+from users.views import UsersListView, UsersCreateView, UsersDetailView, UserSearchView, UserLoginView, UserRoleView, UserSearchViewbyId, UsersLoginView
 from administrator.views import AdministratorListView, AdministratorDetailView, AdministratorSearchView
 from moderator.views import ModeratorListView, ModeratorDetailView, ModeratorSearchView
 from organization.views import OrganizationListView, OrganizationDetailView, OrganizationSearchView
@@ -27,7 +27,7 @@ from articles_types.views import ArticlesTypeListView, ArticlesTypeDetailView
 from articles_zones.views import ArticlesZonesListView, ArticlesZonesDetailView
 from donation.views import DonationListView, DonationDetailView, DonationSearchViewbyUser, DonationSearchViewbyName, DonationSearchViewbyType, DonationSearchViewbyTypeUser, DonationSearchViewbyId
 from event.views import EventListView, EventDetailView, EventSearchViewbyUser, EventSearchViewbyName, EventSearchViewbyType, EventSearchViewbyTypeUser, EventSearchViewbyId
-from medical_equipment.views import MedicalEquipmentListView, MedicalEquipmentDetailView, MedicalEquipmentSearchViewbyUser, MedicalEquipmentSearchViewbyName, MedicalEquipmentSearchViewbyType, MedicalEquipmentSearchViewbyTypeUser, MedicalEquipmentSearchViewbyId
+from medical_equipment.views import MedicalEquipmentListView, MedicalEquipmentDetailView, MedicalEquipmentSearchViewbyUser, MedicalEquipmentSearchViewbyName, MedicalEquipmentSearchViewbyType, MedicalEquipmentSearchViewbyTypeUser, MedicalEquipmentSearchViewbyId, MedicalEquipmentSearchViewbyNames
 from news.views import NewsListView, NewsDetailView, NewsSearchViewbyUser, NewsSearchViewbyName, NewsSearchViewbySubject, NewsSearchViewbyId
 from sponsor.views import SponsorListView, SponsorDetailView, SponsorSearchViewbyUser, SponsorSearchViewbyName, SponsorSearchViewbyType, SponsorSearchViewbyTypeUser, SponsorSearchViewbyId
 from volunteer.views import VolunteerListView, VolunteerDetailView, VolunteerSearchViewbyUser, VolunteerSearchViewbyName, VolunteerSearchViewbyType, VolunteerSearchViewbyTypeUser, VolunteerSearchViewbyId
@@ -52,6 +52,7 @@ urlpatterns = [
     path('users/searchrole/', UserRoleView.as_view(), name='user-search-role'),
     path('users/searchbyid/', UserSearchViewbyId.as_view(), name='user-search-id'),
     path('login/', UserLoginView.as_view(), name='user-login'),
+    path('gettoken/', UserLoginView.as_view(), name='user-token'),
     path('administrators/', AdministratorListView.as_view(), name='administrator-list'),
     path('administrators/<int:pk>/', AdministratorDetailView.as_view(), name='administrator-detail'),
     path('administrators/search/', AdministratorSearchView.as_view(), name='administrator-search'),
@@ -85,6 +86,7 @@ urlpatterns = [
     path('medicalequipments/<int:pk>/', MedicalEquipmentDetailView.as_view(), name='medical-equipment-detail'),
     path('medicalequipments/searchbyuser/', MedicalEquipmentSearchViewbyUser.as_view(), name='medical-equipment-search-by-user'),
     path('medicalequipments/searchbyname/', MedicalEquipmentSearchViewbyName.as_view(), name='medical-equipment-search-by-name'),
+    path('medicalequipments/searchname/', MedicalEquipmentSearchViewbyNames.as_view(), name='medical-equipment-search-by-names'),
     path('medicalequipments/searchbytype/', MedicalEquipmentSearchViewbyType.as_view(), name='medical-equipment-search-by-type'),
     path('medicalequipments/searchbytypeuser/', MedicalEquipmentSearchViewbyTypeUser.as_view(), name='medical-equipment-search-by-type-user'),
     path('medicalequipments/searchbyid/', MedicalEquipmentSearchViewbyId.as_view(), name='medical-equipment-search-by-id'),

@@ -10,6 +10,7 @@ import logging
 from django.contrib.auth import authenticate, login
 from rest_framework.views import APIView
 from rest_framework.parsers import MultiPartParser, FormParser
+#from donation_platform.permissions import UsuarioClusterPermiso
 
 class MedicalEquipmentListView(generics.ListCreateAPIView):
     #queryset = MedicalEquipment.objects.all()
@@ -125,6 +126,21 @@ class MedicalEquipmentSearchViewbyId(generics.ListAPIView):
             Q(eq_id__exact=eq_id)
         )
         #logger.debug("Consulta sql generada:", str(queryset.query))
+        serializer = self.serializer_class(queryset, many=True)
+        return Response(serializer.data)
+
+class MedicalEquipmentSearchViewbyNames(generics.ListAPIView):
+    serializer_class = MedicalEquipmentSerializer
+
+    def post(self, request):
+        eq_name = self.request.data.get('eq_name', '')
+        logger = logging.getLogger(__name__)
+        logger.debug("Valor de username: %s", eq_name)
+
+        queryset = MedicalEquipment.objects.filter(
+            Q(eq_name__icontains=eq_name)
+        )
+        logger.debug("Consulta sql generada:", str(queryset.query))
         serializer = self.serializer_class(queryset, many=True)
         return Response(serializer.data)
 

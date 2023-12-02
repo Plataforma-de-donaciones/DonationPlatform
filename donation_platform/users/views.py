@@ -20,6 +20,7 @@ from django.http import JsonResponse
 #from django.views.decorators.csrf import ensure_csrf_cookie
 #from django.views.decorators.csrf import csrf_exempt
 from .models import Administrator, Moderator
+#from donation_platform.permissions import UsuarioClusterPermiso
 
 class UsersListView(generics.ListAPIView):
     queryset = Users.objects.all()
@@ -110,6 +111,7 @@ class UserSearchView(generics.ListAPIView):
 #            return Response({'message': 'Credenciales inválidas'}, status=status.HTTP_401_UNAUTHORIZED)
 
 class UserLoginView(APIView):
+    #permission_classes = [UsuarioClusterPermiso]
     def post(self, request):
         user_name = request.data.get('user_name')
         user_password = request.data.get('user_password')
@@ -173,4 +175,28 @@ class UserSearchViewbyId(generics.ListAPIView):
         #logger.debug("Consulta sql generada:", str(queryset.query))
         serializer = self.serializer_class(queryset, many=True)
         return Response(serializer.data)
+
+class UsersLoginView(APIView):
+    #permission_classes = [UsuarioClusterPermiso]
+    def post(self, request):
+        user_name = request.data.get('user_name')
+        user_password = request.data.get('user_password')
+
+        try:
+            user = Users.objects.get(user_name=user_name)
+        except Users.DoesNotExist:
+            user = None
+
+#        if user is not None and check_password(user_password, user.user_password):
+        if user is not None and check_password(user_password, user.user_password) and user.user_state == 1:
+
+            # Autenticación exitosa, inicia sesión
+            login(request, user)
+
+            # Generar o obtener el token para el usuario
+            token, created = Token.objects.get_or_create(user=user)
+
+            return JsonResponse({'message': 'Inicio de sesión exitoso', 'token': token.key})
+        else:
+            return JsonResponse({'message': 'Credenciales inválidas'}, status=status.HTTP_401_UNAUTHORIZED)
 
