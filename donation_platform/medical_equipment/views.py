@@ -116,7 +116,9 @@ class MedicalEquipmentSearchViewbyNames(generics.ListAPIView):
         eq_name = self.request.data.get('eq_name', '')
 
         queryset = MedicalEquipment.objects.filter(
-            Q(eq_name__icontains=eq_name)
+            Q(eq_name__icontains=eq_name) &
+            Q(eq_confirmation_date__isnull=True) &
+            Q(type=2)
         )
         serializer = self.serializer_class(queryset, many=True)
         return Response(serializer.data)
