@@ -4,7 +4,7 @@ from django.shortcuts import render
 from rest_framework import generics, status
 from rest_framework.permissions import IsAuthenticated
 from .models import Users
-from .serializers import UsersSerializer
+from .serializers import UsersSerializer, UsersSimpleSerializer
 from django.utils import timezone
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -178,6 +178,8 @@ class UserSearchViewbyId(generics.ListAPIView):
 
 class UsersLoginView(APIView):
     #permission_classes = [UsuarioClusterPermiso]
+    serializer_class = UsersSimpleSerializer
+
     def post(self, request):
         user_name = request.data.get('user_name')
         user_password = request.data.get('user_password')
@@ -192,11 +194,18 @@ class UsersLoginView(APIView):
 
             # Autenticación exitosa, inicia sesión
             login(request, user)
-
+            #serializer = UsersSerializer(user, context={'request': request})
+            #Token.objects.filter(user=user).delete()
+            # Crea un nuevo token
+            existing_token = Token.objects.filter(user=user).first()
+            if existing_token:
+                existing_token.delete()
+            new_token = Token.objects.create(user=user)
             # Generar o obtener el token para el usuario
-            token, created = Token.objects.get_or_create(user=user)
+            #token, created = Token.objects.get_or_create(user=user)
 
-            return JsonResponse({'message': 'Inicio de sesión exitoso', 'token': token.key})
+            return Response({'message': 'Inicio de sesión exitoso', 'token': new_token.key})
+
         else:
             return JsonResponse({'message': 'Credenciales inválidas'}, status=status.HTTP_401_UNAUTHORIZED)
 
