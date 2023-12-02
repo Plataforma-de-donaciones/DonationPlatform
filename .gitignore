@@ -3,7 +3,7 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-static/
+donation_platform/static/
 
 # C extensions
 *.so
