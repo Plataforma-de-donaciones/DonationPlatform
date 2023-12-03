@@ -85,7 +85,7 @@ class MedicalEquipmentSearchViewbyUser(APIView):
 
         return Response({'message': 'Ingrese un parámetro de búsqueda válido.'}, status=status.HTTP_400_BAD_REQUEST)
 
-class MedicalEquipmentSearchViewbyName(generics.ListAPIView):
+class MedicalEquipmentSearchViewbyName(APIView):
     serializer_class = MedicalEquipmentSerializer
 
     def post(self, request):
