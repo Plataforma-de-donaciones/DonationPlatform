@@ -10,18 +10,57 @@ import logging
 from django.contrib.auth import authenticate, login
 from rest_framework.views import APIView
 from rest_framework.parsers import MultiPartParser, FormParser
-#from detectors import analizar_texto, analizar_sentimiento
-
+#from detectors import normalize_text
+import subprocess
+import json
+import logging
+import re
+from unidecode import unidecode
 
 class MedicalEquipmentListView(generics.ListCreateAPIView):
     serializer_class = MedicalEquipmentSerializer
     parser_classes = (MultiPartParser, FormParser)
 
     def get_queryset(self):
-        queryset = MedicalEquipment.objects.filter(eq_confirmation_date__isnull=True)
+        queryset = MedicalEquipment.objects.filter(eq_confirmation_date__isnull=True, has_requests=False)
         return queryset
+    #def perform_create(self, serializer):
+     #   serializer.save()
     def perform_create(self, serializer):
         serializer.save()
+
+        eq_name = serializer.instance.eq_name
+        eq_description = serializer.instance.eq_description
+
+        normalized_name = normalize_text(eq_name)
+        normalized_description = normalize_text(eq_description)
+
+        command = f'curl -H "Authorization: Bearer CDCAER5NSNNBBJHC3WHQVOHHOZTGLTLI" "https://api.wit.ai/message?v=20231202&q={normalized_name}%20{normalized_description}"'
+
+        output = subprocess.check_output(command, shell=True)
+        
+        etiqueta_ofensiva = analizar_respuesta(output)
+
+        if etiqueta_ofensiva == 'ofensivo':
+            serializer.instance.eq_confirmation_date = timezone.now()
+            serializer.instance.has_requests = True
+        serializer.instance.save()
+
+def analizar_respuesta(respuesta):
+
+    try:
+        respuesta_decodificada = respuesta.decode('utf-8')
+
+        respuesta_json = json.loads(respuesta_decodificada)
+
+        return 'ofensivo' if any(intent['name'] in ['insulto', 'ilegal'] for intent in respuesta_json.get('intents', [])) else 'no_ofensivo'
+    except (json.JSONDecodeError, AttributeError) as e:
+        return 'error'
+
+def normalize_text(text):
+    text = unidecode(re.sub(r'[^A-Za-záéíóúüÁÉÍÓÚÜñÑ\s]', '', text))
+    text = text.replace(" ", "%20")
+    return text
 
 class MedicalEquipmentDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = MedicalEquipment.objects.all()
@@ -52,7 +91,9 @@ class MedicalEquipmentSearchViewbyName(generics.ListAPIView):
     def post(self, request):
         eq_name = self.request.data.get('eq_name', '')
         queryset = MedicalEquipment.objects.filter(
-            Q(eq_name__icontains=eq_name)
+            Q(eq_name__icontains=eq_name) &
+            Q(eq_confirmation_date__isnull=True) &
+            Q(has_requests=False)
         )
         serializer = self.serializer_class(queryset, many=True)
         return Response(serializer.data)
