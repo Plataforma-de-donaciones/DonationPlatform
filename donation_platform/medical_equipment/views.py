@@ -85,8 +85,9 @@ class MedicalEquipmentSearchViewbyUser(APIView):
 
         return Response({'message': 'Ingrese un parámetro de búsqueda válido.'}, status=status.HTTP_400_BAD_REQUEST)
 
-class MedicalEquipmentSearchViewbyName(APIView):
+class MedicalEquipmentSearchViewbyName(generics.ListCreateAPIView):
     serializer_class = MedicalEquipmentSerializer
+    #parser_classes = (MultiPartParser, FormParser)
 
     def post(self, request):
         eq_name = self.request.data.get('eq_name', '')
@@ -163,4 +164,13 @@ class MedicalEquipmentSearchViewbyNames(generics.ListAPIView):
         )
         serializer = self.serializer_class(queryset, many=True)
         return Response(serializer.data)
+
+class MedicalEquipmentListOcultView(generics.ListCreateAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = MedicalEquipmentSerializer
+    parser_classes = (MultiPartParser, FormParser)
+
+    def get_queryset(self):
+        queryset = MedicalEquipment.objects.filter(eq_confirmation_date__isnull=False, has_requests=True)
+        return queryset
 

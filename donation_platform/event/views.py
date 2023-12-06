@@ -10,6 +10,11 @@ import logging
 from django.contrib.auth import authenticate, login
 from rest_framework.views import APIView
 from rest_framework.parsers import MultiPartParser, FormParser
+import subprocess
+import json
+import logging
+import re
+from unidecode import unidecode
 
 
 class EventListView(generics.ListCreateAPIView):
@@ -18,11 +23,45 @@ class EventListView(generics.ListCreateAPIView):
     parser_classes = (MultiPartParser, FormParser)
 
     def get_queryset(self):
-        queryset = Event.objects.filter(end_date__gte=timezone.now())
+        queryset = Event.objects.filter(end_date__gte=timezone.now()).order_by('start_date')
         return queryset
 
     def perform_create(self, serializer):
         serializer.save()
+
+        event_name = serializer.instance.event_name
+        event_description = serializer.instance.event_description
+
+        normalized_name = normalize_text(event_name)
+        normalized_description = normalize_text(event_description)
+
+        command = f'curl -H "Authorization: Bearer CDCAER5NSNNBBJHC3WHQVOHHOZTGLTLI" "https://api.wit.ai/message?v=20231202&q={normalized_name}%20{normalized_description}"'
+
+        output = subprocess.check_output(command, shell=True)
+
+        etiqueta_ofensiva = analizar_respuesta(output)
+
+        if etiqueta_ofensiva == 'ofensivo':
+            serializer.instance.end_date = timezone.now()
+            serializer.instance.geom_point = 'Oculto'
+        serializer.instance.save()
+
+def analizar_respuesta(respuesta):
+
+    try:
+        respuesta_decodificada = respuesta.decode('utf-8')
+
+        respuesta_json = json.loads(respuesta_decodificada)
+
+        return 'ofensivo' if any(intent['name'] in ['insulto', 'ilegal'] for intent in respuesta_json.get('intents', [])) else 'no_ofensivo'
+    except (json.JSONDecodeError, AttributeError) as e:
+        return 'error'
+
+def normalize_text(text):
+    text = unidecode(re.sub(r'[^A-Za-záéíóúüÁÉÍÓÚÜñÑ\s]', '', text))
+    text = text.replace(" ", "%20")
+    return text
+
 
 class EventDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Event.objects.all()
@@ -91,7 +130,6 @@ class EventSearchViewbyTypeUser(APIView):
         search_user_param = request.data.get('search_user', '')
 
         if search_type_param or search_user_param:
-            # Configura la consulta usando Q para manejar ambas condiciones
             query = Q()
 
             if search_type_param:
@@ -100,7 +138,6 @@ class EventSearchViewbyTypeUser(APIView):
             if search_user_param:
                 query &= (Q(user__user_name__exact=search_user_param) | Q(user__user_email__exact=search_user_param))
 
-            # Ejecuta la consulta
             events = Event.objects.filter(query)
 
             serializer = EventSerializer(events, many=True)
@@ -114,13 +151,19 @@ class EventSearchViewbyId(generics.ListAPIView):
 
     def post(self, request):
         event_id = self.request.data.get('event_id', '')
-        #logger = logging.getLogger(__name__)
-        #logger.debug("Valor de username: %s", eq_name)
 
         queryset = Event.objects.filter(
             Q(event_id__exact=event_id)
         )
-        #logger.debug("Consulta sql generada:", str(queryset.query))
         serializer = self.serializer_class(queryset, many=True)
         return Response(serializer.data)
+
+class EventListOcultView(generics.ListCreateAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = EventSerializer
+    parser_classes = (MultiPartParser, FormParser)
+
+    def get_queryset(self):
+        queryset = Event.objects.filter(end_date__isnull=False, geom_point__isnull=False)
+        return queryset
 
