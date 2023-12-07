@@ -86,13 +86,16 @@ class VolunteerSearchViewbyName(generics.ListAPIView):
 
     def post(self, request):
         vol_name = self.request.data.get('vol_name', '')
-        logger = logging.getLogger(__name__)
-        logger.debug("Valor de username: %s", vol_name)
+        #logger = logging.getLogger(__name__)
+        #logger.debug("Valor de username: %s", vol_name)
 
         queryset = Volunteer.objects.filter(
-            Q(vol_name__icontains=vol_name)
+            Q(vol_name__icontains=vol_name) &
+            Q(end_date__isnull=True) &
+            Q(has_requests=False)
+
         )
-        logger.debug("Consulta sql generada:", str(queryset.query))
+        #logger.debug("Consulta sql generada:", str(queryset.query))
         serializer = self.serializer_class(queryset, many=True)
         return Response(serializer.data)
 
