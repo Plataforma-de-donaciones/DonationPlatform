@@ -13,3 +13,12 @@ class UsersSerializer(serializers.ModelSerializer):
         if request and request.method == 'GET':
             data.pop('user_password', None)
         return data
+
+class UsersSimpleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Users
+        exclude = ['user_password', 'id', 'user_email']
+
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+        return data

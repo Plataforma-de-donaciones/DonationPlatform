@@ -58,8 +58,8 @@ class Attachments(models.Model):
 
 
 class AttachmentsEvent(models.Model):
-    atta = models.ForeignKey(Attachments, models.DO_NOTHING)
-    event = models.ForeignKey('Event', models.DO_NOTHING)
+    atta = models.ForeignKey(Attachments, models.DO_NOTHING, related_name='don_attachments_event_atta')
+    event = models.ForeignKey('Event', models.DO_NOTHING, related_name='don_attachments_event')
 
     class Meta:
         managed = False
@@ -119,10 +119,21 @@ class CategoriesNew(models.Model):
         managed = False
         db_table = 'categories_new'
 
+class Chat(models.Model):
+    chat_id = models.AutoField(primary_key=True)
+    user = models.ForeignKey('Users', models.DO_NOTHING, related_name='donation_platform_user_chat')
+    conv = models.ForeignKey('Conversation', models.DO_NOTHING, related_name='donation_platform_conv_chat')
+    content = models.TextField()
+    sent_date = models.TimeField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'chat'
 
 class Conversation(models.Model):
     conv_id = models.AutoField(primary_key=True)
-    user = models.ForeignKey('Users', models.DO_NOTHING)
+    user_1 = models.ForeignKey('Users', models.DO_NOTHING, related_name='donation_platform_user1_conversation')
+    user_2 = models.ForeignKey('Users', models.DO_NOTHING, related_name='donation_platform_user2_conversation')
 
     class Meta:
         managed = False
@@ -162,6 +173,7 @@ class Event(models.Model):
     start_date = models.DateTimeField(blank=True, null=True)
     end_date = models.DateTimeField(blank=True, null=True)
     organization = models.ForeignKey('Organization', models.DO_NOTHING, blank=True, null=True)
+    attachments = models.ManyToManyField(Attachments, through='AttachmentsEvent', related_name='don_event_attachments')
 
     class Meta:
         managed = False
@@ -190,8 +202,8 @@ class MedicalEquipment(models.Model):
 
 class Message(models.Model):
     mess_id = models.AutoField(primary_key=True)
-    user = models.ForeignKey('Users', models.DO_NOTHING)
-    conv = models.ForeignKey(Conversation, models.DO_NOTHING)
+    user = models.ForeignKey('Users', models.DO_NOTHING, related_name='user_message')
+    conv = models.ForeignKey(Conversation, models.DO_NOTHING, related_name='conv_message')
     content = models.TextField()
     sent_date = models.TimeField(blank=True, null=True)
 
@@ -267,11 +279,13 @@ class Requests(models.Model):
     eq = models.ForeignKey(MedicalEquipment, models.DO_NOTHING, null=True)
     don = models.ForeignKey(Donation, models.DO_NOTHING, null=True)
     vol = models.ForeignKey('Volunteer', models.DO_NOTHING, null=True)
+    sponsor = models.ForeignKey('Sponsor', models.DO_NOTHING, null=True)
     req_sent_date = models.DateTimeField()
     has_confirmation = models.BooleanField()
     confirmed_at = models.DateTimeField(blank=True, null=True)
     state = models.ForeignKey(ArticlesStates, models.DO_NOTHING)
     type = models.ForeignKey(ArticlesType, models.DO_NOTHING)
+    conv = models.ForeignKey(Conversation, models.DO_NOTHING)
 
     class Meta:
         managed = False

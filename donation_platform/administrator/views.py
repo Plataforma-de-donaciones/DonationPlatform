@@ -13,6 +13,28 @@ class AdministratorListView(generics.ListCreateAPIView):
     serializer_class = AdministratorSerializer
     permission_classes = [permissions.IsAuthenticated]
 
+    def list(self, request, *args, **kwargs):
+        response = super().list(request, *args, **kwargs)
+
+        data_with_user_info = []
+        for administrator_data in response.data:
+            user_id = administrator_data.get('user')
+            try:
+                user = Users.objects.get(id=user_id)
+                user_info = {
+                    'user_id': user.id,
+                    'user_name': user.user_name,
+                    'user_email': user.user_email,
+                }
+                administrator_data['user_info'] = user_info
+            except Users.DoesNotExist:
+                administrator_data['user_info'] = None
+
+            data_with_user_info.append(administrator_data)
+
+        response.data = data_with_user_info
+        return response
+
     def create(self, request, *args, **kwargs):
         user_id = request.data.get('user')
         start_date = request.data.get('start_date')

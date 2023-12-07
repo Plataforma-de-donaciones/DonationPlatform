@@ -10,26 +10,62 @@ import logging
 from django.contrib.auth import authenticate, login
 from rest_framework.views import APIView
 from rest_framework.parsers import MultiPartParser, FormParser
+#from detectors import normalize_text
+import subprocess
+import json
+import logging
+import re
+from unidecode import unidecode
 
 class MedicalEquipmentListView(generics.ListCreateAPIView):
-    queryset = MedicalEquipment.objects.all()
     serializer_class = MedicalEquipmentSerializer
-    #permission_classes = [permissions.IsAuthenticated]
     parser_classes = (MultiPartParser, FormParser)
 
+    def get_queryset(self):
+        queryset = MedicalEquipment.objects.filter(eq_confirmation_date__isnull=True, has_requests=False)
+        return queryset
+    #def perform_create(self, serializer):
+     #   serializer.save()
     def perform_create(self, serializer):
         serializer.save()
+
+        eq_name = serializer.instance.eq_name
+        eq_description = serializer.instance.eq_description
+
+        normalized_name = normalize_text(eq_name)
+        normalized_description = normalize_text(eq_description)
+
+        command = f'curl -H "Authorization: Bearer CDCAER5NSNNBBJHC3WHQVOHHOZTGLTLI" "https://api.wit.ai/message?v=20231202&q={normalized_name}%20{normalized_description}"'
+
+        output = subprocess.check_output(command, shell=True)
+        
+        etiqueta_ofensiva = analizar_respuesta(output)
+
+        if etiqueta_ofensiva == 'ofensivo':
+            serializer.instance.eq_confirmation_date = timezone.now()
+            serializer.instance.has_requests = True
+        serializer.instance.save()
+
+def analizar_respuesta(respuesta):
+
+    try:
+        respuesta_decodificada = respuesta.decode('utf-8')
+
+        respuesta_json = json.loads(respuesta_decodificada)
+
+        return 'ofensivo' if any(intent['name'] in ['insulto', 'ilegal'] for intent in respuesta_json.get('intents', [])) else 'no_ofensivo'
+    except (json.JSONDecodeError, AttributeError) as e:
+        return 'error'
+
+def normalize_text(text):
+    text = unidecode(re.sub(r'[^A-Za-záéíóúüÁÉÍÓÚÜñÑ\s]', '', text))
+    text = text.replace(" ", "%20")
+    return text
 
 class MedicalEquipmentDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = MedicalEquipment.objects.all()
     serializer_class = MedicalEquipmentSerializer
     permission_classes = [permissions.IsAuthenticated]
-
-    #def perform_destroy(self, instance):
-       # Implementación de eliminación lógica
-       #instance.administrator_state = 0
-       #instance.erased_at = timezone.now()  # Marcar la fecha de eliminación
-       #instance.save()
 
 class MedicalEquipmentSearchViewbyUser(APIView):
     permission_classes = [permissions.IsAuthenticated]
@@ -42,7 +78,6 @@ class MedicalEquipmentSearchViewbyUser(APIView):
                 id = int(search_param)
                 equipments = MedicalEquipment.objects.filter(Q(user__id=id) | Q(user__user_name=search_param) | Q(user__user_email__exact=search_param))
             except ValueError:
-                # Si no es un número, busca por type_name
                 equipments = MedicalEquipment.objects.filter( Q(user__user_name=search_param) | Q(user__user_email__exact=search_param))
 
             serializer = MedicalEquipmentSerializer(equipments, many=True)
@@ -50,18 +85,17 @@ class MedicalEquipmentSearchViewbyUser(APIView):
 
         return Response({'message': 'Ingrese un parámetro de búsqueda válido.'}, status=status.HTTP_400_BAD_REQUEST)
 
-class MedicalEquipmentSearchViewbyName(generics.ListAPIView):
+class MedicalEquipmentSearchViewbyName(generics.ListCreateAPIView):
     serializer_class = MedicalEquipmentSerializer
+    #parser_classes = (MultiPartParser, FormParser)
 
     def post(self, request):
         eq_name = self.request.data.get('eq_name', '')
-        logger = logging.getLogger(__name__)
-        logger.debug("Valor de username: %s", eq_name)
-
         queryset = MedicalEquipment.objects.filter(
-            Q(eq_name__icontains=eq_name)
+            Q(eq_name__icontains=eq_name) &
+            Q(eq_confirmation_date__isnull=True) &
+            Q(has_requests=False)
         )
-        logger.debug("Consulta sql generada:", str(queryset.query))
         serializer = self.serializer_class(queryset, many=True)
         return Response(serializer.data)
 
@@ -72,14 +106,11 @@ class MedicalEquipmentSearchViewbyType(APIView):
         search_param = request.data.get('search', '')
 
         if search_param:
-            # Intenta buscar por type_id como número
             try:
                 type_id = int(search_param)
                 equipments = MedicalEquipment.objects.filter(Q(type__type_id=type_id) | Q(type__type_name=search_param))
             except ValueError:
-                # Si no es un número, busca por type_name
                 equipments = MedicalEquipment.objects.filter(type__type_name=search_param)
-            
             serializer = MedicalEquipmentSerializer(equipments, many=True)
             return Response(serializer.data, status=status.HTTP_200_OK)
 
@@ -93,7 +124,6 @@ class MedicalEquipmentSearchViewbyTypeUser(APIView):
         search_user_param = request.data.get('search_user', '')
 
         if search_type_param or search_user_param:
-            # Configura la consulta usando Q para manejar ambas condiciones
             query = Q()
 
             if search_type_param:
@@ -101,8 +131,6 @@ class MedicalEquipmentSearchViewbyTypeUser(APIView):
 
             if search_user_param:
                 query &= (Q(user__user_name__exact=search_user_param) | Q(user__user_email__exact=search_user_param))
-
-            # Ejecuta la consulta
             equipments = MedicalEquipment.objects.filter(query)
 
             serializer = MedicalEquipmentSerializer(equipments, many=True)
@@ -116,13 +144,33 @@ class MedicalEquipmentSearchViewbyId(generics.ListAPIView):
 
     def post(self, request):
         eq_id = self.request.data.get('eq_id', '')
-        #logger = logging.getLogger(__name__)
-        #logger.debug("Valor de username: %s", eq_name)
 
         queryset = MedicalEquipment.objects.filter(
             Q(eq_id__exact=eq_id)
         )
-        #logger.debug("Consulta sql generada:", str(queryset.query))
         serializer = self.serializer_class(queryset, many=True)
         return Response(serializer.data)
+
+class MedicalEquipmentSearchViewbyNames(generics.ListAPIView):
+    serializer_class = MedicalEquipmentSerializer
+
+    def post(self, request):
+        eq_name = self.request.data.get('eq_name', '')
+
+        queryset = MedicalEquipment.objects.filter(
+            Q(eq_name__icontains=eq_name) &
+            Q(eq_confirmation_date__isnull=True) &
+            Q(type=2)
+        )
+        serializer = self.serializer_class(queryset, many=True)
+        return Response(serializer.data)
+
+class MedicalEquipmentListOcultView(generics.ListCreateAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = MedicalEquipmentSerializer
+    parser_classes = (MultiPartParser, FormParser)
+
+    def get_queryset(self):
+        queryset = MedicalEquipment.objects.filter(eq_confirmation_date__isnull=False, has_requests=True)
+        return queryset
 

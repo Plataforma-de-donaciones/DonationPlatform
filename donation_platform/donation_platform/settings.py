@@ -20,6 +20,7 @@ env = environ.Env(
 # reading .env file
 environ.Env.read_env()
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -68,6 +69,8 @@ INSTALLED_APPS = [
     'categories_meq',
     'categories',
     'categories_don',
+    'conversation',
+    'chat',
 ]
 
 MIDDLEWARE = [
@@ -190,6 +193,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 #LANGUAGE_CODE = 'en-us'
 LANGUAGE_CODE = 'es-uy'
+
+DEFAULT_CHARSET = 'utf-8'
 
 TIME_ZONE = 'UTC'
 

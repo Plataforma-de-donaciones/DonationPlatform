@@ -9,11 +9,16 @@ from rest_framework import status
 import logging
 from django.contrib.auth import authenticate, login
 from rest_framework.views import APIView
+from rest_framework.parsers import MultiPartParser, FormParser
 
 class NewsListView(generics.ListCreateAPIView):
     queryset = News.objects.all()
     serializer_class = NewsSerializer
     #permission_classes = [permissions.IsAuthenticated]
+    parser_classes = (MultiPartParser, FormParser)
+
+    def perform_create(self, serializer):
+        serializer.save()
 
 class NewsDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = News.objects.all()
@@ -64,6 +69,22 @@ class NewsSearchViewbySubject(generics.ListAPIView):
             Q(new_subject__icontains=new_subject)
         )
         logger.debug("Consulta sql generada:", str(queryset.query))
+        serializer = self.serializer_class(queryset, many=True)
+        return Response(serializer.data)
+
+class NewsSearchViewbyId(generics.ListAPIView):
+    serializer_class = NewsSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def post(self, request):
+        new_id = self.request.data.get('new_id', '')
+        #logger = logging.getLogger(__name__)
+        #logger.debug("Valor de username: %s", eq_name)
+
+        queryset = News.objects.filter(
+            Q(new_id__exact=new_id)
+        )
+        #logger.debug("Consulta sql generada:", str(queryset.query))
         serializer = self.serializer_class(queryset, many=True)
         return Response(serializer.data)
 

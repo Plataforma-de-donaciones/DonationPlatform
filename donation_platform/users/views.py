@@ -4,7 +4,7 @@ from django.shortcuts import render
 from rest_framework import generics, status
 from rest_framework.permissions import IsAuthenticated
 from .models import Users
-from .serializers import UsersSerializer
+from .serializers import UsersSerializer, UsersSimpleSerializer
 from django.utils import timezone
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -19,6 +19,8 @@ import json
 from django.http import JsonResponse
 #from django.views.decorators.csrf import ensure_csrf_cookie
 #from django.views.decorators.csrf import csrf_exempt
+from .models import Administrator, Moderator
+#from donation_platform.permissions import UsuarioClusterPermiso
 
 class UsersListView(generics.ListAPIView):
     queryset = Users.objects.all()
@@ -28,7 +30,7 @@ class UsersListView(generics.ListAPIView):
 class UsersCreateView(generics.CreateAPIView):
     queryset = Users.objects.all()
     serializer_class = UsersSerializer
-    permission_classes = [IsAuthenticated]
+    #permission_classes = [IsAuthenticated]
 
     def create(self, request, *args, **kwargs):
         # Obtiene la contraseña en texto plano del cuerpo JSON de la solicitud
@@ -109,6 +111,7 @@ class UserSearchView(generics.ListAPIView):
 #            return Response({'message': 'Credenciales inválidas'}, status=status.HTTP_401_UNAUTHORIZED)
 
 class UserLoginView(APIView):
+    #permission_classes = [UsuarioClusterPermiso]
     def post(self, request):
         user_name = request.data.get('user_name')
         user_password = request.data.get('user_password')
@@ -118,7 +121,9 @@ class UserLoginView(APIView):
         except Users.DoesNotExist:
             user = None
 
-        if user is not None and check_password(user_password, user.user_password):
+#        if user is not None and check_password(user_password, user.user_password):
+        if user is not None and check_password(user_password, user.user_password) and user.user_state == 1:
+
             # Autenticación exitosa, inicia sesión
             login(request, user)
 
@@ -133,3 +138,74 @@ class UserLoginView(APIView):
             return JsonResponse({'message': 'Inicio de sesión exitoso', 'token': token.key, 'user_data': user_data})
         else:
             return JsonResponse({'message': 'Credenciales inválidas'}, status=status.HTTP_401_UNAUTHORIZED)
+
+class UserRoleView(APIView):
+    serializer_class = UsersSerializer
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        user_id = self.request.data.get('id', '')
+
+        try:
+            administrator = Administrator.objects.get(user=user_id)
+            return JsonResponse({"user_role": "administrator"})
+        except Administrator.DoesNotExist:
+            pass
+
+        try:
+            moderator = Moderator.objects.get(user=user_id)
+            return JsonResponse({"user_role": "moderator"})
+        except Moderator.DoesNotExist:
+            pass
+
+        return JsonResponse({"user_role": "user"})
+
+class UserSearchViewbyId(generics.ListAPIView):
+    serializer_class = UsersSerializer
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        id = self.request.data.get('id', '')
+        #logger = logging.getLogger(__name__)
+        #logger.debug("Valor de username: %s", eq_name)
+
+        queryset = Users.objects.filter(
+            Q(id__exact=id)
+        )
+        #logger.debug("Consulta sql generada:", str(queryset.query))
+        serializer = self.serializer_class(queryset, many=True)
+        return Response(serializer.data)
+
+class UsersLoginView(APIView):
+    #permission_classes = [UsuarioClusterPermiso]
+    serializer_class = UsersSimpleSerializer
+
+    def post(self, request):
+        user_name = request.data.get('user_name')
+        user_password = request.data.get('user_password')
+
+        try:
+            user = Users.objects.get(user_name=user_name)
+        except Users.DoesNotExist:
+            user = None
+
+#        if user is not None and check_password(user_password, user.user_password):
+        if user is not None and check_password(user_password, user.user_password) and user.user_state == 1:
+
+            # Autenticación exitosa, inicia sesión
+            login(request, user)
+            #serializer = UsersSerializer(user, context={'request': request})
+            #Token.objects.filter(user=user).delete()
+            # Crea un nuevo token
+            existing_token = Token.objects.filter(user=user).first()
+            if existing_token:
+                existing_token.delete()
+            new_token = Token.objects.create(user=user)
+            # Generar o obtener el token para el usuario
+            #token, created = Token.objects.get_or_create(user=user)
+
+            return Response({'message': 'Inicio de sesión exitoso', 'token': new_token.key})
+
+        else:
+            return JsonResponse({'message': 'Credenciales inválidas'}, status=status.HTTP_401_UNAUTHORIZED)
+

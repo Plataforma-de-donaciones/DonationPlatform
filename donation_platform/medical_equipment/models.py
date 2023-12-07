@@ -1,5 +1,8 @@
 from django.db import models
 from donation_platform.models import ArticlesType, ArticlesStates, Users, ArticlesZones, Categories, CategoriesMeq
+#from transformers import BertTokenizer, BertForSequenceClassification
+#from torch.nn.functional import softmax
+#import torch
 from django.utils import timezone
 from PIL import Image
 
@@ -16,7 +19,7 @@ class MedicalEquipment(models.Model):
     has_requests = models.BooleanField()
     request_count = models.IntegerField()
     eq_confirmation_date = models.DateTimeField(blank=True, null=True)
-    eq_attachment = models.ImageField(upload_to='static/')
+    eq_attachment = models.ImageField(upload_to='static/', blank=True, null=True)
 
     class Meta:
         managed = False
