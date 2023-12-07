@@ -4,6 +4,7 @@ __pycache__/
 *$py.class
 
 donation_platform/static/
+static/
 
 # C extensions
 *.so
