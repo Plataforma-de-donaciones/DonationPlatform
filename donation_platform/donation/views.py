@@ -103,12 +103,16 @@ class DonationSearchViewbyName(generics.ListCreateAPIView):
             Q(don_confirmation_date__isnull=True) &
             Q(has_requests=False)
         )
-        #logger.debug("Consulta sql generada:", str(queryset.query))
-        #serializer = self.serializer_class(queryset, many=True)
-        #return Response(serializer.data)
         serialized_data = self.serializer_class(queryset, many=True).data
+        #for item in serialized_data:
+         #   item['don_attachment'] = settings.SERVER_URL + item['don_attachment']
+
+        #return Response(serialized_data)
         for item in serialized_data:
-            item['don_attachment'] = settings.SERVER_URL + item['don_attachment']
+            don_attachment = item.get('don_attachment')
+
+            if don_attachment is not None:
+                item['don_attachment'] = settings.SERVER_URL + don_attachment
 
         return Response(serialized_data)
 

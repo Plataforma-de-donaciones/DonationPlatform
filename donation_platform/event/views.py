@@ -113,8 +113,15 @@ class EventSearchViewbyName(generics.ListAPIView):
         #serializer = self.serializer_class(queryset, many=True)
         #return Response(serializer.data)
         serialized_data = self.serializer_class(queryset, many=True).data
+        #for item in serialized_data:
+         #   item['attachments'] = settings.SERVER_URL + item['attachments']
+
+        #return Response(serialized_data)
         for item in serialized_data:
-            item['attachments'] = settings.SERVER_URL + item['attachments']
+            attachments = item.get('attachments')
+
+            if attachments is not None:
+                item['attachments'] = settings.SERVER_URL + attachments
 
         return Response(serialized_data)
 
