@@ -100,8 +100,15 @@ class MedicalEquipmentSearchViewbyName(generics.ListCreateAPIView):
         #serializer = self.serializer_class(queryset, many=True)
         #return Response(serializer.data)
         serialized_data = self.serializer_class(queryset, many=True).data
+        #for item in serialized_data:
+         #   item['eq_attachment'] = settings.SERVER_URL + item['eq_attachment']
+
+        #return Response(serialized_data)
         for item in serialized_data:
-            item['eq_attachment'] = settings.SERVER_URL + item['eq_attachment']
+            eq_attachment = item.get('eq_attachment')
+
+            if eq_attachment is not None:
+                item['eq_attachment'] = settings.SERVER_URL + eq_attachment
 
         return Response(serialized_data)
 
