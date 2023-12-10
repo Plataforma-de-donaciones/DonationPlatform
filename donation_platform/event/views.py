@@ -20,7 +20,6 @@ from datetime import timedelta
 from django.utils import timezone
 
 class EventListView(generics.ListCreateAPIView):
-    #queryset = Event.objects.all()
     serializer_class = EventSerializer
     parser_classes = (MultiPartParser, FormParser)
 
@@ -47,7 +46,6 @@ class EventListView(generics.ListCreateAPIView):
             current_datetime = timezone.now()
             one_day_ago = current_datetime - timedelta(days=1)
             serializer.instance.end_date = one_day_ago
-            #serializer.instance.end_date = timezone.now()
             serializer.instance.geom_point = 'Oculto'
         serializer.instance.save()
 
@@ -101,22 +99,15 @@ class EventSearchViewbyName(generics.ListAPIView):
 
     def post(self, request):
         event_name = self.request.data.get('event_name', '')
-        #logger = logging.getLogger(__name__)
-        #logger.debug("Valor de username: %s", event_name)
 
         queryset = Event.objects.filter(
             Q(event_name__icontains=event_name)&
             Q(end_date__isnull=False) &
             Q(geom_point__isnull=True)
         )
-        #logger.debug("Consulta sql generada:", str(queryset.query))
-        #serializer = self.serializer_class(queryset, many=True)
-        #return Response(serializer.data)
+        
         serialized_data = self.serializer_class(queryset, many=True).data
-        #for item in serialized_data:
-         #   item['attachments'] = settings.SERVER_URL + item['attachments']
-
-        #return Response(serialized_data)
+        
         for item in serialized_data:
             attachments = item.get('attachments')
 

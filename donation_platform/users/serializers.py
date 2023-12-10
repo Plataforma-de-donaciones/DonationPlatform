@@ -7,7 +7,6 @@ class UsersSerializer(serializers.ModelSerializer):
         fields = '__all__'
         #exclude = ('user_password',)
     def to_representation(self, instance):
-        # Excluye 'user_password' de la representación en lectura (GET)
         data = super().to_representation(instance)
         request = self.context.get('request')
         if request and request.method == 'GET':

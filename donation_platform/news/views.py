@@ -14,7 +14,6 @@ from rest_framework.parsers import MultiPartParser, FormParser
 class NewsListView(generics.ListCreateAPIView):
     queryset = News.objects.all()
     serializer_class = NewsSerializer
-    #permission_classes = [permissions.IsAuthenticated]
     parser_classes = (MultiPartParser, FormParser)
 
     def perform_create(self, serializer):
@@ -78,13 +77,11 @@ class NewsSearchViewbyId(generics.ListAPIView):
 
     def post(self, request):
         new_id = self.request.data.get('new_id', '')
-        #logger = logging.getLogger(__name__)
-        #logger.debug("Valor de username: %s", eq_name)
 
         queryset = News.objects.filter(
             Q(new_id__exact=new_id)
         )
-        #logger.debug("Consulta sql generada:", str(queryset.query))
+       
         serializer = self.serializer_class(queryset, many=True)
         return Response(serializer.data)
 

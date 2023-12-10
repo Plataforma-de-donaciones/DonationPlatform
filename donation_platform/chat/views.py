@@ -32,7 +32,6 @@ class ChatSearchViewbyUser(APIView):
                 id = int(search_param)
                 chat = Chat.objects.filter(Q(user__id=id) | Q(user__user_name=search_param) | Q(user__user_email__exact=search_param))
             except ValueError:
-                # Si no es un número, busca por type_name
                 chat = Chat.objects.filter( Q(user__user_name=search_param) | Q(user__user_email__exact=search_param))
 
             serializer = ChatSerializer(Chat, many=True)
@@ -65,7 +64,6 @@ class ChatSearchViewbyConversation(APIView):
                 id = int(search_param)
                 chats = Chat.objects.filter(Q(conv__conv_id=id))
             except ValueError:
-                # Si no es un número, busca por otros campos en la relación conv
                 chats = Chat.objects.filter(Q(conv__conv_id=id) | Q(conv__user_1__user_name=search_param) | Q(conv__user_1__user_email__exact=search_param) | Q(conv__user_2__user_name=search_param) | Q(conv__user_2__user_email__exact=search_param))
 
             serializer = ChatSerializer(chats, many=True)

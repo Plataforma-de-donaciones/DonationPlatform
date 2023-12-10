@@ -84,7 +84,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-#SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # Almacenar sesiones en la base de datos (también puedes usar 'django.contrib.sessions.backends.cache' o 'django.contrib.sessions.backends.file')
+#SESSION_ENGINE = 'django.contrib.sessions.backends.db'  
 #SESSION_COOKIE_NAME = 'donation_cookie'
 
 ROOT_URLCONF = 'donation_platform.urls'
@@ -130,7 +130,6 @@ CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
     "https://localhost:3000",
     "http://localhost:3000",
-  # Reemplaza con la URL de tu aplicación React
 ]
 
 
@@ -146,7 +145,7 @@ DATABASES = {
                    'HOST': env('POSTGRESQL_HOST'),
                    'PORT': env('POSTGRESQL_PORT'),
                    'OPTIONS': {
-                       'options': '-c search_path=data',  # Especificar el esquema
+                       'options': '-c search_path=data',  
               },
          }
   } 

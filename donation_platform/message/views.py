@@ -14,7 +14,6 @@ from rest_framework.views import APIView
 class MessageListView(generics.ListCreateAPIView):
     queryset = Message.objects.all()
     serializer_class = MessageSerializer
-    #permission_classes = [permissions.IsAuthenticated]
 
 class MessageDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Message.objects.all()
@@ -32,7 +31,6 @@ class MessageSearchViewbyUser(APIView):
                 id = int(search_param)
                 message = Message.objects.filter(Q(user__id=id) | Q(user__user_name=search_param) | Q(user__user_email__exact=search_param))
             except ValueError:
-                # Si no es un número, busca por type_name
                 message = Message.objects.filter( Q(user__user_name=search_param) | Q(user__user_email__exact=search_param))
 
             serializer = MessageSerializer(message, many=True)
