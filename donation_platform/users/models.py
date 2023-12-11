@@ -93,7 +93,6 @@ def update_administrator_state(sender, instance, **kwargs):
     if instance.user_state == 0:
         Administrator.objects.filter(user=instance).update(administrator_state=0)
 
-# Verificar el estado del usuario antes de crear un administrador
 def create_administrator(user, start_date, organization, administrator_state):
     if user.user_state == 1:
         Administrator.objects.create(user=user, start_date=start_date, organization=organization, administrator_state=administrator_state)
@@ -105,7 +104,6 @@ def update_moderator_state(sender, instance, **kwargs):
     if instance.user_state == 0:
         Moderator.objects.filter(user=instance).update(moderator_state=0)
 
-# Verificar el estado del usuario antes de crear un moderador
 def create_moderator(user, start_date, organization, moderator_state):
     if user.user_state == 1:
         Moderator.objects.create(user=user, start_date=start_date, organization=organization, moderator_state=moderator_state)

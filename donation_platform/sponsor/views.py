@@ -16,9 +16,7 @@ import re
 from unidecode import unidecode
 
 class SponsorListView(generics.ListCreateAPIView):
-    #queryset = Sponsor.objects.all()
     serializer_class = SponsorSerializer
-    #permission_classes = [permissions.IsAuthenticated]
     def get_queryset(self):
         queryset = Sponsor.objects.filter(end_date__isnull=True)
         return queryset

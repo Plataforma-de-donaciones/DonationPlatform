@@ -18,7 +18,6 @@ from unidecode import unidecode
 from django.conf import settings
 
 class DonationListView(generics.ListCreateAPIView):
-    #queryset = Donation.objects.all()
     serializer_class = DonationSerializer
     parser_classes = (MultiPartParser, FormParser)
 
@@ -26,8 +25,6 @@ class DonationListView(generics.ListCreateAPIView):
         queryset = Donation.objects.filter(don_confirmation_date__isnull=True, has_requests=False)
         return queryset
 
-    #def perform_create(self, serializer):
-     #   serializer.save()
     def perform_create(self, serializer):
         serializer.save()
 
@@ -104,10 +101,7 @@ class DonationSearchViewbyName(generics.ListCreateAPIView):
             Q(has_requests=False)
         )
         serialized_data = self.serializer_class(queryset, many=True).data
-        #for item in serialized_data:
-         #   item['don_attachment'] = settings.SERVER_URL + item['don_attachment']
-
-        #return Response(serialized_data)
+        
         for item in serialized_data:
             don_attachment = item.get('don_attachment')
 
