@@ -87,11 +87,11 @@ class UserSearchView(generics.ListAPIView):
 
 class UserLoginView(APIView):
     def post(self, request):
-        user_name = request.data.get('user_name')
+        user_email = request.data.get('user_email')
         user_password = request.data.get('user_password')
 
         try:
-            user = Users.objects.get(user_name=user_name)
+            user = Users.objects.get(user_email=user_email)
         except Users.DoesNotExist:
             user = None
 
