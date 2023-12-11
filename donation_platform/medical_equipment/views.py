@@ -16,6 +16,7 @@ import json
 import logging
 import re
 from unidecode import unidecode
+from django.conf import settings
 
 class MedicalEquipmentListView(generics.ListCreateAPIView):
     serializer_class = MedicalEquipmentSerializer
@@ -24,8 +25,7 @@ class MedicalEquipmentListView(generics.ListCreateAPIView):
     def get_queryset(self):
         queryset = MedicalEquipment.objects.filter(eq_confirmation_date__isnull=True, has_requests=False)
         return queryset
-    #def perform_create(self, serializer):
-     #   serializer.save()
+   
     def perform_create(self, serializer):
         serializer.save()
 
@@ -87,7 +87,6 @@ class MedicalEquipmentSearchViewbyUser(APIView):
 
 class MedicalEquipmentSearchViewbyName(generics.ListCreateAPIView):
     serializer_class = MedicalEquipmentSerializer
-    #parser_classes = (MultiPartParser, FormParser)
 
     def post(self, request):
         eq_name = self.request.data.get('eq_name', '')
@@ -96,8 +95,16 @@ class MedicalEquipmentSearchViewbyName(generics.ListCreateAPIView):
             Q(eq_confirmation_date__isnull=True) &
             Q(has_requests=False)
         )
-        serializer = self.serializer_class(queryset, many=True)
-        return Response(serializer.data)
+        
+        serialized_data = self.serializer_class(queryset, many=True).data
+        
+        for item in serialized_data:
+            eq_attachment = item.get('eq_attachment')
+
+            if eq_attachment is not None:
+                item['eq_attachment'] = settings.SERVER_URL + eq_attachment
+
+        return Response(serialized_data)
 
 class MedicalEquipmentSearchViewbyType(APIView):
     permission_classes = [permissions.IsAuthenticated]

@@ -15,15 +15,16 @@ import json
 import logging
 import re
 from unidecode import unidecode
-
+from django.conf import settings
+from datetime import timedelta
+from django.utils import timezone
 
 class EventListView(generics.ListCreateAPIView):
-    #queryset = Event.objects.all()
     serializer_class = EventSerializer
     parser_classes = (MultiPartParser, FormParser)
 
     def get_queryset(self):
-        queryset = Event.objects.filter(end_date__gte=timezone.now()).order_by('start_date')
+        queryset = Event.objects.filter(end_date__gte=timezone.now(), geom_point__isnull=True).order_by('start_date')
         return queryset
 
     def perform_create(self, serializer):
@@ -42,7 +43,9 @@ class EventListView(generics.ListCreateAPIView):
         etiqueta_ofensiva = analizar_respuesta(output)
 
         if etiqueta_ofensiva == 'ofensivo':
-            serializer.instance.end_date = timezone.now()
+            current_datetime = timezone.now()
+            one_day_ago = current_datetime - timedelta(days=1)
+            serializer.instance.end_date = one_day_ago
             serializer.instance.geom_point = 'Oculto'
         serializer.instance.save()
 
@@ -96,15 +99,22 @@ class EventSearchViewbyName(generics.ListAPIView):
 
     def post(self, request):
         event_name = self.request.data.get('event_name', '')
-        logger = logging.getLogger(__name__)
-        logger.debug("Valor de username: %s", event_name)
 
         queryset = Event.objects.filter(
-            Q(event_name__icontains=event_name)
+            Q(event_name__icontains=event_name)&
+            Q(end_date__isnull=False) &
+            Q(geom_point__isnull=True)
         )
-        logger.debug("Consulta sql generada:", str(queryset.query))
-        serializer = self.serializer_class(queryset, many=True)
-        return Response(serializer.data)
+        
+        serialized_data = self.serializer_class(queryset, many=True).data
+        
+        for item in serialized_data:
+            attachments = item.get('attachments')
+
+            if attachments is not None:
+                item['attachments'] = settings.SERVER_URL + attachments
+
+        return Response(serialized_data)
 
 class EventSearchViewbyType(APIView):
     permission_classes = [permissions.IsAuthenticated]

@@ -15,18 +15,16 @@ import json
 import logging
 import re
 from unidecode import unidecode
+from django.conf import settings
 
 class DonationListView(generics.ListCreateAPIView):
-    #queryset = Donation.objects.all()
     serializer_class = DonationSerializer
     parser_classes = (MultiPartParser, FormParser)
 
     def get_queryset(self):
-        queryset = Donation.objects.filter(don_confirmation_date__isnull=True)
+        queryset = Donation.objects.filter(don_confirmation_date__isnull=True, has_requests=False)
         return queryset
 
-    #def perform_create(self, serializer):
-     #   serializer.save()
     def perform_create(self, serializer):
         serializer.save()
 
@@ -96,15 +94,21 @@ class DonationSearchViewbyName(generics.ListCreateAPIView):
 
     def post(self, request):
         don_name = self.request.data.get('don_name', '')
-        logger = logging.getLogger(__name__)
-        logger.debug("Valor de username: %s", don_name)
 
         queryset = Donation.objects.filter(
-            Q(don_name__icontains=don_name)
+            Q(don_name__icontains=don_name) &
+            Q(don_confirmation_date__isnull=True) &
+            Q(has_requests=False)
         )
-        logger.debug("Consulta sql generada:", str(queryset.query))
-        serializer = self.serializer_class(queryset, many=True)
-        return Response(serializer.data)
+        serialized_data = self.serializer_class(queryset, many=True).data
+        
+        for item in serialized_data:
+            don_attachment = item.get('don_attachment')
+
+            if don_attachment is not None:
+                item['don_attachment'] = settings.SERVER_URL + don_attachment
+
+        return Response(serialized_data)
 
 class DonationSearchViewbyType(APIView):
     permission_classes = [permissions.IsAuthenticated]
