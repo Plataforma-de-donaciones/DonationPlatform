@@ -53,9 +53,16 @@ class UsersDetailView(generics.RetrieveUpdateDestroyAPIView):
        instance.erased_at = timezone.now()
        instance.save()
     def perform_update(self, serializer):
-        plain_password = self.request.data.get('user_password', '')
-        hashed_password = make_password(plain_password)
-        serializer.validated_data['user_password'] = hashed_password
+        #plain_password = self.request.data.get('user_password', '')
+        #hashed_password = make_password(plain_password)
+        #serializer.validated_data['user_password'] = hashed_password
+
+        #super().perform_update(serializer)
+        plain_password = self.request.data.get('user_password')
+
+        if plain_password:
+            hashed_password = make_password(plain_password)
+            serializer.validated_data['user_password'] = hashed_password
 
         super().perform_update(serializer)
 
