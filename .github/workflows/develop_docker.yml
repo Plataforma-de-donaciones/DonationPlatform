@@ -30,7 +30,7 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_6194aa757cf24183806f2f0cfa82822f }}/docker.io/camicelentano/platform_backend:${{ github.sha }}
+        tags: camicelentano/platform_backend:latest-${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -48,4 +48,4 @@ jobs:
         app-name: 'docker'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_02e6ba4a6f15474482da1172e22f149a }}
-        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_6194aa757cf24183806f2f0cfa82822f }}/docker.io/camicelentano/platform_backend:${{ github.sha }}'
+        images: 'docker.io/camicelentano/platform_backend:latest-${{ github.sha }}'
