@@ -210,7 +210,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
-SERVER_URL = "https://plataformadonaciones-qa.azurewebsites.net"
+SERVER_URL = "https://plataformadonaciones.azurewebsites.net"
 #STATICFILES_DIRS = [
 #    os.path.join(BASE_DIR, "static"),
 #]
